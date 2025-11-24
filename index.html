@@ -65,12 +65,12 @@
         .btn-digital-hover:hover {
             background: linear-gradient(45deg, #FFD100 0%, #FF6F00 100%);
             transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(255, 209, 0, 0.5); /* Enhanced shadow for modern pop */
+            box-shadow: 0 8px 20px rgba(255, 209, 0, 0.5);
         }
 
         /* Card hover effect: subtle lift and yellow glow */
         .card-digital {
-            border-radius: 1rem; /* Slightly larger rounding */
+            border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
@@ -78,7 +78,7 @@
         }
         .card-digital:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(255, 209, 0, 0.4); /* Deeper, more noticeable glow */
+            box-shadow: 0 12px 30px rgba(255, 209, 0, 0.4);
             border-color: #FFD100;
         }
         
@@ -93,22 +93,55 @@
             transform: translateY(0);
         }
 
-        /* Hero section specific style for background overlay and bottom shape */
+        /* Hero section specific style for background video and bottom shape */
         #home {
+            position: relative;
+            isolation: isolate;
             border-bottom-left-radius: 2.5rem;
             border-bottom-right-radius: 2.5rem;
             overflow: hidden; 
         }
         
-        /* General section styling for spacing and background */
+        /* Full-screen video styling */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2; /* Place behind content and overlay */
+        }
+        .video-container video {
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures video covers the area without distortion */
+        }
+
+        /* Overlay for video readability */
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5); /* Darken video */
+            background: linear-gradient(to top, #0A0A2E 0%, rgba(0, 0, 0, 0.5) 80%); /* Fade to background at the bottom */
+            z-index: -1;
+        }
+
+        /* General section styling */
         section {
-            border-radius: 1.5rem; /* Consistent rounding for main blocks */
+            border-radius: 1.5rem;
             margin-bottom: 2rem;
             margin-left: 1rem;
             margin-right: 1rem;
             background-color: #1A1A3A;
         }
-        
+
         /* Footer styling */
         footer {
             border-top-left-radius: 1.5rem;
@@ -116,45 +149,11 @@
             background: linear-gradient(to top, #0A0A2E 0%, #1A1A3A 100%);
         }
 
-        /* Specific gradient for method cards */
-        .method-card {
-            background: linear-gradient(160deg, #1A1A3A 0%, #2D2D4D 100%);
-            transition: all 0.3s ease;
-            border-top: 4px solid transparent;
-            border-radius: 0.75rem;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        /* Custom logo container */
+        .logo-container {
+            width: 100px; /* Adjust width as needed for your logo */
+            height: auto;
         }
-        .method-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            border-image: linear-gradient(to right, #FFD100, #FF6F00) 1;
-        }
-
-        /* Form input field styling - Sleek and usable */
-        .form-input {
-            background-color: #2D2D4D;
-            border: 1px solid #3A3A5A;
-            color: #F0F0F0;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        .form-input:focus {
-            border-color: #FFD100;
-            box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.5); /* Stronger focus ring */
-            outline: none;
-        }
-
-        /* Custom logo display for header */
-        .header-logo-gradient {
-            background: linear-gradient(45deg, #FFD100, #FF6F00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
     </style>
     <script>
         // Header scroll effect
@@ -188,7 +187,11 @@
 
     <header id="main-header" class="fixed w-full z-50 transition-all duration-300 py-4 backdrop-blur-sm">
         <nav class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="text-3xl font-extrabold tracking-widest uppercase header-logo-gradient">WUI</a>
+            
+            <a href="#home" class="logo-container">
+                <img src="assets/images/WALEED.png" alt="Waleed Logo" class="w-full h-auto">
+            </a>
+            
             <div class="space-x-8 hidden sm:block">
                 <a href="#about" class="text-gray-300 hover:text-accent-yellow transition duration-300 font-medium">About Me</a>
                 <a href="#portfolio" class="text-gray-300 hover:text-accent-yellow transition duration-300 font-medium">The Craft</a>
@@ -197,12 +200,17 @@
         </nav>
     </header>
 
-    <section id="home" class="h-screen relative flex items-center justify-center text-left overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080/1A1A3A/FFD100?text=Digital+Hero+Image+Required+(Use+Dark+High-Contrast+Photo)'); background-position: center 30%;">
-            <div class="absolute inset-0 bg-black opacity-40"></div>
-            <div class="absolute inset-0" style="background: linear-gradient(to top, #0A0A2E 0%, transparent 80%), url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M100 0L0 100h100V0zM0 0l100 100V0H0z" fill="%23FFFFFF" opacity="0.05"/%3E%3C/svg%3E'); background-size: 150px;"></div>
+    <section id="home" class="h-screen relative flex items-center justify-center text-left">
+        
+        <div class="video-container">
+            <video autoplay muted loop playsinline poster="assets/images/video_poster.jpg">
+                <source src="assets/videos/Waleed Iqbal (1600 x 1080 px).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
-
+        
+        <div class="video-overlay"></div>
+        
         <div class="container mx-auto px-6 max-w-5xl z-10 pt-20">
             <h1 class="text-6xl md:text-8xl font-black text-white leading-snug mb-6 animate-on-load">
                 Crafting <span class="accent-yellow">Visuals That Convert</span> <br> for the Digital Frontier.
