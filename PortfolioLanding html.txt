@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Marketing & Brand Artisan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the Dynamic Digital Conversion Vibe */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A2E; /* Deep, moody blue/purple */
+            color: #F0F0F0;
+        }
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+        /* Primary Accent Color (Bright Yellow) */
+        .accent-yellow { color: #FFD100; }
+        .bg-accent-yellow { background-color: #FFD100; }
+        .border-accent-yellow { border-color: #FFD100; }
+        /* Secondary Accent Color (Vibrant Orange) for gradients/highlights */
+        .accent-orange { color: #FF6F00; }
+
+        /* Gradients for sections and elements */
+        .bg-gradient-digital {
+            background: linear-gradient(145deg, #0A0A2E 0%, #1A1A3A 100%);
+        }
+        .bg-gradient-card {
+            background: linear-gradient(135deg, #1A1A3A 0%, #2D2D4D 100%);
+        }
+        
+        /* Keyframe for professional slide-up-fade-in */
+        @keyframes slideUpFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-on-load {
+            animation: slideUpFadeIn 0.9s ease-out forwards;
+            opacity: 0; 
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Subtle texture/pattern overlay */
+        .pattern-bg {
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M100 0L0 100h100V0zM0 0l100 100V0H0z" fill="%232D2D4D" opacity="0.1"/%3E%3C/svg%3E');
+            background-size: 150px;
+            background-blend-mode: overlay;
+            background-color: #0A0A2E;
+        }
+
+        /* Button hover effect */
+        .btn-digital-hover {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background: #FFD100;
+            color: #0A0A2E;
+        }
+        .btn-digital-hover:hover {
+            background: linear-gradient(45deg, #FFD100 0%, #FF6F00 100%);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 209, 0, 0.5); /* Enhanced shadow for modern pop */
+        }
+
+        /* Card hover effect: subtle lift and yellow glow */
+        .card-digital {
+            border-radius: 1rem; /* Slightly larger rounding */
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .card-digital:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(255, 209, 0, 0.4); /* Deeper, more noticeable glow */
+            border-color: #FFD100;
+        }
+        
+        /* SCROLL REVEAL STYLES */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero section specific style for background overlay and bottom shape */
+        #home {
+            border-bottom-left-radius: 2.5rem;
+            border-bottom-right-radius: 2.5rem;
+            overflow: hidden; 
+        }
+        
+        /* General section styling for spacing and background */
+        section {
+            border-radius: 1.5rem; /* Consistent rounding for main blocks */
+            margin-bottom: 2rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            background-color: #1A1A3A;
+        }
+        
+        /* Footer styling */
+        footer {
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+            background: linear-gradient(to top, #0A0A2E 0%, #1A1A3A 100%);
+        }
+
+        /* Specific gradient for method cards */
+        .method-card {
+            background: linear-gradient(160deg, #1A1A3A 0%, #2D2D4D 100%);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            border-radius: 0.75rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+        .method-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            border-image: linear-gradient(to right, #FFD100, #FF6F00) 1;
+        }
+
+        /* Form input field styling - Sleek and usable */
+        .form-input {
+            background-color: #2D2D4D;
+            border: 1px solid #3A3A5A;
+            color: #F0F0F0;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #FFD100;
+            box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.5); /* Stronger focus ring */
+            outline: none;
+        }
+
+        /* Custom logo display for header */
+        .header-logo-gradient {
+            background: linear-gradient(45deg, #FFD100, #FF6F00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+    </style>
+    <script>
+        // Header scroll effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-[#0A0A2E]', 'bg-opacity-95', 'shadow-xl');
+                } else {
+                    header.classList.remove('bg-[#0A0A2E]', 'bg-opacity-95', 'shadow-xl');
+                }
+            });
+
+            // Intersection Observer for scroll reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.1 }); 
+
+            document.querySelectorAll('.scroll-reveal').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</head>
+<body class="pattern-bg">
+
+    <header id="main-header" class="fixed w-full z-50 transition-all duration-300 py-4 backdrop-blur-sm">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#home" class="text-3xl font-extrabold tracking-widest uppercase header-logo-gradient">WUI</a>
+            <div class="space-x-8 hidden sm:block">
+                <a href="#about" class="text-gray-300 hover:text-accent-yellow transition duration-300 font-medium">About Me</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-accent-yellow transition duration-300 font-medium">The Craft</a>
+                <a href="#contact" class="text-gray-300 hover:text-accent-yellow transition duration-300 font-medium">Basecamp</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="h-screen relative flex items-center justify-center text-left overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080/1A1A3A/FFD100?text=Digital+Hero+Image+Required+(Use+Dark+High-Contrast+Photo)'); background-position: center 30%;">
+            <div class="absolute inset-0 bg-black opacity-40"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, #0A0A2E 0%, transparent 80%), url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M100 0L0 100h100V0zM0 0l100 100V0H0z" fill="%23FFFFFF" opacity="0.05"/%3E%3C/svg%3E'); background-size: 150px;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-5xl z-10 pt-20">
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-snug mb-6 animate-on-load">
+                Crafting <span class="accent-yellow">Visuals That Convert</span> <br> for the Digital Frontier.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl animate-on-load delay-1">
+                A full-stack marketing powerhouse specializing in **Brand Impact, SEO, and Dynamic Web Experiences**. Focused on measurable results.
+            </p>
+            <a href="#portfolio" class="inline-block btn-digital-hover font-bold py-3 px-8 rounded-xl shadow-xl animate-on-load delay-2 text-lg uppercase tracking-wider">
+                Explore My Digital Craft →
+            </a>
+        </div>
+    </section>
+
+    <section id="metrics" class="py-16 bg-gradient-digital border-b-4 border-accent-yellow rounded-2xl mx-auto container">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-black text-center mb-10 accent-yellow uppercase tracking-wider">Proven Impact</h2>
+            <div class="grid md:grid-cols-3 gap-10 text-center">
+                <div class="animate-on-load">
+                    <p class="text-6xl font-black text-white mb-2">+150%</p>
+                    <p class="text-lg text-gray-200 font-semibold uppercase">Organic Traffic Growth</p>
+                </div>
+                <div class="animate-on-load delay-1">
+                    <p class="text-6xl font-black text-white mb-2">4:1</p>
+                    <p class="text-lg text-gray-200 font-semibold uppercase">Average ROI on Content</p>
+                </div>
+                <div class="animate-on-load delay-2">
+                    <p class="text-6xl font-black text-white mb-2">95+</p>
+                    <p class="text-lg text-gray-200 font-semibold uppercase">Pagespeed Score Avg.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gradient-digital rounded-2xl mx-auto container">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-black text-center mb-16 text-white uppercase tracking-wider animate-on-load">My Digital Arsenal</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
+                    <div class="text-4xl accent-yellow mb-3">💡</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Brand Strategy</h3>
+                    <p class="text-sm text-gray-300">Defining identities that resonate and dominate.</p>
+                </div>
+                <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
+                    <div class="text-4xl accent-yellow mb-3">🌐</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Web Experience Design</h3>
+                    <p class="text-sm text-gray-300">High-performance platforms engineered for engagement.</p>
+                </div>
+                <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
+                    <div class="text-4xl accent-yellow mb-3">📈</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Advanced SEO</h3>
+                    <p class="text-sm text-gray-300">Optimizing visibility for unparalleled organic reach.</p>
+                </div>
+                <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
+                    <div class="text-4xl accent-yellow mb-3">✍️</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Conversion Content</h3>
+                    <p class="text-sm text-gray-300">Producing compelling content that drives action and ROI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 bg-gradient-digital border-y border-gray-800 rounded-2xl mx-auto container scroll-reveal">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-black text-center mb-20 text-white">Case Studies: The Impact Portfolio</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <a href="#" class="card-digital block bg-gradient-card rounded-xl shadow-2xl transition duration-300 hover:border-accent-yellow border border-[#1A1A3A] overflow-hidden">
+                    <img src="https://via.placeholder.com/600x400/2D2D4D/FFD100?text=Project+1+Preview" alt="Digital Brand Design Project" class="w-full h-48 object-cover border-b border-[#2D2D4D]">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">Brand & Web Strategy</span>
+                        <h3 class="text-2xl font-black text-white mb-2">FinTech Platform Transformation</h3>
+                        <p class="text-sm text-gray-300 mb-3">Achieved +45% lead conversion with a new digital identity.</p>
+                        <span class="text-sm font-bold accent-yellow">View Case Study →</span>
+                    </div>
+                </a>
+
+                <a href="#" class="card-digital block bg-gradient-card rounded-xl shadow-2xl transition duration-300 hover:border-accent-yellow border border-[#1A1A3A] overflow-hidden">
+                    <img src="https://via.placeholder.com/600x400/2D2D4D/FFD100?text=Project+2+Preview" alt="SEO & Content Project" class="w-full h-48 object-cover border-b border-[#2D2D4D]">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">SEO & Content Optimization</span>
+                        <h3 class="text-2xl font-black text-white mb-2">E-commerce Organic Growth</h3>
+                        <p class="text-sm text-gray-300 mb-3">Drove 180% organic traffic YoY using data-driven content pillars.</p>
+                        <span class="text-sm font-bold accent-yellow">View Case Study →</span>
+                    </div>
+                </a>
+
+                <a href="#" class="card-digital block bg-gradient-card rounded-xl shadow-2xl transition duration-300 hover:border-accent-yellow border border-[#1A1A3A] overflow-hidden">
+                    <img src="https://via.placeholder.com/600x400/2D2D4D/FFD100?text=Project+3+Preview" alt="Brand Story Campaign" class="w-full h-48 object-cover border-b border-[#2D2D4D]">
+                    <div class="p-6">
+                        <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">Digital Campaign Strategy</span>
+                        <h3 class="text-2xl font-black text-white mb-2">SaaS Product Launch</h3>
+                        <p class="text-sm text-gray-300 mb-3">Generated $100K in pre-orders through targeted digital campaigns.</p>
+                        <span class="text-sm font-bold accent-yellow">View Case Study →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="#" class="inline-block btn-digital-hover font-bold py-3 px-8 rounded-xl shadow-xl text-lg uppercase tracking-wider">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-gradient-digital rounded-2xl mx-auto container scroll-reveal">
+        <div class="container mx-auto px-6 md:flex items-center max-w-6xl">
+            <div class="md:w-1/2 md:pr-16">
+                <h2 class="text-5xl font-black mb-6 text-white">The Digital Architect Behind the Vision</h2>
+                <p class="mb-6 text-lg text-gray-300 leading-relaxed">
+                    My approach is to engineer **conversion-focused digital strategies** that not only look exceptional but deliver measurable impact. I blend creative vision with data-driven execution.
+                </p>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Recruiters: I am currently seeking roles where innovation meets ambitious digital performance goals. Let's build your team's next breakthrough.
+                </p>
+                <a href="#" class="mt-8 inline-block accent-yellow hover:text-white font-bold border-b-2 border-accent-yellow transition duration-300 text-lg uppercase tracking-wider">
+                    Download My Digital Blueprint (Resume)
+                </a>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center items-center">
+                <div class="relative w-80 h-auto bg-gradient-card p-2 rounded-xl shadow-2xl border-2 border-accent-yellow">
+                    <img src="https://via.placeholder.com/400x500/3A3A5A/FFD100?text=Professional+Portrait" alt="Your Professional Portrait" class="w-full h-full object-cover rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gradient-digital rounded-2xl mx-auto container scroll-reveal">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-5xl font-black text-center mb-6 text-white">Ignite Your Next Project.</h2>
+            <p class="text-xl mb-12 text-gray-300 text-center">
+                Ready to transform your digital presence? Send a message directly or download my blueprint.
+            </p>
+            
+            <form class="space-y-6 bg-gradient-card p-8 rounded-xl shadow-2xl border border-[#2D2D4D]">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Your Full Name" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="your.email@company.com" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" class="form-input" placeholder="Tell me about the opportunity..." required></textarea>
+                </div>
+                <div class="pt-4">
+                    <button type="submit" class="w-full btn-digital-hover font-bold py-3 px-8 rounded-xl shadow-xl text-lg uppercase tracking-wider">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-8">
+                <p class="text-xl font-bold">
+                    <a href="mailto:youremail@example.com" class="accent-yellow hover:text-white transition duration-300">your.email@example.com</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gradient-to-t from-[#0A0A2E] to-[#1A1A3A] py-8 text-center text-gray-500 text-sm rounded-t-2xl">
+        <p>Engineered for Impact. &copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
