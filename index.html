@@ -124,6 +124,16 @@
             object-fit: cover;
         }
         
+        /* Video Blur Overlay */
+        .video-blur-overlay {
+            position: absolute;
+            inset: 0;
+            backdrop-filter: blur(3px); /* Adjust blur amount as needed */
+            -webkit-backdrop-filter: blur(3px); /* For Safari support */
+            background: rgba(0,0,0,0.2); /* Slight darkening for text contrast */
+            z-index: -1;
+        }
+
         /* General section styling */
         section {
             border-radius: 1.5rem;
@@ -199,6 +209,8 @@
                 Your browser does not support the video tag.
             </video>
         </div>
+        
+        <div class="video-blur-overlay"></div>
         
         <div class="container mx-auto px-6 max-w-5xl z-10 pt-20">
             <h1 class="text-6xl md:text-8xl font-black text-white leading-snug mb-6 animate-on-load">
@@ -369,5 +381,3 @@
 
 </body>
 </html>
-
-
