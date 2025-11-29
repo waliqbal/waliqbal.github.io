@@ -52,20 +52,18 @@ body {
     backdrop-filter: blur(5px); 
 }
 
-/* New CSS for the Text Logo */
-.logo-text {
-    height: 40px; 
+/* Styling for the Logo Image */
+.logo {
+    height: 40px; /* Adjust as needed for your logo's aspect ratio */
     width: auto;
-    font-size: 36px; 
-    font-weight: 800;
-    /* Apply the logo's custom colors/gradient to the text */
+    /* Simulate the logo's custom colors/gradient if the image is transparent */
     background: linear-gradient(to right, var(--color-yellow), #e60073);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent; /* Fallback for browsers */
+    -webkit-mask-image: url('../images/Copy of WALEED.png'); /* Advanced technique for color on logo */
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    /* Fallback and basic image sizing: */
     display: flex; 
-    align-items: center;
 }
 
 .nav-links a {
@@ -106,9 +104,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* REMOVED: background: url('...'); */
-    /* Instead, we ensure the background is just a subtle dark gradient/color */
-    background-color: rgba(0, 0, 0, 0.1); 
+    /* RESTORED: External image reference */
+    background: url('../images/Untitled design (51).png') no-repeat center bottom;
+    background-size: cover;
+    opacity: 0.15; /* Subtly blend the image with the animated background */
     z-index: 1;
     pointer-events: none;
 }
@@ -128,13 +127,13 @@ body {
     align-items: flex-end;
 }
 
-/* Mockups to simulate the device images (now using just color/placeholder content) */
+/* Mockups to simulate the device images (using data-uri for generic content) */
 .desktop-mockup, .mobile-mockup {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--color-text-light);
     border-radius: 8px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-    /* Placeholder content using data-uri, which is NOT an external image file */
+    /* Using data-uri for placeholder content (no external file needed) */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="gray" /><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="10" fill="white">Desktop Content</text></svg>');
     background-size: cover;
     background-position: center;
@@ -223,7 +222,7 @@ h1 {
         display: none; 
     }
     
-    .logo-text { /* Use .logo-text for mobile adjustment */
+    .logo { 
         height: 30px;
     }
 
