@@ -7,34 +7,211 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* All CSS from previous step is included here, focusing on the #hero-overlay-image CSS */
-        /* ... (styles block from previous response) ... */
+        /* Custom styles for the Dynamic Digital Conversion Vibe */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A2E; /* Deep, moody blue/purple */
+            color: #F0F0F0;
+        }
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+        /* Primary Accent Color (Bright Yellow) */
+        .accent-yellow { color: #FFD100; }
+        .bg-accent-yellow { background-color: #FFD100; }
+        .border-accent-yellow { border-color: #FFD100; }
+
+        /* Gradients for sections and elements */
+        .bg-gradient-digital {
+            background: linear-gradient(145deg, #0A0A2E 0%, #1A1A3A 100%);
+        }
+        .bg-gradient-card {
+            background: linear-gradient(135deg, #1A1A3A 0%, #2D2D4D 100%);
+        }
         
-        /* HERO IMAGE CONTAINER STYLES - MODIFIED FOR HIGHER LIFT AND Z-INDEX */
+        /* Keyframe for blur-in effect (for text) */
+        @keyframes blurIn {
+            from { opacity: 0; filter: blur(5px); transform: translateY(10px); }
+            to { opacity: 1; filter: blur(0); transform: translateY(0); }
+        }
+        
+        /* Keyframe for the image sliding up from the bottom */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Apply blur-in animation to the hero content */
+        .animate-blur-in {
+            animation: blurIn 1.5s ease-out forwards;
+            opacity: 0; 
+        }
+
+        /* Apply slide-up animation to the hero image */
+        .animate-slide-up {
+            animation: slideUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+        
+        /* Subtle texture/pattern overlay */
+        .pattern-bg {
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M100 0L0 100h100V0zM0 0l100 100V0H0z" fill="%232D2D4D" opacity="0.1"/%3E%3C/svg%3E');
+            background-size: 150px;
+            background-blend-mode: overlay;
+            background-color: #0A0A2E;
+        }
+
+        /* Button hover effect */
+        .btn-digital-hover {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background: #FFD100;
+            color: #0A0A2E;
+        }
+        .btn-digital-hover:hover {
+            background: linear-gradient(45deg, #FFD100 0%, #FF6F00 100%);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 209, 0, 0.5);
+        }
+
+        /* Card hover effect: subtle lift and yellow glow */
+        .card-digital {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .card-digital:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(255, 209, 0, 0.4);
+            border-color: #FFD100;
+        }
+        
+        /* SCROLL REVEAL STYLES */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero section specific style for background video and bottom shape */
+        #home {
+            position: relative;
+            isolation: isolate;
+            border-bottom-left-radius: 2.5rem;
+            border-bottom-right-radius: 2.5rem;
+            overflow: hidden; 
+        }
+
+        /* HERO IMAGE CONTAINER STYLES - MODIFIED FOR ACCURATE CENTERING AND Z-INDEX */
         #hero-overlay-image {
             position: absolute;
-            bottom: -15%; /* Lifts the image higher to intersect the CTA */
+            bottom: -10%; /* Adjusted slightly for better placement */
             left: 50%;
-            transform: translateX(-50%); /* Centers the image horizontally */
+            transform: translateX(-50%); 
             width: 100%; 
             max-width: 1200px;
             height: auto;
-            z-index: 50; 
+            z-index: 10; /* Lower than text wrapper (20) */
             pointer-events: none;
         }
+        
+        /* Full-screen video styling */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+        }
+        .video-container video {
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        
+        /* Video Blur Overlay */
+        .video-blur-overlay {
+            position: absolute;
+            inset: 0;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            background: rgba(0,0,0,0.2);
+            z-index: -1;
+        }
 
-        /* Content wrapper adjustment to ensure text is visible when image is loading */
+        /* Content wrapper adjustment - Z-INDEX 20 */
         .hero-content-wrapper {
             position: relative;
             z-index: 20; 
             text-align: center;
         }
 
-        /* Full styles block from previous response remains here for completeness */
-        /* ... (rest of the large style block) ... */
+        /* General section styling */
+        section {
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            background-color: #1A1A3A;
+        }
+
+        /* Footer styling */
+        footer {
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+            background: linear-gradient(to top, #0A0A2E 0%, #1A1A3A 100%);
+        }
+
+        /* Custom logo container */
+        .logo-container {
+            width: 100px;
+            height: auto;
+        }
     </style>
     <script>
-        /* ... (scripts block from previous response) ... */
+        // Header scroll effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-[#0A0A2E]', 'bg-opacity-95', 'shadow-xl');
+                } else {
+                    header.classList.remove('bg-[#0A0A2E]', 'bg-opacity-95', 'shadow-xl');
+                }
+            });
+
+            // Intersection Observer for scroll reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.1 }); 
+
+            document.querySelectorAll('.scroll-reveal').forEach(section => {
+                observer.observe(section);
+            });
+        });
     </script>
 </head>
 <body class="pattern-bg">
@@ -58,14 +235,14 @@
         
         <div class="video-container">
             <video autoplay muted loop playsinline poster="assets/images/video_poster.jpg">
-                <source src="assets/videos/Waleed Iqbal (1600 x 1080 px) (4).mp4" type="video/mp4">
-                Your browser does not support the video tag.
+                <source src="assets/videos/Waleed Iqbal (1600 x 1080 px) (2).mp4" type="video/mp4">
+                <source src="assets/videos/Waleed Iqbal (1600 x 1080 px) (4).mp4" type="video/mp4"> Your browser does not support the video tag.
             </video>
         </div>
         
         <div class="video-blur-overlay"></div>
         
-        <div class="container mx-auto px-6 max-w-5xl z-10 pt-20 hero-content-wrapper animate-blur-in">
+        <div class="container mx-auto px-6 max-w-5xl pt-20 hero-content-wrapper animate-blur-in">
             <h1 class="text-6xl md:text-8xl font-black text-white leading-snug mb-6">
                 <span class="accent-yellow">E-commerce Infrastructure</span> that Drives 140% Organic Growth.
             </h1>
@@ -75,7 +252,7 @@
         </div>
 
         <div id="hero-overlay-image" class="animate-slide-up">
-            <img src="assets/images/Untitled design (51).png" alt="Project screenshot overlay" class="w-full h-auto object-cover">
+            <img src="assets/images/Untitled design (50).png" alt="Project screenshot overlay" class="w-full h-auto object-cover">
         </div>
     </section>
 
@@ -84,15 +261,15 @@
             <h2 class="text-3xl font-black text-center mb-10 accent-yellow uppercase tracking-wider">Proven Impact</h2>
             <div class="grid md:grid-cols-3 gap-10 text-center">
                 <div class="animate-on-load">
-                    <p class="text-6xl font-black text-white mb-2">+140%</p>
+                    [cite_start]<p class="text-6xl font-black text-white mb-2">+140% [cite: 113, 65]</p>
                     <p class="text-lg text-gray-200 font-semibold uppercase">Organic Traffic Growth</p>
                 </div>
                 <div class="animate-on-load delay-1">
-                    <p class="text-6xl font-black text-white mb-2">+79%</p>
+                    [cite_start]<p class="text-6xl font-black text-white mb-2">+79% [cite: 21, 76]</p>
                     <p class="text-lg text-gray-200 font-semibold uppercase">Page Dwell Time</p>
                 </div>
                 <div class="animate-on-load delay-2">
-                    <p class="text-6xl font-black text-white mb-2">70%</p>
+                    [cite_start]<p class="text-6xl font-black text-white mb-2">70% [cite: 23, 114]</p>
                     <p class="text-lg text-gray-200 font-semibold uppercase">Reduction in Upload Time (via AI)</p>
                 </div>
             </div>
@@ -106,22 +283,22 @@
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">💡</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Brand Strategy</h3>
-                    <p class="text-sm text-gray-300">Defining identities that resonate and dominate (EvilBullKnives).</p>
+                    [cite_start]<p class="text-sm text-gray-300">Defining identities that resonate and dominate (EvilBullKnives)[cite: 36, 178].</p>
                 </div>
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">🌐</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Web Experience Design</h3>
-                    <p class="text-sm text-gray-300">Built responsive Shopify site from scratch, generating $60K+ revenue.</p>
+                    [cite_start]<p class="text-sm text-gray-300">Built responsive Shopify site from scratch, generating $60K+ revenue[cite: 25, 115].</p>
                 </div>
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">📈</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Advanced SEO</h3>
-                    <p class="text-sm text-gray-300">Technical Audits, Keyword Research (Ahrefs, SEMrush), and GTM deployment.</p>
+                    [cite_start]<p class="text-sm text-gray-300">Technical Audits, Keyword Research (Ahrefs, SEMrush), and GTM deployment[cite: 100, 61].</p>
                 </div>
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">🛠️</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Conversion Funnel Analytics</h3>
-                    <p class="text-sm text-gray-300">Raising B2B CR from 0.49% to 0.67% using A/B Tests.</p>
+                    [cite_start]<p class="text-sm text-gray-300">Raising B2B CR from 0.49% to 0.67% using A/B Tests[cite: 24, 115].</p>
                 </div>
             </div>
         </div>
@@ -138,7 +315,7 @@
                     <div class="p-6">
                         <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">E-commerce Infrastructure & SEO</span>
                         <h3 class="text-2xl font-black text-white mb-2">Zack Wholesale B2B Conversion</h3>
-                        <p class="text-sm text-gray-300 mb-3">Optimized 600+ SKUs via data scraping and cleaning to boost page dwell time by 79%.</p>
+                        [cite_start]<p class="text-sm text-gray-300 mb-3">Optimized 600+ SKUs via data scraping and cleaning to boost page dwell time by 79%[cite: 21, 76].</p>
                         <span class="text-sm font-bold accent-yellow">View Case Study →</span>
                     </div>
                 </a>
@@ -148,7 +325,7 @@
                     <div class="p-6">
                         <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">Brand Launch & Keyword Strategy</span>
                         <h3 class="text-2xl font-black text-white mb-2">EvilBullKnives Launch & Revenue</h3>
-                        <p class="text-sm text-gray-300 mb-3">Designed, branded, and launched site, resulting in over $10,000 in revenue and 10,000+ sessions.</p>
+                        [cite_start]<p class="text-sm text-gray-300 mb-3">Designed, branded, and launched site, resulting in over $10,000 in revenue and 10,000+ sessions[cite: 36, 67, 127].</p>
                         <span class="text-sm font-bold accent-yellow">View Case Study →</span>
                     </div>
                 </a>
@@ -158,7 +335,7 @@
                     <div class="p-6">
                         <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">Social Strategy & GenZ Marketing</span>
                         <h3 class="text-2xl font-black text-white mb-2">Charity Water Project Campaign</h3>
-                        <p class="text-sm text-gray-300 mb-3">Designed a marketing strategy for engaging GenZ audiences via paid/organic content and influencer sourcing.</p>
+                        [cite_start]<p class="text-sm text-gray-300 mb-3">Designed a marketing strategy for engaging GenZ audiences via paid/organic content and influencer sourcing[cite: 30, 120, 123].</p>
                         <span class="text-sm font-bold accent-yellow">View Case Study →</span>
                     </div>
                 </a>
@@ -177,10 +354,10 @@
             <div class="md:w-1/2 md:pr-16">
                 <h2 class="text-5xl font-black mb-6 text-white">The Digital Architect Behind the Vision</h2>
                 <p class="mb-6 text-lg text-gray-300 leading-relaxed">
-                    [cite_start]I am an aspiring **IT professional** with over five years of **e-commerce experience**[cite: 20]. My approach is to engineer conversion-focused digital strategies that not only look exceptional but deliver measurable impact. [cite_start]I blend my **Management Information Systems** education and analytical mindset with hands-on technical skills in **SQL, Tableau, and Advanced Excel**[cite: 21, 49, 61].
+                    [cite_start]I am an aspiring **IT professional** with over five years of **e-commerce experience**[cite: 59]. My approach is to engineer conversion-focused digital strategies that not only look exceptional but deliver measurable impact. [cite_start]I blend my **Management Information Systems** education and analytical mindset with hands-on technical skills in **SQL, Tableau, and Advanced Excel**[cite: 6, 12, 60].
                 </p>
                 <p class="text-lg text-gray-300 leading-relaxed">
-                    [cite_start]Recruiters: I hold certifications as a **Certified Digital Ads Specialist** and **E-Commerce Digital Marketing Specialist**[cite: 59]. I am currently seeking roles where innovation meets ambitious digital performance goals. Let's discuss building your team's next breakthrough.
+                    [cite_start]Recruiters: I hold certifications as a **Certified Digital Ads Specialist** and **E-Commerce Digital Marketing Specialist**[cite: 98, 9, 52]. I am currently seeking roles where innovation meets ambitious digital performance goals. Let's discuss building your team's next breakthrough.
                 </p>
                 <a href="#" class="mt-8 inline-block accent-yellow hover:text-white font-bold border-b-2 border-accent-yellow transition duration-300 text-lg uppercase tracking-wider">
                     Download My Professional Blueprint (Resume)
