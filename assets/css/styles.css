@@ -1,27 +1,26 @@
 /* Custom CSS Variables */
 :root {
-    --color-dark-blue: #000096;
+    --color-dark-blue: #090940; /* Slightly lighter deep blue */
     --color-black: #000000;
     --color-white: #ffffff;
-    --color-yellow: #ffb800; 
-    --color-text-light: rgba(255, 255, 255, 0.9);
+    --color-yellow: #ffc933; /* Brighter, more vibrant yellow/gold */
+    --color-text-light: rgba(255, 255, 255, 0.95);
     --nav-bar-height: 80px;
 }
 
 /* Base Styles & Ambient Animation */
 body {
-    /* FONT CHANGE: Use Outfit */
-    font-family: 'Outfit', Arial, sans-serif;
+    font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 0;
     color: var(--color-text-light);
     min-height: 100vh;
     overflow-x: hidden; 
-
-    /* Blue to Black Gradient Background with Ambient Animation */
-    background: linear-gradient(-45deg, var(--color-dark-blue), var(--color-black), #1a0033);
+    
+    /* Smoother, less jarring background transition */
+    background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-black) 80%);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 20s ease infinite; /* Slower animation */
 }
 
 @keyframes gradientShift {
@@ -30,50 +29,56 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Header & Navigation --- */
+/* --- Header & Navigation (Glassmorphism) --- */
 .main-header {
     padding: 20px 0;
     display: flex;
     justify-content: center;
-    z-index: 10;
+    position: sticky; /* Sticky navigation for modern feel */
+    top: 0;
+    z-index: 100;
 }
 
 .navbar {
     width: 90%;
     max-width: 1200px;
     height: var(--nav-bar-height);
-    background-color: rgba(0, 0, 0, 0.5); 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
+    /* Glassmorphism Effect */
+    background-color: rgba(255, 255, 255, 0.08); /* Very light, subtle glass */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px); 
-    transition: all 0.3s ease;
-}
-
-.navbar:hover {
-    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Stronger depth shadow */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .logo {
     height: 60px; 
     width: auto;
     object-fit: contain; 
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links a {
     color: var(--color-text-light);
     text-decoration: none;
     margin: 0 25px; 
-    font-weight: 700; /* Use 700 for Outfit Bold */
-    transition: color 0.3s;
+    font-weight: 700; 
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
 .nav-links a:hover {
     color: var(--color-yellow);
+    text-shadow: 0 0 8px var(--color-yellow);
 }
 
 .search-button {
@@ -82,14 +87,15 @@ body {
     color: var(--color-text-light);
     cursor: pointer;
     padding: 10px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, color 0.2s;
 }
 
 .search-button:hover {
     transform: scale(1.1);
+    color: var(--color-yellow);
 }
 
-/* --- Hero Section --- */
+/* --- Hero Section & Image Animation --- */
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -110,22 +116,21 @@ body {
 
 .hero-image-container {
     position: relative; 
-    width: 100%; 
-    max-width: 1200px; 
-    margin: 20px 0 20px 0; 
+    width: 90%; 
+    max-width: 1000px; /* Slightly wider max width */
+    margin: 40px 0 20px 0; 
     display: flex;
     justify-content: center;
     align-items: center;
-    /* REMOVED the border/outline from here */
     
-    /* Hero Image SLIDE UP Animation */
-    animation: slideUpFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Use forwards to keep end state */
+    /* SLIDE UP Animation */
+    animation: slideUpFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
 }
 
 @keyframes slideUpFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(100px); /* Start further down */
+    transform: translateY(120px); /* Start lower */
   }
   100% {
     opacity: 1;
@@ -137,7 +142,9 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 10px; 
+    border-radius: 12px; /* Slightly larger radius */
+    /* Deep, dark shadow to blend into the background */
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5); 
 }
 
 .hero-text-overlay {
@@ -145,33 +152,34 @@ body {
     top: 70%; 
     left: 50%;
     transform: translate(-50%, -50%); 
-    font-size: 3.5em; 
-    font-weight: 800; /* Outfit Bold */
-    letter-spacing: 2px; 
+    font-size: 4em; /* Impact font size */
+    font-weight: 900; /* Extra Bold */
+    letter-spacing: 3px; 
     color: var(--color-white); 
-    text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 0.7); 
+    /* High-contrast, clean text shadow */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 1), 0 0 5px rgba(255, 255, 255, 0.1); 
     margin: 0; 
     white-space: nowrap; 
     z-index: 3; 
 }
 
-/* --- Call-to-Action Buttons --- */
+/* --- Call-to-Action Buttons (Neumorphism / Depth) --- */
 .cta-buttons {
     display: flex;
     gap: 30px; 
-    margin-top: 30px; 
-    margin-bottom: 100px; 
+    margin-top: 50px; /* Increased space after image */
+    margin-bottom: 150px; /* More padding at bottom */
 }
 
 .btn {
-    padding: 18px 40px; 
-    font-size: 1.1em;
-    font-weight: 700; /* Outfit Bold */
+    padding: 16px 45px; 
+    font-size: 1.15em;
+    font-weight: 800; /* Bold */
     text-decoration: none;
     border-radius: 50px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
     animation: pulse 4s infinite ease-in-out; 
 }
 
@@ -185,41 +193,42 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--color-yellow);
+    /* Neumorphism style for light on dark */
+    background: var(--color-yellow);
     color: var(--color-black);
-    border: 2px solid transparent;
+    border: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: #ffc933;
-    box-shadow: 0 8px 25px rgba(255, 184, 0, 0.7);
+    background: #ffdb70; /* Lighter shade on hover */
+    box-shadow: 0 6px 30px rgba(255, 201, 51, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
     animation: none; 
 }
 
 .btn-secondary {
-    background: none;
+    /* Glass/Darker Neumorphism style */
+    background: rgba(255, 255, 255, 0.05);
     color: var(--color-text-light);
-    border: 2px solid rgba(255, 255, 255, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: var(--color-yellow);
+    box-shadow: 0 0 20px var(--color-yellow);
     color: var(--color-yellow);
+    transform: translateY(-2px);
     animation: none; 
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .navbar {
-        justify-content: space-around;
         padding: 0 15px;
         height: 60px;
-        width: 95%;
-    }
-
-    .nav-links {
-        display: none; 
     }
     
     .logo { 
@@ -227,13 +236,14 @@ body {
     }
 
     .hero-image-container {
-        width: 100%; 
-        margin: 0px 0;
+        width: 95%; 
+        margin: 20px 0;
     }
 
     .hero-text-overlay {
         font-size: 1.8em; 
         top: 75%; 
+        letter-spacing: 1px;
         white-space: normal; 
         padding: 0 10px; 
     }
