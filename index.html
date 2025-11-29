@@ -112,17 +112,17 @@
             overflow: hidden; 
         }
 
-        /* HERO IMAGE CONTAINER STYLES */
+        /* HERO IMAGE CONTAINER STYLES - MODIFIED FOR CENTERING AND OVERLAP */
         #hero-overlay-image {
             position: absolute;
-            bottom: 0; /* Starts at the bottom of the section */
+            bottom: -5%; /* Pulls the image up slightly from the bottom */
             left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1200px; /* Constraints for large screens */
+            transform: translateX(-50%); /* Centers the image horizontally */
+            width: 95%; 
+            max-width: 1400px; /* Constraints for large screens */
             height: auto;
-            z-index: 5; /* Above text content */
-            pointer-events: none; /* Allows clicks to pass through to the video/background */
+            z-index: 10; /* Set Z-Index higher than text content (which is Z-Index 1) */
+            pointer-events: none;
         }
         
         /* Full-screen video styling */
@@ -155,6 +155,13 @@
             -webkit-backdrop-filter: blur(3px);
             background: rgba(0,0,0,0.2);
             z-index: -1;
+        }
+
+        /* Content wrapper adjustment to ensure text is above the blur layer */
+        .hero-content-wrapper {
+             /* Base Z-Index for hero text content */
+            position: relative;
+            z-index: 20; 
         }
 
         /* General section styling */
@@ -235,12 +242,12 @@
         
         <div class="video-blur-overlay"></div>
         
-        <div class="container mx-auto px-6 max-w-5xl z-10 pt-20 animate-blur-in">
+        <div class="container mx-auto px-6 max-w-5xl pt-20 hero-content-wrapper animate-blur-in">
             <h1 class="text-6xl md:text-8xl font-black text-white leading-snug mb-6">
-                [cite_start]<span class="accent-yellow">E-commerce Infrastructure</span> that Drives 140% Organic Growth. [cite: 24]
+                <span class="accent-yellow">E-commerce Infrastructure</span> that Drives 140% Organic Growth.
             </h1>
             <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl">
-                [cite_start]The **MIS Professional** blending **AI Automation** and **Advanced SEO** to engineer conversion-focused digital systems. [cite: 96, 103, 200]
+                The **MIS Professional** blending **AI Automation** and **Advanced SEO** to engineer conversion-focused digital systems.
             </p>
             <a href="#portfolio" class="inline-block btn-digital-hover font-bold py-3 px-8 rounded-xl shadow-xl text-lg uppercase tracking-wider">
                 Explore My Digital Craft →
@@ -248,7 +255,7 @@
         </div>
 
         <div id="hero-overlay-image" class="animate-slide-up">
-             <img src="assets/images/Untitled design (48).png" alt="Zack Wholesale and EvilBullKnives project screenshots" class="w-full h-auto object-cover">
+            <img src="assets/images/Untitled design (48).jpg" alt="Zack Wholesale and EvilBullKnives project screenshots" class="w-full h-auto object-cover">
         </div>
     </section>
 
@@ -258,15 +265,15 @@
             <div class="grid md:grid-cols-3 gap-10 text-center">
                 <div class="animate-on-load">
                     <p class="text-6xl font-black text-white mb-2">+140%</p>
-                    [cite_start]<p class="text-lg text-gray-200 font-semibold uppercase">Organic Traffic Growth [cite: 24]</p>
+                    <p class="text-lg text-gray-200 font-semibold uppercase">Organic Traffic Growth</p>
                 </div>
                 <div class="animate-on-load delay-1">
                     <p class="text-6xl font-black text-white mb-2">+79%</p>
-                    [cite_start]<p class="text-lg text-gray-200 font-semibold uppercase">Page Dwell Time [cite: 23]</p>
+                    <p class="text-lg text-gray-200 font-semibold uppercase">Page Dwell Time</p>
                 </div>
                 <div class="animate-on-load delay-2">
                     <p class="text-6xl font-black text-white mb-2">70%</p>
-                    [cite_start]<p class="text-lg text-gray-200 font-semibold uppercase">Reduction in Upload Time (via AI) [cite: 25, 113]</p>
+                    <p class="text-lg text-gray-200 font-semibold uppercase">Reduction in Upload Time (via AI)</p>
                 </div>
             </div>
         </div>
@@ -279,22 +286,22 @@
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">💡</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Brand Strategy</h3>
-                    [cite_start]<p class="text-sm text-gray-300">Defining identities that resonate and dominate (EvilBullKnives)[cite: 38, 89].</p>
+                    <p class="text-sm text-gray-300">Defining identities that resonate and dominate (EvilBullKnives).</p>
                 </div>
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">🌐</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Web Experience Design</h3>
-                    [cite_start]<p class="text-sm text-gray-300">Built responsive Shopify site from scratch, generating $60K+ revenue[cite: 26, 115].</p>
+                    <p class="text-sm text-gray-300">Built responsive Shopify site from scratch, generating $60K+ revenue.</p>
                 </div>
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">📈</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Advanced SEO</h3>
-                    [cite_start]<p class="text-sm text-gray-300">Technical Audits, Keyword Research (Ahrefs, SEMrush), and GTM deployment[cite: 102, 200].</p>
+                    <p class="text-sm text-gray-300">Technical Audits, Keyword Research (Ahrefs, SEMrush), and GTM deployment.</p>
                 </div>
                 <div class="p-6 bg-gradient-card rounded-xl border-t-4 border-accent-yellow shadow-lg text-center transform hover:scale-[1.03] transition duration-300 card-digital">
                     <div class="text-4xl accent-yellow mb-3">🛠️</div>
                     <h3 class="text-xl font-bold mb-2 text-white">Conversion Funnel Analytics</h3>
-                    [cite_start]<p class="text-sm text-gray-300">Raising B2B CR from 0.49% to 0.67% using A/B Tests[cite: 26, 114].</p>
+                    <p class="text-sm text-gray-300">Raising B2B CR from 0.49% to 0.67% using A/B Tests.</p>
                 </div>
             </div>
         </div>
@@ -311,7 +318,7 @@
                     <div class="p-6">
                         <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">E-commerce Infrastructure & SEO</span>
                         <h3 class="text-2xl font-black text-white mb-2">Zack Wholesale B2B Conversion</h3>
-                        [cite_start]<p class="text-sm text-gray-300 mb-3">Optimized 600+ SKUs via data scraping and cleaning to boost page dwell time by 79%[cite: 23].</p>
+                        <p class="text-sm text-gray-300 mb-3">Optimized 600+ SKUs via data scraping and cleaning to boost page dwell time by 79%.</p>
                         <span class="text-sm font-bold accent-yellow">View Case Study →</span>
                     </div>
                 </a>
@@ -321,7 +328,7 @@
                     <div class="p-6">
                         <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">Brand Launch & Keyword Strategy</span>
                         <h3 class="text-2xl font-black text-white mb-2">EvilBullKnives Launch & Revenue</h3>
-                        [cite_start]<p class="text-sm text-gray-300 mb-3">Designed, branded, and launched site, resulting in over $10,000 in revenue and 10,000+ sessions[cite: 126, 206].</p>
+                        <p class="text-sm text-gray-300 mb-3">Designed, branded, and launched site, resulting in over $10,000 in revenue and 10,000+ sessions.</p>
                         <span class="text-sm font-bold accent-yellow">View Case Study →</span>
                     </div>
                 </a>
@@ -331,7 +338,7 @@
                     <div class="p-6">
                         <span class="text-xs font-semibold uppercase accent-yellow mb-1 block">Social Strategy & GenZ Marketing</span>
                         <h3 class="text-2xl font-black text-white mb-2">Charity Water Project Campaign</h3>
-                        [cite_start]<p class="text-sm text-gray-300 mb-3">Designed a marketing strategy for engaging GenZ audiences via paid/organic content and influencer sourcing[cite: 31, 123].</p>
+                        <p class="text-sm text-gray-300 mb-3">Designed a marketing strategy for engaging GenZ audiences via paid/organic content and influencer sourcing.</p>
                         <span class="text-sm font-bold accent-yellow">View Case Study →</span>
                     </div>
                 </a>
@@ -350,10 +357,10 @@
             <div class="md:w-1/2 md:pr-16">
                 <h2 class="text-5xl font-black mb-6 text-white">The Digital Architect Behind the Vision</h2>
                 <p class="mb-6 text-lg text-gray-300 leading-relaxed">
-                    [cite_start]I am an aspiring **IT professional** with over five years of **e-commerce experience**[cite: 198]. My approach is to engineer conversion-focused digital strategies that not only look exceptional but deliver measurable impact. [cite_start]I blend my **Management Information Systems** education [cite: 96] [cite_start]and analytical mindset with hands-on technical skills in **SQL, Tableau, and Advanced Excel**[cite: 11, 199].
+                    [cite_start]I am an aspiring **IT professional** with over five years of **e-commerce experience**[cite: 108, 123]. My approach is to engineer conversion-focused digital strategies that not only look exceptional but deliver measurable impact. [cite_start]I blend my **Management Information Systems** education [cite: 5, 137] [cite_start]and analytical mindset with hands-on technical skills in **SQL, Tableau, and Advanced Excel**[cite: 12, 109].
                 </p>
                 <p class="text-lg text-gray-300 leading-relaxed">
-                    [cite_start]Recruiters: I hold certifications as a **Certified Digital Ads Specialist** and **E-Commerce Digital Marketing Specialist**[cite: 99]. I am currently seeking roles where innovation meets ambitious digital performance goals. Let's discuss building your team's next breakthrough.
+                    [cite_start]Recruiters: I hold certifications as a **Certified Digital Ads Specialist** and **E-Commerce Digital Marketing Specialist**[cite: 9, 101, 196]. I am currently seeking roles where innovation meets ambitious digital performance goals. Let's discuss building your team's next breakthrough.
                 </p>
                 <a href="#" class="mt-8 inline-block accent-yellow hover:text-white font-bold border-b-2 border-accent-yellow transition duration-300 text-lg uppercase tracking-wider">
                     Download My Professional Blueprint (Resume)
@@ -408,5 +415,3 @@
 
 </body>
 </html>
-
-
