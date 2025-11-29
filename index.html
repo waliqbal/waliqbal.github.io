@@ -112,16 +112,16 @@
             overflow: hidden; 
         }
 
-        /* HERO IMAGE CONTAINER STYLES - MODIFIED FOR CENTERING AND OVERLAP */
+        /* HERO IMAGE CONTAINER STYLES - MODIFIED FOR HIGHER LIFT AND Z-INDEX */
         #hero-overlay-image {
             position: absolute;
-            bottom: -5%; /* Pulls the image up slightly from the bottom */
+            bottom: -15%; /* Lifts the image higher to intersect the CTA */
             left: 50%;
             transform: translateX(-50%); /* Centers the image horizontally */
-            width: 95%; 
-            max-width: 1400px; /* Constraints for large screens */
+            width: 100%; 
+            max-width: 1200px;
             height: auto;
-            z-index: 10; /* Set Z-Index higher than text content (which is Z-Index 1) */
+            z-index: 50; /* Needs to be high enough to overlap Z-Index 20 content */
             pointer-events: none;
         }
         
@@ -157,11 +157,11 @@
             z-index: -1;
         }
 
-        /* Content wrapper adjustment to ensure text is above the blur layer */
+        /* Content wrapper adjustment to ensure text is visible when image is loading */
         .hero-content-wrapper {
-             /* Base Z-Index for hero text content */
             position: relative;
-            z-index: 20; 
+            z-index: 20; /* Lower than image, higher than blur/video */
+            text-align: center;
         }
 
         /* General section styling */
@@ -242,20 +242,17 @@
         
         <div class="video-blur-overlay"></div>
         
-        <div class="container mx-auto px-6 max-w-5xl pt-20 hero-content-wrapper animate-blur-in">
+        <div class="container mx-auto px-6 max-w-5xl z-10 pt-20 hero-content-wrapper animate-blur-in">
             <h1 class="text-6xl md:text-8xl font-black text-white leading-snug mb-6">
                 <span class="accent-yellow">E-commerce Infrastructure</span> that Drives 140% Organic Growth.
             </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl">
-                The **MIS Professional** blending **AI Automation** and **Advanced SEO** to engineer conversion-focused digital systems.
-            </p>
             <a href="#portfolio" class="inline-block btn-digital-hover font-bold py-3 px-8 rounded-xl shadow-xl text-lg uppercase tracking-wider">
                 Explore My Digital Craft →
             </a>
         </div>
 
         <div id="hero-overlay-image" class="animate-slide-up">
-            <img src="assets/images/Untitled design (48).png" alt="Zack Wholesale and EvilBullKnives project screenshots" class="w-full h-auto object-cover">
+            <img src="assets/images/Untitled design (50).png" alt="Project screenshot overlay" class="w-full h-auto object-cover">
         </div>
     </section>
 
@@ -357,10 +354,10 @@
             <div class="md:w-1/2 md:pr-16">
                 <h2 class="text-5xl font-black mb-6 text-white">The Digital Architect Behind the Vision</h2>
                 <p class="mb-6 text-lg text-gray-300 leading-relaxed">
-                    [cite_start]I am an aspiring **IT professional** with over five years of **e-commerce experience**[cite: 108, 123]. My approach is to engineer conversion-focused digital strategies that not only look exceptional but deliver measurable impact. [cite_start]I blend my **Management Information Systems** education [cite: 5, 137] [cite_start]and analytical mindset with hands-on technical skills in **SQL, Tableau, and Advanced Excel**[cite: 12, 109].
+                    I am an aspiring **IT professional** with over five years of **e-commerce experience**. My approach is to engineer conversion-focused digital strategies that not only look exceptional but deliver measurable impact. I blend my **Management Information Systems** education and analytical mindset with hands-on technical skills in **SQL, Tableau, and Advanced Excel**.
                 </p>
                 <p class="text-lg text-gray-300 leading-relaxed">
-                    [cite_start]Recruiters: I hold certifications as a **Certified Digital Ads Specialist** and **E-Commerce Digital Marketing Specialist**[cite: 9, 101, 196]. I am currently seeking roles where innovation meets ambitious digital performance goals. Let's discuss building your team's next breakthrough.
+                    Recruiters: I hold certifications as a **Certified Digital Ads Specialist** and **E-Commerce Digital Marketing Specialist**. I am currently seeking roles where innovation meets ambitious digital performance goals. Let's discuss building your team's next breakthrough.
                 </p>
                 <a href="#" class="mt-8 inline-block accent-yellow hover:text-white font-bold border-b-2 border-accent-yellow transition duration-300 text-lg uppercase tracking-wider">
                     Download My Professional Blueprint (Resume)
@@ -415,4 +412,3 @@
 
 </body>
 </html>
-
