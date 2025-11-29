@@ -10,8 +10,8 @@
 
 /* Base Styles & Ambient Animation */
 body {
-    /* FONT CHANGE: Use Inter, falling back to Arial/sans-serif */
-    font-family: 'Inter', Arial, sans-serif;
+    /* FONT CHANGE: Use Outfit */
+    font-family: 'Outfit', Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: var(--color-text-light);
@@ -42,15 +42,15 @@ body {
     width: 90%;
     max-width: 1200px;
     height: var(--nav-bar-height);
-    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker for better contrast */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Thinner border */
+    background-color: rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px); /* Increased blur for a premium look */
+    backdrop-filter: blur(8px); 
     transition: all 0.3s ease;
 }
 
@@ -67,8 +67,8 @@ body {
 .nav-links a {
     color: var(--color-text-light);
     text-decoration: none;
-    margin: 0 25px; /* Increased spacing */
-    font-weight: 600; /* Medium-bold for Inter */
+    margin: 0 25px; 
+    font-weight: 700; /* Use 700 for Outfit Bold */
     transition: color 0.3s;
 }
 
@@ -112,18 +112,20 @@ body {
     position: relative; 
     width: 90%; 
     max-width: 900px; 
-    margin: 40px 0 20px 0; /* Reduced bottom margin */
+    margin: 40px 0 20px 0; 
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Hero Image Animation */
-    animation: fadeInSlide 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    /* REMOVED the border/outline from here */
+    
+    /* Hero Image SLIDE UP Animation */
+    animation: slideUpFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Use forwards to keep end state */
 }
 
-@keyframes fadeInSlide {
+@keyframes slideUpFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(100px); /* Start further down */
   }
   100% {
     opacity: 1;
@@ -136,43 +138,41 @@ body {
     height: auto;
     display: block;
     border-radius: 10px; 
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); /* Darker, heavier shadow */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); 
 }
 
 .hero-text-overlay {
     position: absolute;
-    /* POSITION ADJUSTMENT: Moved text lower to be on the "surface" */
     top: 70%; 
     left: 50%;
     transform: translate(-50%, -50%); 
-    font-size: 3.5em; /* Slightly smaller for better fit */
-    font-weight: 800;
-    letter-spacing: 2px; /* Increased letter spacing */
+    font-size: 3.5em; 
+    font-weight: 800; /* Outfit Bold */
+    letter-spacing: 2px; 
     color: var(--color-white); 
     text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 0.7); 
     margin: 0; 
     white-space: nowrap; 
-    z-index: 3; /* Ensure text is above all parts of the image */
+    z-index: 3; 
 }
 
 /* --- Call-to-Action Buttons --- */
 .cta-buttons {
     display: flex;
-    gap: 30px; /* Increased gap */
+    gap: 30px; 
     margin-top: 30px; 
     margin-bottom: 100px; 
 }
 
 .btn {
-    padding: 18px 40px; /* Slightly more padding */
+    padding: 18px 40px; 
     font-size: 1.1em;
-    font-weight: 600; /* Medium-bold */
+    font-weight: 700; /* Outfit Bold */
     text-decoration: none;
     border-radius: 50px;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    /* Animation: Subtle Pulsing effect */
     animation: pulse 4s infinite ease-in-out; 
 }
 
@@ -194,20 +194,20 @@ body {
 .btn-primary:hover {
     background-color: #ffc933;
     box-shadow: 0 8px 25px rgba(255, 184, 0, 0.7);
-    animation: none; /* Stop pulsing on hover */
+    animation: none; 
 }
 
 .btn-secondary {
     background: none;
     color: var(--color-text-light);
-    border: 2px solid rgba(255, 255, 255, 0.4); /* Softer border */
+    border: 2px solid rgba(255, 255, 255, 0.4); 
 }
 
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: var(--color-yellow);
     color: var(--color-yellow);
-    animation: none; /* Stop pulsing on hover */
+    animation: none; 
 }
 
 /* --- Mobile Responsiveness --- */
@@ -233,8 +233,8 @@ body {
     }
 
     .hero-text-overlay {
-        font-size: 1.8em; /* Smaller text for mobile */
-        top: 75%; /* Lowered position for mobile view */
+        font-size: 1.8em; 
+        top: 75%; 
         white-space: normal; 
         padding: 0 10px; 
     }
