@@ -116,9 +116,9 @@ body {
 
 .hero-image-container {
     position: relative; 
-    width: 90%; 
-    max-width: 1000px; /* Slightly wider max width */
-    margin: 40px 0 20px 0; 
+    width: 100%; 
+    max-width: 1400px; /* Slightly wider max width */
+    margin: 20px 0 20px 0; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,8 +152,8 @@ body {
     top: 70%; 
     left: 50%;
     transform: translate(-50%, -50%); 
-    font-size: 9em; /* Impact font size */
-    font-weight: 1200; /* Extra Bold */
+    font-size: 20em; /* Impact font size */
+    font-weight: 1800; /* Extra Bold */
     letter-spacing: 3px; 
     color: var(--color-white); 
     /* High-contrast, clean text shadow */
@@ -236,12 +236,12 @@ body {
     }
 
     .hero-image-container {
-        width: 95%; 
-        margin: 20px 0;
+        width: 100%; 
+        margin: 0px 0;
     }
 
     .hero-text-overlay {
-        font-size: 1.8em; 
+        font-size: 2em; 
         top: 75%; 
         letter-spacing: 1px;
         white-space: normal; 
