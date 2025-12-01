@@ -3,26 +3,27 @@
     --color-dark-blue: #090940; 
     --color-black: #000000;
     --color-white: #ffffff;
-    --color-yellow: #ffc933; /* Brighter, more vibrant yellow/gold */
-    --color-project-yellow: #f8c92a; /* Specific yellow for sidebar */
-    --color-project-card-bg: #111111; /* Very dark background for cards */
+    --color-yellow: #ffc933; 
+    --color-project-yellow: #f8c92a; 
+    --color-project-card-bg: #111111; 
     --color-text-light: rgba(255, 255, 255, 0.95);
     --nav-bar-height: 80px;
 }
 
 /* --- Base Styles & Ambient Animation --- */
 body {
-    font-family: 'Outfit', sans-serif;
+    /* Bebas Neue for general text/nav, Monoton for headline */
+    font-family: 'Bebas Neue', sans-serif;
     margin: 0;
     padding: 0;
     color: var(--color-text-light);
     min-height: 100vh;
     overflow-x: hidden; 
     
-    /* Background Gradient */
     background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-black) 80%);
     background-size: 400% 400%;
     animation: gradientShift 20s ease infinite; 
+    position: relative; 
 }
 
 @keyframes gradientShift {
@@ -31,14 +32,51 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- Header & Navigation (Glassmorphism) --- */
+/* --- ADVANCED AMBIENT EFFECTS: Shooting Stars --- */
+
+/* Base particle style container */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0; 
+    
+    /* Generate Stars/Particles */
+    box-shadow: 
+        100px 300px 1px var(--color-white), 
+        300px 50px 1px var(--color-text-light), 
+        450px 400px 1px rgba(255, 255, 255, 0.5),
+        700px 150px 1px var(--color-yellow),
+        950px 50px 1px var(--color-text-light),
+        1100px 350px 1px rgba(255, 255, 255, 0.7);
+    
+    animation: shootingStars 40s linear infinite;
+    opacity: 0.6; 
+}
+
+@keyframes shootingStars {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(100vh) rotate(180deg); 
+        opacity: 0; 
+    }
+}
+
+/* --- Header & Navigation (Unified Background) --- */
 .main-header {
     padding: 20px 0;
     display: flex;
     justify-content: center;
-    position: sticky; 
-    top: 0;
     z-index: 100;
+    margin-bottom: 20px; 
 }
 
 .navbar {
@@ -46,17 +84,17 @@ body {
     max-width: 1200px;
     height: var(--nav-bar-height);
     /* Glassmorphism Effect */
-    background-color: rgba(255, 255, 255, 0.08); 
+    background-color: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
-    backdrop-filter: blur(12px); 
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
 }
 
 .logo {
@@ -74,7 +112,8 @@ body {
     color: var(--color-text-light);
     text-decoration: none;
     margin: 0 25px; 
-    font-weight: 700; 
+    font-weight: 400; 
+    font-size: 1.2em; 
     transition: color 0.3s, text-shadow 0.3s;
 }
 
@@ -104,10 +143,9 @@ body {
     align-items: center;
     text-align: center;
     padding-top: 50px;
-    /* Rounded Bottom Edge */
+    
     border-bottom-left-radius: 60px;
     border-bottom-right-radius: 60px;
-    /* Match background to cover the rounding */
     background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-black) 80%);
     padding-bottom: 100px;
     position: relative;
@@ -126,15 +164,25 @@ body {
 
 .hero-image-container {
     position: relative; 
-    width: 100%; 
+    width: 90%; 
     max-width: 1400px; 
     margin: 20px 0 20px 0; 
     display: flex;
     justify-content: center;
     align-items: center;
     
-    /* SLIDE UP Animation */
-    animation: slideUpFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
+    /* SLIDE UP & BREATHING GLOW Animation */
+    animation: slideUpFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, 
+               breathingGlow 5s infinite alternate ease-in-out 1.5s; 
+}
+
+@keyframes breathingGlow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 40px rgba(70, 70, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.1); 
+    }
 }
 
 @keyframes slideUpFadeIn {
@@ -153,6 +201,7 @@ body {
     height: auto;
     display: block;
     border-radius: 12px; 
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5); 
 }
 
 .hero-text-overlay {
@@ -160,12 +209,12 @@ body {
     top: 70%; 
     left: 50%;
     transform: translate(-50%, -50%); 
-    font-size: 4em; 
-    font-weight: 900; 
-    letter-spacing: 3px; 
+    font-size: 5em; 
+    font-family: 'Monoton', cursive; 
+    font-weight: 400; 
+    letter-spacing: 5px; 
     color: var(--color-white); 
-    /* High-contrast, clean text shadow */
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 1), 0 0 5px rgba(255, 255, 255, 0.1); 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 5px var(--color-yellow); 
     margin: 0; 
     white-space: nowrap; 
     z-index: 3; 
@@ -239,7 +288,6 @@ body {
     padding: 80px 0;
     position: relative;
     z-index: 5;
-    /* Compensate for the hero's padding and rounding */
     margin-top: -60px; 
 }
 
@@ -263,6 +311,7 @@ body {
     letter-spacing: 5px;
     margin: 0;
     padding: 20px 0;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 .projects-grid {
@@ -274,7 +323,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     overflow-x: auto; 
-    padding-bottom: 20px; /* Space for horizontal scroll bar */
+    padding-bottom: 20px; 
 }
 
 .project-card {
@@ -292,7 +341,7 @@ body {
 
 /* Card Hover Effects (Lift and soft glow) */
 .project-card:hover {
-    transform: translateY(-10px); /* Lift up */
+    transform: translateY(-10px); 
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.1); 
     border-color: rgba(255, 255, 255, 0.2);
 }
@@ -314,12 +363,12 @@ body {
 }
 
 .project-card:hover .mockup-img {
-    transform: scale(1.05); /* Subtle zoom effect on hover */
+    transform: scale(1.05); 
 }
 
 .card-content h3 {
     font-size: 1.4em;
-    font-weight: 900;
+    font-weight: 400; /* Bebas Neue is naturally bold */
     margin-top: 0;
     margin-bottom: 8px;
     color: var(--color-yellow);
@@ -327,7 +376,7 @@ body {
 
 .card-content p {
     font-size: 0.95em;
-    font-weight: 400;
+    font-weight: 100; /* Bebas Neue should be lighter here */
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.7);
 }
@@ -350,9 +399,9 @@ body {
     }
 
     .hero-text-overlay {
-        font-size: 1.8em; 
+        font-size: 3em; /* Adjusted for Monoton on mobile */
         top: 75%; 
-        letter-spacing: 1px;
+        letter-spacing: 2px;
         white-space: normal; 
         padding: 0 10px; 
     }
