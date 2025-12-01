@@ -23,9 +23,68 @@ body {
     font-family: var(--font-body);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+    /* Deep space gradient base */
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 
 a { text-decoration: none; color: inherit; }
+
+/* --- TWINKLING STARS ANIMATION --- */
+/* We create stars using box-shadows on pseudo-elements */
+
+/* 1. Small Stars */
+body::before {
+    content: " ";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    z-index: -2;
+    /* Massive list of random shadows to create stars */
+    box-shadow: 
+        10vw 10vh #fff, 20vw 80vh #fff, 85vw 12vh #fff, 40vw 40vh #fff, 
+        70vw 90vh #fff, 10vw 50vh #fff, 60vw 20vh #fff, 90vw 85vh #fff,
+        30vw 15vh #fff, 50vw 60vh #fff, 80vw 30vh #fff, 25vw 95vh #fff,
+        15vw 35vh #fff, 55vw 75vh #fff, 5vw 5vh #fff, 95vw 45vh #fff,
+        45vw 5vh #fff, 75vw 55vh #fff, 35vw 25vh #fff, 65vw 85vh #fff,
+        12vw 68vh #fff, 88vw 18vh #fff, 58vw 48vh #fff, 28vw 98vh #fff,
+        100vw 30vh #fff, 20vw 10vh #fff, 40vw 5vh #fff, 60vw 95vh #fff;
+    animation: animStar 100s linear infinite;
+    opacity: 0.6;
+}
+
+/* 2. Medium/Twinkling Stars */
+body::after {
+    content: " ";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    z-index: -1;
+    box-shadow: 
+        5vw 85vh #FFF, 25vw 25vh #FFF, 75vw 5vh #FFF, 50vw 50vh #FFF,
+        90vw 15vh #FFF, 15vw 65vh #FFF, 80vw 80vh #FFF, 35vw 45vh #FFF,
+        60vw 10vh #FFF, 10vw 30vh #FFF, 45vw 90vh #FFF, 95vw 60vh #FFF;
+    animation: animStar 150s linear infinite, twinkle 4s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+/* Animation Keyframes */
+@keyframes animStar {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2000px); } /* Stars float upward */
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
 
 /* --- HEADER --- */
 .header {
@@ -35,8 +94,9 @@ a { text-decoration: none; color: inherit; }
     width: 100%;
     z-index: 100;
     padding: 20px 40px;
-    background: rgba(5, 5, 5, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(5, 5, 5, 0.2); /* More transparent to see stars */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .header-inner {
@@ -89,26 +149,7 @@ a { text-decoration: none; color: inherit; }
     justify-content: center;
     padding: 120px 40px 60px;
     position: relative;
-    overflow: hidden;
-}
-
-/* Ambient Background Glow */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(255,201,51,0.15) 0%, rgba(0,0,0,0) 70%);
-    filter: blur(60px);
-    z-index: -1;
-    animation: pulseGlow 8s infinite alternate;
-}
-
-@keyframes pulseGlow {
-    0% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(1.2); opacity: 0.8; }
+    /* Removed background glow to focus on stars, or keep it subtle: */
 }
 
 .hero-container {
@@ -130,13 +171,10 @@ a { text-decoration: none; color: inherit; }
     margin-bottom: 30px;
 }
 
-.line {
-    display: block;
-}
+.line { display: block; }
 
 .accent-text {
     color: var(--accent-yellow);
-    /* Outline effect for style */
     -webkit-text-stroke: 0px;
 }
 
@@ -152,7 +190,7 @@ a { text-decoration: none; color: inherit; }
     background: var(--accent-yellow);
     color: #000;
     padding: 16px 40px;
-    border-radius: 4px; /* Sharper corners for modern look */
+    border-radius: 4px; 
     font-weight: 700;
     font-family: var(--font-display);
     text-transform: uppercase;
@@ -167,14 +205,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Floating Image */
-.hero-visual {
-    position: relative;
-}
+.hero-visual { position: relative; }
 
 .image-wrapper {
     position: relative;
     z-index: 2;
-    transform: rotate(2deg); /* Artistic tilt */
+    transform: rotate(2deg);
     transition: transform 0.5s ease;
 }
 
@@ -202,12 +238,8 @@ a { text-decoration: none; color: inherit; }
     animation-delay: 0.5s;
 }
 
-@keyframes slideUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
+@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
 
 /* --- INFINITE MARQUEE --- */
 .marquee-section {
@@ -216,14 +248,11 @@ a { text-decoration: none; color: inherit; }
     color: #000;
     overflow: hidden;
     position: relative;
-    transform: rotate(-1deg) scale(1.05); /* Slight tilt for dynamism */
+    transform: rotate(-1deg) scale(1.05); 
     margin: 40px 0;
 }
 
-.track {
-    white-space: nowrap;
-    overflow: hidden;
-}
+.track { white-space: nowrap; overflow: hidden; }
 
 .content {
     display: inline-block;
@@ -272,14 +301,8 @@ a { text-decoration: none; color: inherit; }
     gap: 80px 40px;
 }
 
-.project-item {
-    position: relative;
-    group: cursor;
-}
-
-.offset-top {
-    margin-top: 80px; /* Staggered grid effect */
-}
+.project-item { position: relative; group: cursor; }
+.offset-top { margin-top: 80px; }
 
 .project-visual {
     position: relative;
@@ -288,6 +311,7 @@ a { text-decoration: none; color: inherit; }
     margin-bottom: 25px;
     aspect-ratio: 4/3;
     background: #222;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .project-visual img {
@@ -297,10 +321,7 @@ a { text-decoration: none; color: inherit; }
     transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-/* Hover Effect */
-.project-item:hover .project-visual img {
-    transform: scale(1.05);
-}
+.project-item:hover .project-visual img { transform: scale(1.05); }
 
 .overlay {
     position: absolute;
@@ -357,6 +378,9 @@ a { text-decoration: none; color: inherit; }
     border-top: 1px solid rgba(255,255,255,0.1);
     color: var(--text-secondary);
     margin-top: 100px;
+    /* Ensure footer sits above stars */
+    position: relative;
+    z-index: 1;
 }
 
 /* --- MOBILE RESPONSIVE --- */
@@ -366,33 +390,18 @@ a { text-decoration: none; color: inherit; }
         text-align: center;
     }
     
-    .hero-title {
-        font-size: 3.5rem;
-    }
-
-    .hero-subtitle {
-        margin: 0 auto 40px;
-    }
-
+    .hero-title { font-size: 3.5rem; }
+    .hero-subtitle { margin: 0 auto 40px; }
+    
     .image-wrapper {
         transform: rotate(0deg);
         max-width: 500px;
         margin: 0 auto;
     }
 
-    .works-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .offset-top {
-        margin-top: 0;
-    }
-
-    .header {
-        padding: 15px 20px;
-    }
+    .works-grid { grid-template-columns: 1fr; }
+    .offset-top { margin-top: 0; }
     
-    .nav-menu {
-        display: none; /* In full version, add hamburger menu JS */
-    }
+    .header { padding: 15px 20px; }
+    .nav-menu { display: none; }
 }
