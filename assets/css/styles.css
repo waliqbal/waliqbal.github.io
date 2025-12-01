@@ -1,14 +1,16 @@
 /* Custom CSS Variables */
 :root {
-    --color-dark-blue: #090940; /* Slightly lighter deep blue */
+    --color-dark-blue: #090940; 
     --color-black: #000000;
     --color-white: #ffffff;
     --color-yellow: #ffc933; /* Brighter, more vibrant yellow/gold */
+    --color-project-yellow: #f8c92a; /* Specific yellow for sidebar */
+    --color-project-card-bg: #111111; /* Very dark background for cards */
     --color-text-light: rgba(255, 255, 255, 0.95);
     --nav-bar-height: 80px;
 }
 
-/* Base Styles & Ambient Animation */
+/* --- Base Styles & Ambient Animation --- */
 body {
     font-family: 'Outfit', sans-serif;
     margin: 0;
@@ -17,10 +19,10 @@ body {
     min-height: 100vh;
     overflow-x: hidden; 
     
-    /* Smoother, less jarring background transition */
+    /* Background Gradient */
     background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-black) 80%);
     background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite; /* Slower animation */
+    animation: gradientShift 20s ease infinite; 
 }
 
 @keyframes gradientShift {
@@ -34,7 +36,7 @@ body {
     padding: 20px 0;
     display: flex;
     justify-content: center;
-    position: sticky; /* Sticky navigation for modern feel */
+    position: sticky; 
     top: 0;
     z-index: 100;
 }
@@ -44,14 +46,14 @@ body {
     max-width: 1200px;
     height: var(--nav-bar-height);
     /* Glassmorphism Effect */
-    background-color: rgba(255, 255, 255, 0.08); /* Very light, subtle glass */
+    background-color: rgba(255, 255, 255, 0.08); 
     border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Stronger depth shadow */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -95,13 +97,21 @@ body {
     color: var(--color-yellow);
 }
 
-/* --- Hero Section & Image Animation --- */
+/* --- Hero Section & Image Animation (Rounded Bottom) --- */
 .hero-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding-top: 50px;
+    /* Rounded Bottom Edge */
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    /* Match background to cover the rounding */
+    background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-black) 80%);
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 10; 
 }
 
 .hero-content {
@@ -117,7 +127,7 @@ body {
 .hero-image-container {
     position: relative; 
     width: 90%; 
-    max-width: 1000px; /* Slightly wider max width */
+    max-width: 1000px; 
     margin: 40px 0 20px 0; 
     display: flex;
     justify-content: center;
@@ -130,7 +140,7 @@ body {
 @keyframes slideUpFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(120px); /* Start lower */
+    transform: translateY(120px); 
   }
   100% {
     opacity: 1;
@@ -142,7 +152,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px; /* Slightly larger radius */
+    border-radius: 12px; 
     /* Deep, dark shadow to blend into the background */
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5); 
 }
@@ -152,8 +162,8 @@ body {
     top: 70%; 
     left: 50%;
     transform: translate(-50%, -50%); 
-    font-size: 4em; /* Impact font size */
-    font-weight: 900; /* Extra Bold */
+    font-size: 4em; 
+    font-weight: 900; 
     letter-spacing: 3px; 
     color: var(--color-white); 
     /* High-contrast, clean text shadow */
@@ -167,14 +177,14 @@ body {
 .cta-buttons {
     display: flex;
     gap: 30px; 
-    margin-top: 50px; /* Increased space after image */
-    margin-bottom: 150px; /* More padding at bottom */
+    margin-top: 50px; 
+    margin-bottom: 100px; 
 }
 
 .btn {
     padding: 16px 45px; 
     font-size: 1.15em;
-    font-weight: 800; /* Bold */
+    font-weight: 800; 
     text-decoration: none;
     border-radius: 50px;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -193,7 +203,6 @@ body {
 }
 
 .btn-primary {
-    /* Neumorphism style for light on dark */
     background: var(--color-yellow);
     color: var(--color-black);
     border: none;
@@ -201,14 +210,13 @@ body {
 }
 
 .btn-primary:hover {
-    background: #ffdb70; /* Lighter shade on hover */
+    background: #ffdb70; 
     box-shadow: 0 6px 30px rgba(255, 201, 51, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
     animation: none; 
 }
 
 .btn-secondary {
-    /* Glass/Darker Neumorphism style */
     background: rgba(255, 255, 255, 0.05);
     color: var(--color-text-light);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -223,6 +231,109 @@ body {
     transform: translateY(-2px);
     animation: none; 
 }
+
+/* --- Projects Section --- */
+
+.projects-section {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    display: flex;
+    padding: 80px 0;
+    position: relative;
+    z-index: 5;
+    /* Compensate for the hero's padding and rounding */
+    margin-top: -60px; 
+}
+
+.projects-sidebar {
+    background-color: var(--color-project-yellow);
+    width: 150px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.projects-sidebar h2 {
+    font-size: 2em;
+    color: var(--color-black);
+    font-weight: 900;
+    writing-mode: vertical-lr; 
+    transform: rotate(180deg);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.projects-grid {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 0 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto; 
+    padding-bottom: 20px; /* Space for horizontal scroll bar */
+}
+
+.project-card {
+    background-color: var(--color-project-card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px; 
+    flex-shrink: 0; 
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+/* Card Hover Effects (Lift and soft glow) */
+.project-card:hover {
+    transform: translateY(-10px); /* Lift up */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.1); 
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-mockup {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #333;
+}
+
+.mockup-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.6s ease;
+}
+
+.project-card:hover .mockup-img {
+    transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+.card-content h3 {
+    font-size: 1.4em;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: var(--color-yellow);
+}
+
+.card-content p {
+    font-size: 0.95em;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
@@ -247,7 +358,7 @@ body {
         white-space: normal; 
         padding: 0 10px; 
     }
-
+    
     .cta-buttons {
         flex-direction: column;
         gap: 15px;
@@ -260,5 +371,37 @@ body {
     .btn {
         width: 100%;
         padding: 15px 0;
+    }
+
+    .projects-section {
+        flex-direction: column;
+        padding: 50px 0;
+        margin-top: -30px; 
+    }
+
+    .projects-sidebar {
+        width: 100%;
+        height: 50px;
+        padding: 0;
+    }
+    
+    .projects-sidebar h2 {
+        writing-mode: horizontal-tb;
+        transform: rotate(0deg);
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .projects-grid {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 20px 0;
+        gap: 20px;
+        overflow-x: hidden; 
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 400px;
     }
 }
