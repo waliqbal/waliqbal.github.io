@@ -3,82 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WUI - Visuals That Convert</title>
+    <title>WUI | Visuals That Convert</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/styles.css"> 
 </head>
 <body>
-    <header class="main-header">
-        <nav class="navbar">
-            <img src="assets/images/Copy of WALEED (1).png" alt="WUI Logo" class="logo">
-            
-            <div class="nav-links">
-                <a href="#home">HOME</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-container">
+                <img src="assets/images/Copy of WALEED (1).png" alt="WUI Logo" class="logo">
             </div>
             
-            <button class="search-button" aria-label="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </button>
-        </nav>
+            <nav class="nav-menu">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#about" class="nav-link">Process</a>
+                <a href="#contact" class="nav-link contact-pill">Let's Talk</a>
+            </nav>
+        </div>
     </header>
 
     <main class="hero-section">
-        <div class="hero-content">
-            
-            <div class="hero-image-container">
-                <img src="assets/images/Untitled design (51).png" alt="Visuals That Convert Backdrop" class="hero-backdrop-image">
-                <h1 class="hero-text-overlay">Visuals That Convert</h1>
+        <div class="hero-container">
+            <div class="hero-text-wrapper">
+                <h1 class="hero-title">
+                    <span class="line reveal-text">Visuals</span>
+                    <span class="line reveal-text">That <span class="accent-text">Convert</span></span>
+                </h1>
+                <p class="hero-subtitle reveal-text-delay">
+                    Helping brands stand out through high-impact design and storytelling strategies.
+                </p>
+                <div class="hero-cta reveal-text-delay">
+                    <a href="#work" class="btn-primary">Explore Work</a>
+                </div>
             </div>
 
-            <div class="cta-buttons">
-                <a href="#explore" class="btn btn-primary">Explore</a>
-                <a href="#mind" class="btn btn-secondary">What Goes Through My Head</a>
+            <div class="hero-visual">
+                <div class="image-wrapper">
+                    <img src="assets/images/Untitled design (51).png" alt="Hero Backdrop" class="hero-img">
+                </div>
             </div>
         </div>
     </main>
 
-    <section class="projects-section">
-        <div class="projects-sidebar">
-            <h2>Projects</h2>
+    <div class="marquee-section">
+        <div class="track">
+            <div class="content">
+                &nbsp;UI/UX DESIGN • WEB DEVELOPMENT • STRATEGY • E-COMMERCE • BRANDING • UI/UX DESIGN • WEB DEVELOPMENT • STRATEGY • E-COMMERCE • BRANDING •
+            </div>
         </div>
-        
-        <div class="projects-grid">
+    </div>
+
+    <section id="work" class="works-section">
+        <div class="section-header">
+            <h2 class="section-title">Selected Works</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="works-grid">
             
-            <a href="#evilbullknives" class="project-card">
-                <div class="card-mockup">
-                    <img src="assets/images/Oneplus-Nord-2-evilbullknives.com (1).png" alt="EvilBullKnives Screenshot" class="mockup-img">
+            <article class="project-item">
+                <div class="project-visual">
+                    <div class="overlay"></div>
+                    <img src="assets/images/Oneplus-Nord-2-evilbullknives.com (1).png" alt="EvilBullKnives">
+                    <div class="project-floating-info">
+                        <span>View Case Study</span>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>EvilBullKnives</h3>
-                    <p>Crafted a fully functional Ecommerce platform for an upcoming knife retailer with modern visuals and storytelling.</p>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-number">01</span>
+                        <span class="project-cat">E-Commerce</span>
+                    </div>
+                    <h3 class="project-title">EvilBullKnives</h3>
                 </div>
-            </a>
+            </article>
 
-            <a href="#zackwholesale" class="project-card">
-                <div class="card-mockup">
-                    <img src="assets/images/screencapture-zackwholesale-net-2025-11-04-11_41_31.png" alt="Zack Wholesale Screenshot" class="mockup-img">
+            <article class="project-item offset-top">
+                <div class="project-visual">
+                    <div class="overlay"></div>
+                    <img src="assets/images/screencapture-zackwholesale-net-2025-11-04-11_41_31.png" alt="Zack Wholesale">
+                    <div class="project-floating-info">
+                        <span>View Case Study</span>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Zack Wholesale</h3>
-                    <p>Built a fully functioning ecommerce platform for a local wholesaler while accentuating its brand image.</p>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-number">02</span>
+                        <span class="project-cat">B2B Platform</span>
+                    </div>
+                    <h3 class="project-title">Zack Wholesale</h3>
                 </div>
-            </a>
+            </article>
 
-            <a href="#charitywater" class="project-card">
-                <div class="card-mockup">
-                    <img src="assets/images/unnamed (9).png" alt="Charity: Water Screenshot" class="mockup-img">
+            <article class="project-item">
+                <div class="project-visual">
+                    <div class="overlay"></div>
+                    <img src="assets/images/unnamed (9).png" alt="Charity Water">
+                    <div class="project-floating-info">
+                        <span>View Case Study</span>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Charity: Water</h3>
-                    <p>Designed a Landing page, ad strategy, and ad visuals with Charity: Water's brand story in mind using campaign briefs.</p>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <span class="project-number">03</span>
+                        <span class="project-cat">Non-Profit</span>
+                    </div>
+                    <h3 class="project-title">Charity: Water</h3>
                 </div>
-            </a>
+            </article>
 
         </div>
     </section>
+
+    <footer class="footer">
+        <p>© 2025 WUI. All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>
