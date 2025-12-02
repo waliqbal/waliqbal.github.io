@@ -42,7 +42,7 @@
         <ul class="indicator">
             <li><a href="#intro"><span class="sr-only">Intro</span></a></li>
             <li><a href="#blade"><span class="sr-only">The Blade</span></a></li>
-            <li><a href="#handle"><span class="sr-only">The Grip</span></a></li>
+            <li><a href="#specs"><span class="sr-only">Impact</span></a></li>
             <li><a href="#legacy"><span class="sr-only">Legacy</span></a></li>
         </ul>
     </div>
@@ -77,7 +77,6 @@
                 <div class="visual-container" style="display: block;">
                     
                     <style>
-                      /* ... [Keep your entire existing <style> block for the card here] ... */
                       .ebkrs{
                         --ebk-orange:#FFAC00;
                         --ink:#0c0d0e;
@@ -89,18 +88,17 @@
                         color:var(--text);
                         line-height:1.65;
                         border:1px solid rgba(255,172,0,.28);
-                        border-radius:12px;
+                        border-radius:30px;
                         padding:42px 34px;
                         position:relative;
                         background:#0f1013;
-                        /* UPDATED: Removed fixed height and overflow-y */
                         width: 100%;
-                        max-width: 600px;
+                        max-width: 750px;
                         height: auto; 
                         overflow: visible;
                         margin: auto;
                       }
-                      /* ... [rest of your card styles] ... */
+                    
                       .ebkrs::before{
                         content:"";
                         position:absolute; inset:0; z-index:0;
@@ -240,18 +238,147 @@
                         </div>
                         <p class="note"><strong>Handmade Notice:</strong> We often use natural materials; slight differences in color and texture are normal and make your knife unique.</p>
                     </div>
-                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="handle" class="section">
+        <section id="specs" class="section">
             <div class="content">
-                <div class="text-container">
-                    <h2>Ergonomic <br><span class="accent">Mastery</span></h2>
-                    <p>The UX strategy mirrors the knife's handle: intuitive, grippy, and perfectly balanced. We streamlined the checkout flow to minimize friction and maximize conversion.</p>
-                </div>
-                <div class="visual-container">
-                     <img src="assets/images/Untitled design (51).png" alt="Texture Background" class="texture-img">
+                <style>
+                    /* Local Styles for Spec Grid */
+                    .specs-wrapper {
+                        width: 100%;
+                        max-width: 1200px;
+                        display: grid;
+                        grid-template-columns: 1fr 1.5fr; /* Header on left, Grid on right */
+                        gap: 60px;
+                        align-items: center;
+                    }
+
+                    .specs-header h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
+                    .specs-header p { font-size: 1.1rem; opacity: 0.7; max-width: 300px; }
+
+                    .stats-grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 20px;
+                    }
+
+                    .stat-card {
+                        background: rgba(255,255,255,0.03);
+                        border: 1px solid rgba(255, 172, 0, 0.15);
+                        padding: 30px;
+                        border-radius: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        transition: transform 0.3s ease, border-color 0.3s ease;
+                    }
+
+                    .stat-card:hover {
+                        transform: translateY(-5px);
+                        border-color: var(--color-accent);
+                        background: rgba(255,255,255,0.05);
+                    }
+
+                    /* Big Number Style */
+                    .stat-value {
+                        font-family: var(--font-display);
+                        font-size: 3.5rem;
+                        font-weight: 800;
+                        color: var(--color-accent);
+                        line-height: 1;
+                        margin-bottom: 10px;
+                    }
+
+                    .stat-label {
+                        font-family: var(--font-display);
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                        font-size: 0.85rem;
+                        opacity: 0.6;
+                        margin-bottom: 5px;
+                    }
+
+                    /* List Styles for Role/Stack */
+                    .stat-list {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                    }
+
+                    .stat-pill {
+                        font-size: 0.8rem;
+                        background: rgba(255,255,255,0.1);
+                        padding: 5px 12px;
+                        border-radius: 50px;
+                        white-space: nowrap;
+                    }
+
+                    /* Span the big cards */
+                    .span-full { grid-column: span 2; }
+
+                    @media (max-width: 900px) {
+                        .specs-wrapper { grid-template-columns: 1fr; gap: 40px; }
+                        .stats-grid { grid-template-columns: 1fr; }
+                        .span-full { grid-column: auto; }
+                    }
+                </style>
+
+                <div class="specs-wrapper">
+                    <div class="specs-header">
+                        <h2>Project <br><span class="accent">Impact</span></h2>
+                        <p>A comprehensive solo development effort resulting in a high-performing e-commerce asset.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        
+                        <div class="stat-card">
+                            <span class="stat-label">Total Sales</span>
+                            <span class="stat-value">$6k+</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated revenue</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-label">User Sessions</span>
+                            <span class="stat-value">17k+</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Traffic delivered</p>
+                        </div>
+
+                        <div class="stat-card span-full">
+                            <span class="stat-label">Development Timeline</span>
+                            <span class="stat-value" style="color: white; font-size: 2.5rem;">3 Months</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin-top:5px;">From initial concept to full market launch.</p>
+                        </div>
+
+                        <div class="stat-card span-full">
+                            <div style="display:flex; justify-content: space-between; align-items: flex-start; flex-wrap:wrap; gap: 20px;">
+                                <div>
+                                    <span class="stat-label" style="display:block; margin-bottom:15px; color:var(--color-accent);">My Role (Solo)</span>
+                                    <ul class="stat-list">
+                                        <li class="stat-pill">UI/UX Design</li>
+                                        <li class="stat-pill">Full Stack Dev</li>
+                                        <li class="stat-pill">Brand Imagery</li>
+                                        <li class="stat-pill">SEO Strategy</li>
+                                        <li class="stat-pill">Email Marketing</li>
+                                        <li class="stat-pill">Product Upload</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <span class="stat-label" style="display:block; margin-bottom:15px; color:var(--color-accent);">Tech Stack</span>
+                                    <ul class="stat-list">
+                                        <li class="stat-pill">Shopify Liquid</li>
+                                        <li class="stat-pill">Canva</li>
+                                        <li class="stat-pill">Generative AI</li>
+                                        <li class="stat-pill">HTML/CSS</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
