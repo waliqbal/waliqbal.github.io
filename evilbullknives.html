@@ -10,6 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/project-scroll.css">
+    
+    <style>
+        /* Override the fixed height from project-scroll.css for this section */
+        #blade.section {
+            height: auto; /* Allow section to grow */
+            min-height: 100dvh; /* Ensure it's at least full screen */
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        /* Override content styles to allow full card display */
+        #blade .content {
+            position: relative; /* Not fixed */
+            height: auto;
+            overflow: visible; /* No internal scrollbar */
+            animation: none; /* Disable the zoom animation for this section so it's static and readable */
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    </style>
 </head>
 <body>
 
@@ -47,14 +67,14 @@
         <section id="blade" class="section">
             <div class="content">
                 
-                <div class="text-container">
+                <div class="text-container" style="align-self: flex-start; position: sticky; top: 150px;">
                     <h2>Modern <br><span class="accent">Product Card</span> Design</h2>
                     <p>We redesigned the product detail experience to be immersive and data-rich. By blending high-fidelity specs with ambient, outdoor visuals, we create an emotional connection that goes beyond a simple transaction.</p>
                     <br>
                     <p>Every element, from the typography to the horizon glow, reinforces the brand's rugged, premium ethos.</p>
                 </div>
 
-                <div class="visual-container" style="display: flex; justify-content: center; align-items: center;">
+                <div class="visual-container" style="display: block;">
                     
                     <style>
                       /* ... [Keep your entire existing <style> block for the card here] ... */
@@ -69,20 +89,18 @@
                         color:var(--text);
                         line-height:1.65;
                         border:1px solid rgba(255,172,0,.28);
-                        border-radius:12px;             /* 12px borders */
+                        border-radius:12px;
                         padding:42px 34px;
                         position:relative;
-                        overflow:hidden;
                         background:#0f1013;
-                        /* Ensure it fits well on the right side */
+                        /* UPDATED: Removed fixed height and overflow-y */
                         width: 100%;
-                        max-width: 600px; /* Adjusted max-width for side-by-side layout */
-                        max-height: 85vh;
-                        overflow-y: auto;
+                        max-width: 600px;
+                        height: auto; 
+                        overflow: visible;
                         margin: auto;
                       }
                       /* ... [rest of your card styles] ... */
-                      /* Scenic backdrop with blend-to-card gradient */
                       .ebkrs::before{
                         content:"";
                         position:absolute; inset:0; z-index:0;
@@ -93,7 +111,6 @@
                         filter:saturate(.9) contrast(1.02);
                       }
                     
-                      /* Animated horizon glow (subtle) */
                       .ebkrs::after{
                         content:"";
                         position:absolute; inset:-30% -10%; z-index:0;
@@ -118,7 +135,6 @@
                       .ebkrs h2{margin:.15rem 0 1rem; font-size:2.2rem; font-weight:1000; color:#fff}
                       .lede{max-width:75ch; color:var(--muted); margin:.45rem 0 1.15rem}
                     
-                      /* Chips */
                       .chips{display:flex; flex-wrap:wrap; gap:.5rem; margin:.1rem 0 1rem}
                       .chip{
                         background:rgba(18,18,20,.92);
@@ -127,17 +143,14 @@
                         font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
                       }
                     
-                      /* Divider */
                       .divider{height:12px; border-radius:8px; margin:1rem 0 1.25rem;
                                background:linear-gradient(90deg, rgba(255,172,0,.95), rgba(255,172,0,0))}
                     
-                      /* Specs */
                       .specs{display:grid; gap:.85rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin:.2rem 0 1.2rem}
                       .spec{background:rgba(15,15,16,.96); border:1px solid rgba(255,172,0,.28); border-radius:12px; padding:1rem}
                       .k{display:block; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:#ffdda4; margin-bottom:.35rem}
                       .v{font-weight:850; color:#fff}
                     
-                      /* Infographics row (modern icons) */
                       .facts{display:grid; gap:.9rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:.35rem 0 1.2rem}
                       .fact{display:flex; gap:.8rem; align-items:flex-start; padding:1rem; border-radius:12px;
                             background:linear-gradient(180deg, rgba(23,79,107,.14), rgba(18,19,21,.96));
@@ -150,16 +163,14 @@
                       .fact h5{margin:.05rem 0 .2rem; font-size:.95rem; color:#fff}
                       .fact p{margin:0; color:#e7dfd0}
                     
-                      /* EBK-styled panels for policy */
                       .panel{background:rgba(16,16,18,.96); border:1px solid rgba(255,172,0,.28); border-radius:12px; padding:1rem; margin-bottom:1rem; box-shadow:0 0 14px rgba(255,172,0,.08)}
                       .panel h4{font-weight:900; text-transform:uppercase; letter-spacing:.08em; color:var(--ebk-orange); font-size:1rem; margin:0 0 .55rem}
                       .panel ul{margin:.2rem 0 .2rem 1rem}
                     
-                      /* Badges with gradient shimmer */
                       .badges{display:flex; flex-wrap:wrap; gap:.6rem; margin:.9rem 0 0}
                       .badge{
                         font-weight:900; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
-                        color:#111; padding:.5rem .7rem; border-radius:12px;  /* 12px */
+                        color:#111; padding:.5rem .7rem; border-radius:12px;
                         background:linear-gradient(90deg, #FFAC00, #ffd37a, #FFAC00);
                         background-size:200% 100%; animation:shine 5s linear infinite;
                         border:1px solid rgba(0,0,0,.2)
