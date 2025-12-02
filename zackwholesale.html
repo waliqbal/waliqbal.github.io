@@ -15,22 +15,50 @@
         :root {
             --color-accent: #F36F21; /* Zack Wholesale Orange */
         }
+        
         /* Custom image adjustments for this project */
         .zack-hero {
             width: 100%;
             max-width: 700px;
             border-radius: 8px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            /* Slight tilt opposite to EvilBull for variety */
             transform: rotate(3deg) !important; 
         }
+        
         .zack-detail {
             width: 100%;
             max-width: 800px;
             object-fit: cover;
-            /* Focus on the center-left of the screenshot where content usually is */
-            object-position: left center;
             border-radius: 12px;
+        }
+
+        /* --- Spec Grid Styles (Localized) --- */
+        .specs-wrapper { width: 100%; max-width: 1200px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
+        .specs-header h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
+        .specs-header p { font-size: 1.1rem; opacity: 0.7; max-width: 300px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(243, 111, 33, 0.2); /* Zack Orange Border */
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--color-accent); background: rgba(255,255,255,0.05); }
+        
+        .stat-value { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+        .stat-label { font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; opacity: 0.6; margin-bottom: 5px; }
+        .stat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+        .stat-pill { font-size: 0.8rem; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 50px; white-space: nowrap; }
+        .span-full { grid-column: span 2; }
+
+        @media (max-width: 900px) {
+            .specs-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .span-full { grid-column: auto; }
         }
     </style>
 </head>
@@ -45,48 +73,101 @@
         <ul class="indicator">
             <li><a href="#intro"><span class="sr-only">Intro</span></a></li>
             <li><a href="#scale"><span class="sr-only">Scale</span></a></li>
-            <li><a href="#ux"><span class="sr-only">UX</span></a></li>
-            <li><a href="#impact"><span class="sr-only">Impact</span></a></li>
+            <li><a href="#ux"><span class="sr-only">Impact</span></a></li>
+            <li><a href="#impact"><span class="sr-only">Legacy</span></a></li>
         </ul>
     </div>
 
     <main>
         
         <section id="intro" class="section">
-    <div class="content">
-        <div class="text-container">
-            <h1 class="project-title">Zack <br><span class="accent">Wholesale</span></h1>
-            <p class="project-subtitle">Redefining the B2B purchasing experience with speed and scale.</p>
-        </div>
-        <div class="visual-container">
-            <img src="assets/images/Untitled design (53).png" alt="Zack Wholesale Homepage" class="hero-img zack-hero">
-        </div>
-    </div>
-</section>
+            <div class="content">
+                <div class="text-container">
+                    <h1 class="project-title">Zack <br><span class="accent">Wholesale</span></h1>
+                    <p class="project-subtitle">Redefining the B2B purchasing experience with speed, scale, and omnichannel integration.</p>
+                </div>
+                <div class="visual-container">
+                    <img src="assets/images/Untitled design (53).png" alt="Zack Wholesale Homepage" class="hero-img zack-hero">
+                </div>
+            </div>
+        </section>
 
-<section id="scale" class="section">
-    <div class="content">
-        <div class="text-container">
-            <h2>Built for <br><span class="outline-text">Volume</span></h2>
-            <p>Unlike standard retail, this platform handles high-volume inventory management and tiered pricing structures effortlessly, ensuring wholesale buyers get exactly what they need, fast.</p>
-        </div>
-        <div class="visual-container">
-            <video class="detail-img-1 zack-detail" autoplay loop muted playsinline>
-                <source src="assets/videos/zw landing.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-</section>
+        <section id="scale" class="section">
+            <div class="content">
+                <div class="text-container">
+                    <h2>Built for <br><span class="outline-text">Volume</span></h2>
+                    <p>Unlike standard retail, this platform handles high-volume inventory management and tiered pricing structures effortlessly, ensuring wholesale buyers get exactly what they need, fast.</p>
+                </div>
+                <div class="visual-container">
+                    <video class="detail-img-1 zack-detail" autoplay loop muted playsinline>
+                        <source src="assets/videos/zw landing.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
 
         <section id="ux" class="section">
             <div class="content">
-                <div class="text-container">
-                    <h2>Frictionless <br><span class="accent">Commerce</span></h2>
-                    <p>We stripped away the clutter common in B2B portals. The result is a consumer-grade UX applied to a wholesale engine—intuitive search, quick re-ordering, and mobile responsiveness.</p>
-                </div>
-                <div class="visual-container">
-                     <img src="assets/images/Untitled design (51).png" alt="Texture Background" class="texture-img">
+                <div class="specs-wrapper">
+                    <div class="specs-header">
+                        <h2>Business <br><span class="accent">Growth</span></h2>
+                        <p>A complete digital transformation transitioning the business into a fully integrated omnichannel wholesaler.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        
+                        <div class="stat-card">
+                            <span class="stat-label">Efficiency Boost</span>
+                            <span class="stat-value">70%</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Reduction in processing time via AI & Automation.</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-label">New Revenue</span>
+                            <span class="stat-value">$60k+</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated via targeted online campaigns.</p>
+                        </div>
+
+                        <div class="stat-card span-full">
+                            <div style="display:flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span class="stat-label">Online Visibility</span>
+                                    <span class="stat-value">600%</span>
+                                    <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Increase via SEO & Backlink Optimization (SEMrush).</p>
+                                </div>
+                                <div style="text-align: right; opacity: 0.8;">
+                                    <span style="display:block; font-size:1.5rem; font-weight:800; color:white;">28k+</span>
+                                    <span style="font-size:0.8rem; text-transform:uppercase;">Unique Visitors</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card span-full">
+                            <div style="display:flex; justify-content: space-between; align-items: flex-start; flex-wrap:wrap; gap: 20px;">
+                                <div>
+                                    <span class="stat-label" style="display:block; margin-bottom:15px; color:var(--color-accent);">My Role (Solo)</span>
+                                    <ul class="stat-list">
+                                        <li class="stat-pill">Full Stack Dev</li>
+                                        <li class="stat-pill">Product Manager</li>
+                                        <li class="stat-pill">Paid Marketing (Google/Meta)</li>
+                                        <li class="stat-pill">SEO & Automation</li>
+                                        <li class="stat-pill">Sales Strategy</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <span class="stat-label" style="display:block; margin-bottom:15px; color:var(--color-accent);">Tools</span>
+                                    <ul class="stat-list">
+                                        <li class="stat-pill">Shopify Plus</li>
+                                        <li class="stat-pill">SEMrush</li>
+                                        <li class="stat-pill">Generative AI</li>
+                                        <li class="stat-pill">Excel Automation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
