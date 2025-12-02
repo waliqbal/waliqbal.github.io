@@ -36,21 +36,225 @@
                     <p class="project-subtitle">A modern e-commerce experience designed to cut through the noise.</p>
                 </div>
                 <div class="visual-container">
-                    <img src="assets/images/Oneplus-Nord-2-evilbullknives.com (1).png" alt="Evil Bull Website Mockup" class="hero-img">
+                    <video class="hero-img" autoplay loop muted playsinline style="object-fit: cover; width: 100%; height: 100%; min-height: 400px;">
+                        <source src="assets/videos/Untitled (1920 x 1080 px) (1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </section>
 
         <section id="blade" class="section">
-            <div class="content">
-                <div class="text-container">
-                    <h2>Precision <br><span class="outline-text">Engineering</span></h2>
-                    <p>We focused on high-fidelity imagery and macro photography to showcase the Damascus steel patterns, ensuring the digital product felt as dangerous and premium as the physical one.</p>
+            <div class="content" style="display: flex; justify-content: center; align-items: center; overflow-y: auto;">
+                
+                <style>
+                  .ebkrs{
+                    --ebk-orange:#FFAC00;
+                    --ink:#0c0d0e;
+                    --text:#ececec;
+                    --muted:#cfcfcf;
+                    --sea1:#1b2432; --sea2:#0f2f4a; --sea3:#174f6b; --sea4:#1f6f7f;
+                
+                    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+                    color:var(--text);
+                    line-height:1.65;
+                    border:1px solid rgba(255,172,0,.28);
+                    border-radius:12px;             /* 12px borders */
+                    padding:42px 34px;
+                    position:relative;
+                    overflow:hidden;
+                    background:#0f1013;
+                    /* Added max-width/height to fit in the scroll section nicely */
+                    max-width: 1000px;
+                    width: 90%;
+                    max-height: 90vh;
+                    overflow-y: auto; /* Scroll inside card if screen is too small */
+                  }
+                
+                  /* Scenic backdrop with blend-to-card gradient */
+                  .ebkrs::before{
+                    content:"";
+                    position:absolute; inset:0; z-index:0;
+                    background:
+                      linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 45%, #0f1013 85%),
+                      url("https://cdn.shopify.com/s/files/1/0774/4687/3365/files/a-look-across-the-landscape-with-view-of-the-sea.jpg?v=1759944827")
+                        top/cover no-repeat;
+                    filter:saturate(.9) contrast(1.02);
+                  }
+                
+                  /* Animated horizon glow (subtle) */
+                  .ebkrs::after{
+                    content:"";
+                    position:absolute; inset:-30% -10%; z-index:0;
+                    background:linear-gradient(90deg, transparent,
+                      rgba(31,111,127,.18), rgba(23,79,107,.22), rgba(255,172,0,.10),
+                      rgba(23,79,107,.22), rgba(31,111,127,.18), transparent);
+                    filter:blur(90px);
+                    animation:horizonSweep 16s ease-in-out infinite;
+                  }
+                  @keyframes horizonSweep{
+                    0%{transform:translateX(-45%);opacity:.8}
+                    50%{transform:translateX(45%);opacity:.95}
+                    100%{transform:translateX(-45%);opacity:.8}
+                  }
+                
+                  .ebkrs *{position:relative; z-index:1; box-sizing:border-box}
+                
+                  .eyebrow{
+                    text-transform:uppercase; letter-spacing:.15em; font-weight:900;
+                    color:var(--ebk-orange); margin:0 0 .45rem;
+                  }
+                  .ebkrs h2{margin:.15rem 0 1rem; font-size:2.2rem; font-weight:1000; color:#fff}
+                  .lede{max-width:75ch; color:var(--muted); margin:.45rem 0 1.15rem}
+                
+                  /* Chips */
+                  .chips{display:flex; flex-wrap:wrap; gap:.5rem; margin:.1rem 0 1rem}
+                  .chip{
+                    background:rgba(18,18,20,.92);
+                    border:1px solid rgba(255,172,0,.32);
+                    color:#fff; border-radius:999px; padding:.38rem .72rem;
+                    font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
+                  }
+                
+                  /* Divider */
+                  .divider{height:12px; border-radius:8px; margin:1rem 0 1.25rem;
+                           background:linear-gradient(90deg, rgba(255,172,0,.95), rgba(255,172,0,0))}
+                
+                  /* Specs */
+                  .specs{display:grid; gap:.85rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin:.2rem 0 1.2rem}
+                  .spec{background:rgba(15,15,16,.96); border:1px solid rgba(255,172,0,.28); border-radius:12px; padding:1rem}
+                  .k{display:block; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:#ffdda4; margin-bottom:.35rem}
+                  .v{font-weight:850; color:#fff}
+                
+                  /* Infographics row (modern icons) */
+                  .facts{display:grid; gap:.9rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:.35rem 0 1.2rem}
+                  .fact{display:flex; gap:.8rem; align-items:flex-start; padding:1rem; border-radius:12px;
+                        background:linear-gradient(180deg, rgba(23,79,107,.14), rgba(18,19,21,.96));
+                        border:1px solid rgba(255,172,0,.25)}
+                  .glyph{width:32px; height:32px; flex:0 0 32px; border-radius:50%;
+                         background:
+                           radial-gradient(circle at 32% 30%, rgba(255,172,0,.65), transparent 62%),
+                           linear-gradient(135deg, rgba(255,172,0,.18), rgba(0,0,0,0));
+                         border:1px solid rgba(255,172,0,.55)}
+                  .fact h5{margin:.05rem 0 .2rem; font-size:.95rem; color:#fff}
+                  .fact p{margin:0; color:#e7dfd0}
+                
+                  /* EBK-styled panels for policy */
+                  .panel{background:rgba(16,16,18,.96); border:1px solid rgba(255,172,0,.28); border-radius:12px; padding:1rem; margin-bottom:1rem; box-shadow:0 0 14px rgba(255,172,0,.08)}
+                  .panel h4{font-weight:900; text-transform:uppercase; letter-spacing:.08em; color:var(--ebk-orange); font-size:1rem; margin:0 0 .55rem}
+                  .panel ul{margin:.2rem 0 .2rem 1rem}
+                
+                  /* Badges with gradient shimmer */
+                  .badges{display:flex; flex-wrap:wrap; gap:.6rem; margin:.9rem 0 0}
+                  .badge{
+                    font-weight:900; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+                    color:#111; padding:.5rem .7rem; border-radius:12px;  /* 12px */
+                    background:linear-gradient(90deg, #FFAC00, #ffd37a, #FFAC00);
+                    background-size:200% 100%; animation:shine 5s linear infinite;
+                    border:1px solid rgba(0,0,0,.2)
+                  }
+                  @keyframes shine{
+                    0%{background-position:0% 50%}
+                    50%{background-position:100% 50%}
+                    100%{background-position:0% 50%}
+                  }
+                
+                  .note{color:#e9e1d4; margin-top:.6rem}
+                
+                  @media (min-width:768px){
+                    .ebkrs{padding:48px 40px}
+                    .ebkrs h2{font-size:2.45rem}
+                    .specs{grid-template-columns:repeat(3,minmax(0,1fr))}
+                  }
+                </style>
+                <div class="ebkrs">
+                    <div class="eyebrow">Evil Bull Knives®</div>
+                    <h2>EBKRS — Rasp Steel Knife</h2>
+                    <p class="lede">A compact masterwork blending <strong>rasp-steel</strong> character with EBK’s signature finish — built for everyday utility and heirloom appeal.</p>
+                    <div class="chips">
+                        <span class="chip">Rasp Steel</span> <span class="chip">Walnut Handle</span> <span class="chip">Leather Sheath</span> <span class="chip">Gift-Ready</span> <span class="chip">Handmade</span>
+                    </div>
+                    <div class="divider"><br></div>
+                    <div class="specs">
+                        <div class="spec">
+                            <span class="k">Overall Length</span><span class="v">8.0″ (20.3 cm)</span>
+                            <div>Balanced compact profile for control.</div>
+                        </div>
+                        <div class="spec">
+                            <span class="k">Blade Length</span><span class="v">4.0″ (10.2 cm)</span>
+                            <div>Everyday versatility with confident bite.</div>
+                        </div>
+                        <div class="spec">
+                            <span class="k">Handle Length</span><span class="v">4.0″ (10.2 cm)</span>
+                            <div>Ergonomic fit for secure grip.</div>
+                        </div>
+                        <div class="spec">
+                            <span class="k">Blade Material</span><span class="v">Rasp Steel</span>
+                            <div>Distinctive rasp texture and visual depth.</div>
+                        </div>
+                        <div class="spec">
+                            <span class="k">Handle Material</span><span class="v">Walnut Wood</span>
+                            <div>Natural character — no two are alike.</div>
+                        </div>
+                        <div class="spec">
+                            <span class="k">Includes</span><span class="v">Cow Leather Sheath</span>
+                            <div>Form-fitted protection and carry.</div>
+                        </div>
+                    </div>
+                    <div class="facts">
+                        <div class="fact">
+                            <div class="glyph" aria-hidden="true"><br></div>
+                            <div>
+                                <h5>Utility Grind</h5>
+                                <p>Durable edge geometry for slicing, light carving, and daily tasks.</p>
+                            </div>
+                        </div>
+                        <div class="fact">
+                            <div class="glyph" aria-hidden="true"><br></div>
+                            <div>
+                                <h5>Grip &amp; Balance</h5>
+                                <p>Contoured walnut scales with secure palm index for confident control.</p>
+                            </div>
+                        </div>
+                        <div class="fact">
+                            <div class="glyph" aria-hidden="true"><br></div>
+                            <div>
+                                <h5>Gift Ready</h5>
+                                <p>Ships with leather sheath; optional engraving for a personal touch.</p>
+                            </div>
+                        </div>
+                        <div class="fact">
+                            <div class="glyph" aria-hidden="true"><br></div>
+                            <div>
+                                <h5>Handmade Character</h5>
+                                <p>Natural and forged variations make each knife unmistakably unique.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <h4>Shipping &amp; Production</h4>
+                        <ul>
+                            <li>Estimated delivery date shown at checkout; tracking code emailed upon shipment.</li>
+                            <li>Custom engraving (optional) adds 2–3 weeks to production.</li>
+                            <li>Occasional carrier/weather delays may affect transit times.</li>
+                        </ul>
+                    </div>
+                    <div class="panel">
+                        <h4>Returns &amp; Guarantee</h4>
+                        <ul>
+                            <li>Returns accepted within 30 days for items purchased on EvilBullKnives.</li>
+                            <li>Items must be new/unused in original packaging.</li>
+                            <li>Personalized/engraved knives are final sale.</li>
+                        </ul>
+                    </div>
+                    <div class="badges">
+                        <div class="badge">Crafted for Generations</div>
+                        <div class="badge">Premium Quality</div>
+                        <div class="badge">Unique Designs</div>
+                    </div>
+                    <p class="note"><strong>Handmade Notice:</strong> We often use natural materials; slight differences in color and texture are normal and make your knife unique.</p>
                 </div>
-                <div class="visual-container">
-                    <img src="assets/images/Oneplus-Nord-2-evilbullknives.com (1).png" alt="Blade Detail" class="detail-img-1">
                 </div>
-            </div>
         </section>
 
         <section id="handle" class="section">
