@@ -1,70 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evil Bull Knives | Project View</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="assets/css/project-scroll.css">
-    
-    <style>
-        /* Override the fixed height from project-scroll.css for this section */
-        #blade.section {
-            height: auto; /* Allow section to grow */
-            min-height: 100dvh; /* Ensure it's at least full screen */
-            padding-top: 80px;
-            padding-bottom: 80px;
-        }
-        
-        /* Override content styles to allow full card display */
-        #blade .content {
-            position: relative; /* Not fixed */
-            height: auto;
-            overflow: visible; /* No internal scrollbar */
-            animation: none; /* Disable the zoom animation for this section so it's static and readable */
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-    </style>
-</head>
-<body>
-
-    <nav class="fixed-nav">
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
-        <img src="assets/images/Copy of WALEED (1).png" alt="Logo" class="nav-logo">
-    </nav>
-
-    <div class="indicator-wrapper">
-        <ul class="indicator">
-            <li><a href="#intro"><span class="sr-only">Intro</span></a></li>
-            <li><a href="#blade"><span class="sr-only">The Blade</span></a></li>
-            <li><a href="#handle"><span class="sr-only">The Grip</span></a></li>
-            <li><a href="#legacy"><span class="sr-only">Legacy</span></a></li>
-        </ul>
-    </div>
-
-    <main>
-        
-        <section id="intro" class="section">
-            <div class="content">
-                <div class="text-container">
-                    <h1 class="project-title">Evil Bull <br><span class="accent">Knives</span></h1>
-                    <p class="project-subtitle">A modern e-commerce experience designed to cut through the noise.</p>
-                </div>
-                <div class="visual-container">
-                    <video class="hero-img" autoplay loop muted playsinline style="object-fit: cover; width: 100%; height: 100%; min-height: 400px;">
-                        <source src="assets/videos/Untitled (1920 x 1080 px) (1).mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-        </section>
-
-        <section id="blade" class="section">
+<section id="blade" class="section">
             <div class="content">
                 
                 <div class="text-container" style="align-self: flex-start; position: sticky; top: 150px;">
@@ -77,7 +11,6 @@
                 <div class="visual-container" style="display: block;">
                     
                     <style>
-                      /* ... [Keep your entire existing <style> block for the card here] ... */
                       .ebkrs{
                         --ebk-orange:#FFAC00;
                         --ink:#0c0d0e;
@@ -89,18 +22,24 @@
                         color:var(--text);
                         line-height:1.65;
                         border:1px solid rgba(255,172,0,.28);
-                        border-radius:12px;
+                        
+                        /* UPDATED: Much rounder edges */
+                        border-radius: 30px; 
+                        
                         padding:42px 34px;
                         position:relative;
                         background:#0f1013;
-                        /* UPDATED: Removed fixed height and overflow-y */
+                        
+                        /* UPDATED: Wider card */
                         width: 100%;
-                        max-width: 600px;
+                        max-width: 750px; 
+                        
                         height: auto; 
                         overflow: visible;
                         margin: auto;
                       }
-                      /* ... [rest of your card styles] ... */
+                    
+                      /* Scenic backdrop with blend-to-card gradient */
                       .ebkrs::before{
                         content:"";
                         position:absolute; inset:0; z-index:0;
@@ -111,6 +50,7 @@
                         filter:saturate(.9) contrast(1.02);
                       }
                     
+                      /* Animated horizon glow (subtle) */
                       .ebkrs::after{
                         content:"";
                         position:absolute; inset:-30% -10%; z-index:0;
@@ -135,6 +75,7 @@
                       .ebkrs h2{margin:.15rem 0 1rem; font-size:2.2rem; font-weight:1000; color:#fff}
                       .lede{max-width:75ch; color:var(--muted); margin:.45rem 0 1.15rem}
                     
+                      /* Chips */
                       .chips{display:flex; flex-wrap:wrap; gap:.5rem; margin:.1rem 0 1rem}
                       .chip{
                         background:rgba(18,18,20,.92);
@@ -143,14 +84,17 @@
                         font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
                       }
                     
+                      /* Divider */
                       .divider{height:12px; border-radius:8px; margin:1rem 0 1.25rem;
                                background:linear-gradient(90deg, rgba(255,172,0,.95), rgba(255,172,0,0))}
                     
+                      /* Specs */
                       .specs{display:grid; gap:.85rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin:.2rem 0 1.2rem}
                       .spec{background:rgba(15,15,16,.96); border:1px solid rgba(255,172,0,.28); border-radius:12px; padding:1rem}
                       .k{display:block; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:#ffdda4; margin-bottom:.35rem}
                       .v{font-weight:850; color:#fff}
                     
+                      /* Infographics row (modern icons) */
                       .facts{display:grid; gap:.9rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:.35rem 0 1.2rem}
                       .fact{display:flex; gap:.8rem; align-items:flex-start; padding:1rem; border-radius:12px;
                             background:linear-gradient(180deg, rgba(23,79,107,.14), rgba(18,19,21,.96));
@@ -163,14 +107,16 @@
                       .fact h5{margin:.05rem 0 .2rem; font-size:.95rem; color:#fff}
                       .fact p{margin:0; color:#e7dfd0}
                     
+                      /* EBK-styled panels for policy */
                       .panel{background:rgba(16,16,18,.96); border:1px solid rgba(255,172,0,.28); border-radius:12px; padding:1rem; margin-bottom:1rem; box-shadow:0 0 14px rgba(255,172,0,.08)}
                       .panel h4{font-weight:900; text-transform:uppercase; letter-spacing:.08em; color:var(--ebk-orange); font-size:1rem; margin:0 0 .55rem}
                       .panel ul{margin:.2rem 0 .2rem 1rem}
                     
+                      /* Badges with gradient shimmer */
                       .badges{display:flex; flex-wrap:wrap; gap:.6rem; margin:.9rem 0 0}
                       .badge{
                         font-weight:900; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
-                        color:#111; padding:.5rem .7rem; border-radius:12px;
+                        color:#111; padding:.5rem .7rem; border-radius:12px;  /* 12px */
                         background:linear-gradient(90deg, #FFAC00, #ffd37a, #FFAC00);
                         background-size:200% 100%; animation:shine 5s linear infinite;
                         border:1px solid rgba(0,0,0,.2)
@@ -240,34 +186,6 @@
                         </div>
                         <p class="note"><strong>Handmade Notice:</strong> We often use natural materials; slight differences in color and texture are normal and make your knife unique.</p>
                     </div>
-                    </div>
-            </div>
-        </section>
-
-        <section id="handle" class="section">
-            <div class="content">
-                <div class="text-container">
-                    <h2>Ergonomic <br><span class="accent">Mastery</span></h2>
-                    <p>The UX strategy mirrors the knife's handle: intuitive, grippy, and perfectly balanced. We streamlined the checkout flow to minimize friction and maximize conversion.</p>
-                </div>
-                <div class="visual-container">
-                     <img src="assets/images/Untitled design (51).png" alt="Texture Background" class="texture-img">
                 </div>
             </div>
         </section>
-
-        <section id="legacy" class="section">
-            <div class="content">
-                <div class="text-container centered">
-                    <h2 class="big-legacy">Seal Your <br>Legacy</h2>
-                    <p>The final result is a brand identity that stands the test of time.</p>
-                    <a href="https://evilbullknives.com" target="_blank" class="visit-btn">Visit Live Site</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
-</body>
-</html>
