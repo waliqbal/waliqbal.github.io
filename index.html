@@ -10,6 +10,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/styles.css"> 
+
+    <style>
+        /* Force override for the specific CTA button */
+        .header .contact-pill {
+            /* Default State: Your CTA Color (Electric Gold) */
+            border: 1px solid var(--accent-yellow) !important;
+            color: var(--accent-yellow) !important;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .header .contact-pill:hover {
+            /* Hover State: LinkedIn Signature Colors */
+            background-color: #0077b5 !important; /* LinkedIn Blue */
+            border-color: #0077b5 !important;
+            color: #ffffff !important; /* White Text */
+            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
 
@@ -24,7 +46,8 @@
             <nav class="nav-menu">
                 <a href="projects.html" class="nav-link">Work</a>
                 <a href="about.html" class="nav-link">About Me</a>
-                <a href="https://www.linkedin.com/in/waleediqba-l/" class="nav-link contact-pill">Let's Connect on Linkedin</a>
+                
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">Let's Connect</a>
             </nav>
         </div>
     </header>
@@ -128,9 +151,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
