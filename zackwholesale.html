@@ -80,24 +80,27 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.2); /* Reduced opacity since there is no text */
+            background: rgba(0,0,0,0.1); 
             z-index: 1;
         }
 
         #outro .text-container {
             position: relative;
-            z-index: 2; /* Sit on top of image/overlay */
+            z-index: 2; 
             height: 100%;
             width: 100%;
-            /* Flex not needed for just the absolute button, but kept for safety */
             display: flex;
             justify-content: center;
         }
 
-        /* Button pushed to bottom */
+        /* Button pushed to bottom & CENTERED */
         #outro .visit-btn {
             position: absolute;
-            bottom: 80px; /* Distance from bottom edge */
+            bottom: 80px; 
+            /* Centering Trick */
+            left: 50%;
+            transform: translateX(-50%);
+            
             background: var(--color-accent);
             color: black;
             border: none;
@@ -106,7 +109,8 @@
         
         #outro .visit-btn:hover {
             background: white;
-            transform: translateY(-5px) scale(1.05);
+            /* Maintain Horizontal Center + Add Lift/Scale */
+            transform: translateX(-50%) translateY(-5px) scale(1.05);
         }
 
         @media (max-width: 900px) {
@@ -229,7 +233,7 @@
         <section id="outro" class="section">
             <div class="content">
                 <div class="visual-container">
-                    <img src="assets/images/ZWvisit.png" alt="Zack Wholesale Branding" class="outro-img">
+                    <img src="assets/images/Untitled (1920 x 1080 px) (1).png" alt="Zack Wholesale Branding" class="outro-img">
                 </div>
                 
                 <div class="text-container">
