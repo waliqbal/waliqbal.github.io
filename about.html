@@ -33,7 +33,7 @@
         .xp-role p { font-size: 0.9rem; opacity: 0.7; }
         .xp-company { text-align: right; color: var(--accent-yellow); font-weight: 700; }
 
-        /* --- CREDENTIALS VAULT (Updated) --- */
+        /* --- CREDENTIALS VAULT --- */
         .cert-section { margin: 150px auto; padding: 0 40px; max-width: 1400px; }
         .section-header-center { text-align: center; margin-bottom: 60px; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
@@ -47,12 +47,12 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, background 0.3s ease; /* Smoother easing */
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, background 0.3s ease; 
             height: 250px; 
         }
         
         .cert-card:hover { 
-            transform: translateY(-10px) scale(1.02); /* Added slight scale */
+            transform: translateY(-10px) scale(1.02); 
             border-color: var(--accent-yellow); 
             background: rgba(255,255,255,0.06); 
         }
@@ -62,18 +62,17 @@
             max-height: 150px; 
             object-fit: contain; 
             margin-bottom: 20px; 
-            /* REMOVED: filter: grayscale(100%); */
-            transition: transform 0.4s ease; /* Smooth transform on hover */
+            /* No Grayscale */
+            transition: transform 0.4s ease; 
         }
         
         .cert-card:hover .cert-img { 
-            /* Added explicit transform for "pop" */
             transform: scale(1.1) rotate(2deg); 
         }
         
         .cert-name { font-family: 'Manrope', sans-serif; font-size: 0.9rem; text-align: center; font-weight: 600; color: rgba(255,255,255,0.8); }
 
-        /* --- EDUCATION SECTION (Updated) --- */
+        /* --- EDUCATION SECTION --- */
         .edu-section {
             margin: 150px auto;
             max-width: 1200px;
@@ -117,15 +116,14 @@
         .edu-emblem {
             width: 100%;
             max-width: 250px;
-            /* REMOVED: filter: grayscale(100%); */
-            filter: brightness(1.1); /* Slight brightness boost */
+            filter: brightness(1.1); 
             transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative;
             z-index: 1;
         }
 
         .edu-card:hover .edu-emblem {
-            transform: scale(1.1) rotate(-5deg); /* Enhanced hover effect */
+            transform: scale(1.1) rotate(-5deg); 
         }
 
         .edu-content { position: relative; z-index: 1; }
@@ -141,6 +139,24 @@
         .hobbies-list { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
         .hobby-pill { border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 10px 25px; border-radius: 50px; font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: all 0.3s; }
         .hobby-pill:hover { background: var(--accent-yellow); color: black; }
+
+        /* --- UPDATED LINKEDIN BUTTON STYLE (Consistent across pages) --- */
+        .contact-pill {
+            border: 1px solid var(--accent-yellow) !important;
+            color: var(--accent-yellow) !important;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-pill:hover {
+            background-color: #0077b5 !important; /* LinkedIn Blue */
+            border-color: #0077b5 !important;
+            color: #ffffff !important; /* White Text */
+            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+            transform: translateY(-2px);
+        }
 
         @media (max-width: 900px) {
             .bio-grid { grid-template-columns: 1fr; }
@@ -167,7 +183,8 @@
              <nav class="nav-menu">
                 <a href="projects.html" class="nav-link">Work</a>
                 <a href="about.html" class="nav-link" style="color: var(--accent-yellow);">About Me</a>
-                <a href="contact.html" class="nav-link contact-pill">Let's Connect on Linkedin</a>
+                
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">Let's Connect</a>
             </nav>
         </div>
     </header>
@@ -240,7 +257,7 @@
             </div>
 
             <div class="cert-card">
-                <img src="assets/images/semrushcert.png" alt="Semrush" class="cert-img">
+                <img src="assets/images/semrushcert (2).png" alt="Semrush" class="cert-img">
                 <div class="cert-name">SEMrush<br><span style="opacity:0.6; font-size:0.8rem;">Getting Started with Semrush</span></div>
             </div>
 
