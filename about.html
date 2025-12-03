@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Waleed Iqbal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        /* --- ABOUT PAGE SPECIFIC STYLES --- */
+        
+        .about-hero {
+            padding: 200px 40px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .huge-text {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7vw, 9rem);
+            line-height: 0.9;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 100px;
+            align-items: start;
+        }
+
+        .bio-text {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .bio-text strong { color: var(--accent-yellow); font-weight: 600; }
+
+        /* Profile Picture Styling */
+        .profile-img-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            transform: rotate(2deg);
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .profile-img-container:hover { transform: rotate(0deg) scale(1.02); }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(100%) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+
+        .profile-img-container:hover .profile-img { filter: grayscale(0%); }
+
+        /* --- EXPERIENCE TIMELINE --- */
+        .xp-section {
+            max-width: 1000px;
+            margin: 150px auto;
+            padding: 0 40px;
+        }
+
+        .xp-row {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            transition: background 0.3s;
+        }
+
+        .xp-row:hover { background: rgba(255,255,255,0.02); }
+
+        .xp-date { font-family: 'Syne', sans-serif; opacity: 0.5; }
+        .xp-role h3 { font-size: 1.5rem; margin-bottom: 5px; color:white; }
+        .xp-role p { font-size: 0.9rem; opacity: 0.7; }
+        .xp-company { text-align: right; color: var(--accent-yellow); font-weight: 700; }
+
+        /* --- CREDENTIALS VAULT (Images) --- */
+        .cert-section {
+            margin: 150px auto;
+            padding: 0 40px;
+            max-width: 1400px;
+        }
+        
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 250px; /* Fixed height for uniformity */
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-yellow);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .cert-img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .cert-card:hover .cert-img { filter: grayscale(0%); }
+
+        .cert-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* --- PERSONAL / INTERESTS --- */
+        .personal-section {
+            background: #101010;
+            padding: 100px 40px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .personal-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hobbies-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .hobby-pill {
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .hobby-pill:hover {
+            background: var(--accent-yellow);
+            color: black;
+        }
+
+        @media (max-width: 900px) {
+            .bio-grid { grid-template-columns: 1fr; }
+            .xp-row { grid-template-columns: 1fr; gap: 10px; }
+            .xp-company { text-align: left; }
+            .huge-text { font-size: 3.5rem; }
+            .personal-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="assets/images/Copy of WALEED (1).png" alt="WUI Logo" class="logo">
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="projects.html" class="nav-link">Work</a>
+                <a href="about.html" class="nav-link" style="color: var(--accent-yellow);">Process</a>
+                <a href="contact.html" class="nav-link contact-pill">Let's Talk</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <h1 class="huge-text reveal-text">
+            Data Driven. <br>
+            <span style="color: transparent; -webkit-text-stroke: 2px var(--accent-yellow);">Design Led.</span>
+        </h1>
+
+        <div class="bio-grid">
+            <div class="profile-img-container reveal-text-delay">
+                <img src="assets/images/pfpportfolio.jpeg" alt="Waleed Iqbal" class="profile-img"> 
+            </div>
+
+            <div class="bio-text reveal-text-delay">
+                <p>
+                    I am an <strong>E-commerce Strategist</strong> and <strong>Creative Technologist</strong> based in Memphis, TN. I bridge the gap between hard data (SQL, Excel) and human connection.
+                </p>
+                <br>
+                <p>
+                    At <strong>Zack Wholesale</strong>, I didn't just manage a store; I architected an automation pipeline that cut workload by 70% and generated $60k+ in new revenue. My philosophy is simple: <strong>Eliminate friction, maximize impact.</strong>
+                </p>
+                <br>
+                <p>
+                    Currently finishing my degree in <strong>Management Information Systems</strong> at the University of Memphis, I am obsessed with the future of commerce—where AI agents meet pixel-perfect design.
+                </p>
+                
+                <br><br>
+                <img src="assets/images/Copy of WALEED (1).png" alt="Signature" style="height: 40px; opacity: 0.8;">
+            </div>
+        </div>
+    </section>
+
+    <section class="cert-section">
+        <div class="section-header-center">
+            <h2 style="font-family:'Syne', sans-serif; font-size:3rem;">Credentials</h2>
+            <p style="opacity:0.6;">Certified expertise across marketing, data, and management.</p>
+        </div>
+        
+        <div class="cert-grid">
+            
+            <div class="cert-card">
+                <img src="assets/images/University of memphis emblem.jpeg" alt="UofM Logo" class="cert-img" style="border-radius: 50%;">
+                <div class="cert-name">University of Memphis<br><span style="opacity:0.6; font-size:0.8rem;">MIS Degree</span></div>
+            </div>
+
+            <div class="cert-card">
+                <img src="assets/images/MOScert.png" alt="Microsoft Excel" class="cert-img">
+                <div class="cert-name">Microsoft Office Specialist<br><span style="opacity:0.6; font-size:0.8rem;">Excel Associate</span></div>
+            </div>
+
+            <div class="cert-card">
+                <img src="assets/images/digitalmarketcert.png" alt="Digital Marketing" class="cert-img">
+                <div class="cert-name">Digital Marketing<br><span style="opacity:0.6; font-size:0.8rem;">E-Commerce Specialist</span></div>
+            </div>
+
+            <div class="cert-card">
+                <img src="assets/images/semrushcert (2).png" alt="Semrush" class="cert-img">
+                <div class="cert-name">SEMrush<br><span style="opacity:0.6; font-size:0.8rem;">SEO Toolkit</span></div>
+            </div>
+
+            <div class="cert-card">
+                <img src="assets/images/fundofpMI.png" alt="PMI Agile" class="cert-img">
+                <div class="cert-name">Project Management Institute<br><span style="opacity:0.6; font-size:0.8rem;">Fundamentals of Agile</span></div>
+            </div>
+
+            <div class="cert-card">
+                <img src="assets/images/UOFMdigcert.jpeg" alt="UofM Digital" class="cert-img">
+                <div class="cert-name">UofM Digital Track<br><span style="opacity:0.6; font-size:0.8rem;">Completion</span></div>
+            </div>
+
+            <div class="cert-card">
+                <img src="assets/images/globalcareer acceleratormini logo.jpeg" alt="GCA" class="cert-img" style="border-radius:50%;">
+                <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Alumni</span></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="xp-section">
+        <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
+        
+        <div class="xp-row">
+            <div class="xp-date">2021 - Present</div>
+            <div class="xp-role">
+                <h3>Ecommerce & Marketing Specialist</h3>
+                <p>Zack Wholesale</p>
+            </div>
+            <div class="xp-company">Memphis, TN</div>
+        </div>
+
+        <div class="xp-row">
+            <div class="xp-date">2023 - Present</div>
+            <div class="xp-role">
+                <h3>Freelance Developer & Strategist</h3>
+                <p>Evil Bull Knives & Others</p>
+            </div>
+            <div class="xp-company">Remote</div>
+        </div>
+
+        <div class="xp-row">
+            <div class="xp-date">2019 - 2021</div>
+            <div class="xp-role">
+                <h3>Sales Associate</h3>
+                <p>Retail Sector</p>
+            </div>
+            <div class="xp-company">Memphis, TN</div>
+        </div>
+    </section>
+
+    <section class="personal-section">
+        <div class="personal-container">
+            <div class="personal-text">
+                <h2 class="huge-text" style="font-size: 4rem; margin-bottom: 20px;">Offline <span style="color:var(--accent-yellow)">Mode</span></h2>
+                <p class="bio-text">
+                    When I'm not optimizing conversion rates or debugging liquid code, you can find me disconnecting to reconnect. I believe the best creative ideas come from stepping away from the screen.
+                </p>
+                
+                <div class="hobbies-list">
+                    <span class="hobby-pill">⚽ Soccer</span>
+                    <span class="hobby-pill">🌲 Outdoors</span>
+                    <span class="hobby-pill">✈️ Travel</span>
+                    <span class="hobby-pill">🏋️ Fitness</span>
+                </div>
+            </div>
+            
+            <div style="width:100%; height: 400px; background: radial-gradient(circle, rgba(255,201,51,0.1), transparent); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;">
+                <span style="font-family:'Syne', sans-serif; font-size: 2rem; opacity: 0.5;">Waleed.Offline()</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 WUI. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
