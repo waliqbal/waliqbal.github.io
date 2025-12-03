@@ -16,7 +16,7 @@
             --color-accent: #F36F21; /* Zack Wholesale Orange */
         }
         
-        /* Custom image adjustments for this project */
+        /* --- SECTION 1 & 2 CUSTOMIZATION --- */
         .zack-hero {
             width: 100%;
             max-width: 700px;
@@ -32,7 +32,7 @@
             border-radius: 12px;
         }
 
-        /* --- Spec Grid Styles (Localized) --- */
+        /* --- SECTION 3: SPECS GRID --- */
         .specs-wrapper { width: 100%; max-width: 1200px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
         .specs-header h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
         .specs-header p { font-size: 1.1rem; opacity: 0.7; max-width: 300px; }
@@ -40,7 +40,7 @@
         
         .stat-card {
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(243, 111, 33, 0.2); /* Zack Orange Border */
+            border: 1px solid rgba(243, 111, 33, 0.2);
             padding: 30px;
             border-radius: 20px;
             display: flex;
@@ -48,12 +48,75 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
         .stat-card:hover { transform: translateY(-5px); border-color: var(--color-accent); background: rgba(255,255,255,0.05); }
-        
         .stat-value { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
         .stat-label { font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; opacity: 0.6; margin-bottom: 5px; }
         .stat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
         .stat-pill { font-size: 0.8rem; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 50px; white-space: nowrap; }
         .span-full { grid-column: span 2; }
+
+        /* --- SECTION 4: OUTRO OVERLAY --- */
+        #outro .content {
+            display: block; /* Override default grid */
+            padding: 0;
+        }
+        
+        #outro .visual-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        #outro .outro-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fill the screen */
+            opacity: 1;
+        }
+
+        /* Dark overlay to make text readable */
+        #outro .visual-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6); 
+            z-index: 1;
+        }
+
+        #outro .text-container {
+            position: relative;
+            z-index: 2; /* Sit on top of image/overlay */
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Big Text Styling */
+        #outro .big-legacy {
+            font-size: clamp(4rem, 8vw, 10rem);
+            line-height: 0.9;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        /* Button pushed to bottom */
+        #outro .visit-btn {
+            position: absolute;
+            bottom: 80px; /* Distance from bottom edge */
+            background: var(--color-accent);
+            color: black;
+            border: none;
+            box-shadow: 0 10px 30px rgba(243, 111, 33, 0.4);
+        }
+        
+        #outro .visit-btn:hover {
+            background: white;
+            transform: translateY(-5px) scale(1.05);
+        }
 
         @media (max-width: 900px) {
             .specs-wrapper { grid-template-columns: 1fr; gap: 40px; }
@@ -74,7 +137,7 @@
             <li><a href="#intro"><span class="sr-only">Intro</span></a></li>
             <li><a href="#scale"><span class="sr-only">Scale</span></a></li>
             <li><a href="#ux"><span class="sr-only">Impact</span></a></li>
-            <li><a href="#impact"><span class="sr-only">Legacy</span></a></li>
+            <li><a href="#outro"><span class="sr-only">Legacy</span></a></li>
         </ul>
     </div>
 
@@ -172,11 +235,15 @@
             </div>
         </section>
 
-        <section id="impact" class="section">
+        <section id="outro" class="section">
             <div class="content">
-                <div class="text-container centered">
-                    <h2 class="big-legacy">B2B Dev</h2>
-                    <p>See My Work!!</p>
+                <div class="visual-container">
+                    <img src="assets/images/Untitled (1920 x 1080 px) (1).png" alt="Zack Wholesale Branding" class="outro-img">
+                </div>
+                
+                <div class="text-container">
+                    <h2 class="big-legacy">Powering <br>Business</h2>
+                    <p style="margin-top: 20px; font-size: 1.2rem; max-width: 600px;">A digital infrastructure that supports growth.</p>
                     <a href="https://zackwholesale.net" target="_blank" class="visit-btn">Visit Live Site</a>
                 </div>
             </div>
