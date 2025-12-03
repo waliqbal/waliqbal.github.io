@@ -12,11 +12,27 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
+        /* --- SCROLL SNAP SETUP --- */
+        html {
+            scroll-snap-type: y mandatory; /* Forces the scroll to snap */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
         /* Page Specific Styles for "Editorial" Look */
         .work-header {
-            padding: 180px 40px 100px;
+            /* Make header take up a full snap screen too */
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 40px;
             max-width: 1400px;
             margin: 0 auto;
+            scroll-snap-align: start; /* Header snaps to top */
         }
 
         .filter-bar {
@@ -43,20 +59,29 @@
         .project-list {
             display: flex;
             flex-direction: column;
-            gap: 150px;
-            max-width: 1400px;
+            /* Remove gap, we handle spacing with height now */
+            gap: 0; 
+            width: 100%;
             margin: 0 auto;
-            padding: 0 40px 150px;
         }
 
+        /* INDIVIDUAL PROJECT SLIDE */
         .project-row {
+            /* Full viewport height for snap effect */
+            min-height: 100vh;
+            /* Snap to the center of the viewport */
+            scroll-snap-align: center;
+            
             display: grid;
-            grid-template-columns: 0.5fr 1.5fr; /* Number on left, Content right */
+            grid-template-columns: 0.5fr 1.5fr; 
             gap: 40px;
             text-decoration: none;
             color: white;
-            group: cursor;
-            align-items: flex-start;
+            align-items: center; /* Center vertically */
+            padding: 0 40px;
+            max-width: 1400px;
+            margin: 0 auto; /* Centered in page */
+            box-sizing: border-box;
         }
 
         .project-index {
@@ -77,36 +102,36 @@
 
         .project-card-large {
             position: relative;
+            width: 100%;
         }
 
         .img-container {
             width: 100%;
-            height: 60vh; /* Cinematic height */
+            height: 55vh; /* Slightly reduced to fit text on screen */
             overflow: hidden;
             border-radius: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
         }
 
-        /* Updated to target both img and video */
         .img-container img, 
         .img-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
-            filter: grayscale(100%); /* Cool aesthetic: BW until hover */
+            filter: grayscale(100%);
         }
 
         .project-row:hover .img-container img,
         .project-row:hover .img-container video {
             transform: scale(1.05);
-            filter: grayscale(0%); /* Color on hover */
+            filter: grayscale(0%);
         }
 
         .p-info h2 {
             font-family: 'Syne', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
         }
 
@@ -121,8 +146,8 @@
 
         .arrow-btn {
             display: inline-block;
-            margin-top: 20px;
-            font-size: 1.2rem;
+            margin-top: 15px;
+            font-size: 1.1rem;
             border-bottom: 1px solid white;
             padding-bottom: 5px;
             transition: color 0.3s, border-color 0.3s;
@@ -135,7 +160,14 @@
 
         /* Mobile Adjustments */
         @media (max-width: 900px) {
-            .project-row { grid-template-columns: 1fr; gap: 20px; }
+            .work-header { min-height: 60vh; padding-top: 100px; }
+            .project-row { 
+                grid-template-columns: 1fr; 
+                gap: 20px; 
+                min-height: auto; /* Disable full height on mobile if needed */
+                padding: 60px 20px;
+                scroll-snap-align: start;
+            }
             .project-index { font-size: 4rem; margin-bottom: -20px; z-index: 2; position: relative; }
             .img-container { height: 40vh; }
             .p-info h2 { font-size: 2.5rem; }
@@ -165,7 +197,7 @@
             Selected <br><span class="accent-text">Projects</span>
         </h1>
         <div class="filter-bar reveal-text-delay">
-            <span class="filter-item active">UI/UX</span>
+            <span class="filter-item active">All</span>
             <span class="filter-item">E-Commerce</span>
             <span class="filter-item">Strategy</span>
             <span class="filter-item">Development</span>
@@ -230,7 +262,7 @@
 
     </section>
 
-    <footer class="footer">
+    <footer class="footer" style="scroll-snap-align: end;">
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
 
