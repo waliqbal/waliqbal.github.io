@@ -75,12 +75,12 @@
             opacity: 1;
         }
 
-        /* Dark overlay to make text readable */
+        /* Dark overlay optional here depending on the new image brightness */
         #outro .visual-container::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.6); 
+            background: rgba(0,0,0,0.2); /* Reduced opacity since there is no text */
             z-index: 1;
         }
 
@@ -89,18 +89,9 @@
             z-index: 2; /* Sit on top of image/overlay */
             height: 100%;
             width: 100%;
+            /* Flex not needed for just the absolute button, but kept for safety */
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        /* Big Text Styling */
-        #outro .big-legacy {
-            font-size: clamp(4rem, 8vw, 10rem);
-            line-height: 0.9;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         /* Button pushed to bottom */
@@ -242,8 +233,6 @@
                 </div>
                 
                 <div class="text-container">
-                    <h2 class="big-legacy">Powering <br>Business</h2>
-                    <p style="margin-top: 20px; font-size: 1.2rem; max-width: 600px;">A digital infrastructure that supports growth.</p>
                     <a href="https://zackwholesale.net" target="_blank" class="visit-btn">Visit Live Site</a>
                 </div>
             </div>
