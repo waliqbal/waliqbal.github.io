@@ -14,176 +14,127 @@
     <style>
         /* --- ABOUT PAGE SPECIFIC STYLES --- */
         
-        .about-hero {
-            padding: 200px 40px 100px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .huge-text {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 7vw, 9rem);
-            line-height: 0.9;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        .bio-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            margin-top: 100px;
-            align-items: start;
-        }
-
-        .bio-text {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.8);
-        }
-
+        /* ... [Keep existing styles for hero, bio, xp, etc.] ... */
+        .about-hero { padding: 200px 40px 100px; max-width: 1400px; margin: 0 auto; }
+        .huge-text { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 9rem); line-height: 0.9; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; }
+        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 100px; align-items: start; }
+        .bio-text { font-size: 1.25rem; line-height: 1.7; color: rgba(255,255,255,0.8); }
         .bio-text strong { color: var(--accent-yellow); font-weight: 600; }
-
-        /* Profile Picture Styling */
-        .profile-img-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            transform: rotate(2deg);
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
+        .profile-img-container { position: relative; border-radius: 20px; overflow: hidden; transform: rotate(2deg); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid rgba(255,255,255,0.1); }
         .profile-img-container:hover { transform: rotate(0deg) scale(1.02); }
-
-        .profile-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(100%) contrast(1.1);
-            transition: filter 0.5s ease;
-        }
-
+        .profile-img { width: 100%; height: auto; display: block; filter: grayscale(100%) contrast(1.1); transition: filter 0.5s ease; }
         .profile-img-container:hover .profile-img { filter: grayscale(0%); }
-
-        /* --- EXPERIENCE TIMELINE --- */
-        .xp-section {
-            max-width: 1000px;
-            margin: 150px auto;
-            padding: 0 40px;
-        }
-
-        .xp-row {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding: 40px 0;
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            transition: background 0.3s;
-        }
-
+        .xp-section { max-width: 1000px; margin: 150px auto; padding: 0 40px; }
+        .xp-row { border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0; display: grid; grid-template-columns: 1fr 2fr 1fr; transition: background 0.3s; }
         .xp-row:hover { background: rgba(255,255,255,0.02); }
-
         .xp-date { font-family: 'Syne', sans-serif; opacity: 0.5; }
         .xp-role h3 { font-size: 1.5rem; margin-bottom: 5px; color:white; }
         .xp-role p { font-size: 0.9rem; opacity: 0.7; }
         .xp-company { text-align: right; color: var(--accent-yellow); font-weight: 700; }
-
-        /* --- CREDENTIALS VAULT (Images) --- */
-        .cert-section {
-            margin: 150px auto;
-            padding: 0 40px;
-            max-width: 1400px;
-        }
-        
-        .section-header-center {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .cert-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            height: 250px; /* Fixed height for uniformity */
-        }
-
-        .cert-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-yellow);
-            background: rgba(255,255,255,0.06);
-        }
-
-        .cert-img {
-            max-width: 100%;
-            max-height: 150px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-        }
-
+        .cert-section { margin: 150px auto; padding: 0 40px; max-width: 1400px; }
+        .section-header-center { text-align: center; margin-bottom: 60px; }
+        .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+        .cert-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.3s ease, border-color 0.3s ease; height: 250px; }
+        .cert-card:hover { transform: translateY(-10px); border-color: var(--accent-yellow); background: rgba(255,255,255,0.06); }
+        .cert-img { max-width: 100%; max-height: 150px; object-fit: contain; margin-bottom: 20px; filter: grayscale(100%); transition: filter 0.3s ease; }
         .cert-card:hover .cert-img { filter: grayscale(0%); }
+        .cert-name { font-family: 'Manrope', sans-serif; font-size: 0.9rem; text-align: center; font-weight: 600; color: rgba(255,255,255,0.8); }
+        .personal-section { background: #101010; padding: 100px 40px; margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .personal-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .hobbies-list { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+        .hobby-pill { border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 10px 25px; border-radius: 50px; font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: all 0.3s; }
+        .hobby-pill:hover { background: var(--accent-yellow); color: black; }
 
-        .cert-name {
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.9rem;
-            text-align: center;
-            font-weight: 600;
-            color: rgba(255,255,255,0.8);
+        /* --- NEW: EDUCATION / ALMA MATER SECTION --- */
+        .edu-section {
+            margin: 150px auto;
+            max-width: 1200px;
+            padding: 0 40px;
+            position: relative;
         }
 
-        /* --- PERSONAL / INTERESTS --- */
-        .personal-section {
-            background: #101010;
-            padding: 100px 40px;
-            margin-top: 100px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .personal-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .edu-card {
+            background: linear-gradient(135deg, #003087 0%, #000000 80%); /* UofM Blue to Black */
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            padding: 60px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
             align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 48, 135, 0.15); /* Subtle Blue Glow */
         }
 
-        .hobbies-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
+        /* Tiger Stripe Pattern Background */
+        .tiger-stripes {
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(
+                -45deg,
+                rgba(255, 255, 255, 0.03) 0px,
+                rgba(255, 255, 255, 0.03) 20px,
+                transparent 20px,
+                transparent 40px
+            );
+            z-index: 0;
+            opacity: 0.5;
         }
 
-        .hobby-pill {
-            border: 1px solid var(--accent-yellow);
-            color: var(--accent-yellow);
-            padding: 10px 25px;
-            border-radius: 50px;
+        .edu-emblem {
+            width: 100%;
+            max-width: 250px;
+            filter: grayscale(100%) brightness(1.2);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .edu-card:hover .edu-emblem {
+            filter: grayscale(0%);
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .edu-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .edu-header {
             font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+            font-size: 2.5rem;
+            line-height: 1;
+            margin-bottom: 20px;
+            color: white;
         }
 
-        .hobby-pill:hover {
-            background: var(--accent-yellow);
-            color: black;
+        .edu-sub {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+
+        .honors-list {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .honor-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #8996a0; /* UofM Gray tone */
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .honor-badge.summa {
+            border-color: var(--accent-yellow); /* Gold for Summa Cum Laude */
+            color: var(--accent-yellow);
+            background: rgba(255, 172, 0, 0.1);
         }
 
         @media (max-width: 900px) {
@@ -192,6 +143,9 @@
             .xp-company { text-align: left; }
             .huge-text { font-size: 3.5rem; }
             .personal-container { grid-template-columns: 1fr; }
+            .edu-card { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+            .edu-emblem { max-width: 150px; margin: 0 auto; }
+            .honors-list { justify-content: center; }
         }
     </style>
 </head>
@@ -230,11 +184,34 @@
                 </p>
                 <br>
                 <p>
-                    Currently finishing my degree in <strong>Management Information Systems</strong> at the University of Memphis, I am obsessed with the future of commerce—where AI agents meet pixel-perfect design.
+                    I recently graduated from the <strong>University of Memphis</strong> with a degree in Management Information Systems, obsessed with the future of commerce—where AI agents meet pixel-perfect design.
                 </p>
                 
                 <br><br>
                 <img src="assets/images/Copy of WALEED (1).png" alt="Signature" style="height: 40px; opacity: 0.8;">
+            </div>
+        </div>
+    </section>
+
+    <section class="edu-section">
+        <div class="edu-card">
+            <div class="tiger-stripes"></div>
+            
+            <img src="assets/images/University of memphis emblem.jpeg" alt="University of Memphis" class="edu-emblem">
+            
+            <div class="edu-content">
+                <div class="edu-header">University of Memphis</div>
+                <div class="edu-sub">
+                    <strong>Fogelman College of Business & Economics</strong><br>
+                    Bachelor's in Management Information Systems<br>
+                    <span style="opacity: 0.6; font-size: 0.9rem;">Class of 2025</span>
+                </div>
+                
+                <div class="honors-list">
+                    <span class="honor-badge summa">Summa Cum Laude</span>
+                    <span class="honor-badge">University Honors</span>
+                    <span class="honor-badge">Dean's List</span>
+                </div>
             </div>
         </div>
     </section>
@@ -247,11 +224,6 @@
         
         <div class="cert-grid">
             
-            <div class="cert-card">
-                <img src="assets/images/University of memphis emblem.jpeg" alt="UofM Logo" class="cert-img" style="border-radius: 50%;">
-                <div class="cert-name">University of Memphis<br><span style="opacity:0.6; font-size:0.8rem;">MIS Degree</span></div>
-            </div>
-
             <div class="cert-card">
                 <img src="assets/images/MOScert.png" alt="Microsoft Excel" class="cert-img">
                 <div class="cert-name">Microsoft Office Specialist<br><span style="opacity:0.6; font-size:0.8rem;">Excel Associate</span></div>
@@ -282,37 +254,6 @@
                 <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Alumni</span></div>
             </div>
 
-        </div>
-    </section>
-
-    <section class="xp-section">
-        <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
-        
-        <div class="xp-row">
-            <div class="xp-date">2021 - Present</div>
-            <div class="xp-role">
-                <h3>Ecommerce & Marketing Specialist</h3>
-                <p>Zack Wholesale</p>
-            </div>
-            <div class="xp-company">Memphis, TN</div>
-        </div>
-
-        <div class="xp-row">
-            <div class="xp-date">2023 - Present</div>
-            <div class="xp-role">
-                <h3>Freelance Developer & Strategist</h3>
-                <p>Evil Bull Knives & Others</p>
-            </div>
-            <div class="xp-company">Remote</div>
-        </div>
-
-        <div class="xp-row">
-            <div class="xp-date">2019 - 2021</div>
-            <div class="xp-role">
-                <h3>Sales Associate</h3>
-                <p>Retail Sector</p>
-            </div>
-            <div class="xp-company">Memphis, TN</div>
         </div>
     </section>
 
