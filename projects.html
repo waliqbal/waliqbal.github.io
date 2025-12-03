@@ -14,17 +14,14 @@
     <style>
         /* --- SCROLL SNAP SETUP --- */
         html {
-            scroll-snap-type: y mandatory; /* Forces the scroll to snap */
+            scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
         }
 
-        body {
-            overflow-x: hidden;
-        }
+        body { overflow-x: hidden; }
 
         /* Page Specific Styles for "Editorial" Look */
         .work-header {
-            /* Make header take up a full snap screen too */
             min-height: 80vh;
             display: flex;
             flex-direction: column;
@@ -32,7 +29,7 @@
             padding: 0 40px;
             max-width: 1400px;
             margin: 0 auto;
-            scroll-snap-align: start; /* Header snaps to top */
+            scroll-snap-align: start; 
         }
 
         .filter-bar {
@@ -59,7 +56,6 @@
         .project-list {
             display: flex;
             flex-direction: column;
-            /* Remove gap, we handle spacing with height now */
             gap: 0; 
             width: 100%;
             margin: 0 auto;
@@ -67,20 +63,17 @@
 
         /* INDIVIDUAL PROJECT SLIDE */
         .project-row {
-            /* Full viewport height for snap effect */
             min-height: 100vh;
-            /* Snap to the center of the viewport */
             scroll-snap-align: center;
-            
             display: grid;
             grid-template-columns: 0.5fr 1.5fr; 
             gap: 40px;
             text-decoration: none;
             color: white;
-            align-items: center; /* Center vertically */
+            align-items: center; 
             padding: 0 40px;
             max-width: 1400px;
-            margin: 0 auto; /* Centered in page */
+            margin: 0 auto; 
             box-sizing: border-box;
         }
 
@@ -107,7 +100,7 @@
 
         .img-container {
             width: 100%;
-            height: 55vh; /* Slightly reduced to fit text on screen */
+            height: 55vh; 
             overflow: hidden;
             border-radius: 12px;
             margin-bottom: 20px;
@@ -158,13 +151,31 @@
             border-color: var(--accent-yellow);
         }
 
+        /* --- UPDATED LINKEDIN BUTTON STYLE (Consistent across pages) --- */
+        .contact-pill {
+            border: 1px solid var(--accent-yellow) !important;
+            color: var(--accent-yellow) !important;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-pill:hover {
+            background-color: #0077b5 !important; /* LinkedIn Blue */
+            border-color: #0077b5 !important;
+            color: #ffffff !important; /* White Text */
+            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+            transform: translateY(-2px);
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 900px) {
             .work-header { min-height: 60vh; padding-top: 100px; }
             .project-row { 
                 grid-template-columns: 1fr; 
                 gap: 20px; 
-                min-height: auto; /* Disable full height on mobile if needed */
+                min-height: auto; 
                 padding: 60px 20px;
                 scroll-snap-align: start;
             }
@@ -185,9 +196,10 @@
             </div>
             
              <nav class="nav-menu">
-                <a href="projects.html" class="nav-link">Work</a>
+                <a href="projects.html" class="nav-link" style="color: var(--accent-yellow);">Work</a>
                 <a href="about.html" class="nav-link">About Me</a>
-                <a href="https://www.linkedin.com/in/waleediqba-l/" class="nav-link contact-pill">Let's Connect on Linkedin</a>
+                
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">Let's Connect</a>
             </nav>
         </div>
     </header>
@@ -197,7 +209,7 @@
             Selected <br><span class="accent-text">Projects</span>
         </h1>
         <div class="filter-bar reveal-text-delay">
-            <span class="filter-item active">Full Stack</span>
+            <span class="filter-item active">All</span>
             <span class="filter-item">E-Commerce</span>
             <span class="filter-item">Strategy</span>
             <span class="filter-item">Development</span>
