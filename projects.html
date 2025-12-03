@@ -88,7 +88,9 @@
             position: relative;
         }
 
-        .img-container img {
+        /* Updated to target both img and video */
+        .img-container img, 
+        .img-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -96,7 +98,8 @@
             filter: grayscale(100%); /* Cool aesthetic: BW until hover */
         }
 
-        .project-row:hover .img-container img {
+        .project-row:hover .img-container img,
+        .project-row:hover .img-container video {
             transform: scale(1.05);
             filter: grayscale(0%); /* Color on hover */
         }
@@ -175,7 +178,10 @@
             <div class="project-index">01</div>
             <div class="project-card-large">
                 <div class="img-container">
-                    <img src="assets/images/Oneplus-Nord-2-evilbullknives.com (1).png" alt="Evil Bull Knives">
+                    <video autoplay loop muted playsinline>
+                        <source src="assets/videos/Untitled (1920 x 1080 px) (1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div class="p-info">
                     <div class="tags">E-Commerce • Branding • Dev</div>
@@ -190,7 +196,10 @@
             <div class="project-index">02</div>
             <div class="project-card-large">
                 <div class="img-container">
-                    <img src="assets/images/screencapture-zackwholesale-net-2025-11-04-11_41_31.png" alt="Zack Wholesale">
+                    <video autoplay loop muted playsinline>
+                        <source src="assets/videos/zw landing.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div class="p-info">
                     <div class="tags">B2B Platform • Automation • Scale</div>
@@ -205,7 +214,10 @@
             <div class="project-index">03</div>
             <div class="project-card-large">
                 <div class="img-container">
-                    <img src="assets/images/unnamed (9).png" alt="Charity Water Strategy">
+                    <video autoplay loop muted playsinline>
+                        <source src="assets/videos/Untitled (1920 x 1080 px) (2).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div class="p-info">
                     <div class="tags">Strategy • Marketing • Non-Profit</div>
