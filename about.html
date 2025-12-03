@@ -47,12 +47,12 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, background 0.3s ease; /* Smoother easing */
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, background 0.3s ease; 
             height: 250px; 
         }
         
         .cert-card:hover { 
-            transform: translateY(-10px) scale(1.02); /* Added slight scale */
+            transform: translateY(-10px) scale(1.02); 
             border-color: var(--accent-yellow); 
             background: rgba(255,255,255,0.06); 
         }
@@ -62,12 +62,11 @@
             max-height: 150px; 
             object-fit: contain; 
             margin-bottom: 20px; 
-            /* REMOVED: filter: grayscale(100%); */
-            transition: transform 0.4s ease; /* Smooth transform on hover */
+            /* No Grayscale */
+            transition: transform 0.4s ease; 
         }
         
         .cert-card:hover .cert-img { 
-            /* Added explicit transform for "pop" */
             transform: scale(1.1) rotate(2deg); 
         }
         
@@ -117,15 +116,14 @@
         .edu-emblem {
             width: 100%;
             max-width: 250px;
-            /* REMOVED: filter: grayscale(100%); */
-            filter: brightness(1.1); /* Slight brightness boost */
+            filter: brightness(1.1); 
             transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative;
             z-index: 1;
         }
 
         .edu-card:hover .edu-emblem {
-            transform: scale(1.1) rotate(-5deg); /* Enhanced hover effect */
+            transform: scale(1.1) rotate(-5deg); 
         }
 
         .edu-content { position: relative; z-index: 1; }
@@ -166,7 +164,7 @@
             
              <nav class="nav-menu">
                 <a href="projects.html" class="nav-link">Work</a>
-                <a href="about.html" class="nav-link" style="color: var(--accent-yellow);">About Me</a>
+                <a href="about.html" class="nav-link" style="color: var(--accent-yellow);">Process</a>
                 <a href="contact.html" class="nav-link contact-pill">Let's Connect on Linkedin</a>
             </nav>
         </div>
@@ -240,7 +238,7 @@
             </div>
 
             <div class="cert-card">
-                <img src="assets/images/semrushcert.png" alt="Semrush" class="cert-img">
+                <img src="assets/images/semrushcert (2).png" alt="Semrush" class="cert-img">
                 <div class="cert-name">SEMrush<br><span style="opacity:0.6; font-size:0.8rem;">Getting Started with Semrush</span></div>
             </div>
 
@@ -259,6 +257,37 @@
                 <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Alumni</span></div>
             </div>
 
+        </div>
+    </section>
+
+    <section class="xp-section">
+        <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
+        
+        <div class="xp-row">
+            <div class="xp-date">2021 - Present</div>
+            <div class="xp-role">
+                <h3>Ecommerce & Marketing Specialist</h3>
+                <p>Zack Wholesale</p>
+            </div>
+            <div class="xp-company">Memphis, TN</div>
+        </div>
+
+        <div class="xp-row">
+            <div class="xp-date">2023 - Present</div>
+            <div class="xp-role">
+                <h3>Freelance Developer & Strategist</h3>
+                <p>Evil Bull Knives & Others</p>
+            </div>
+            <div class="xp-company">Remote</div>
+        </div>
+
+        <div class="xp-row">
+            <div class="xp-date">2019 - 2021</div>
+            <div class="xp-role">
+                <h3>Sales Associate</h3>
+                <p>Retail Sector</p>
+            </div>
+            <div class="xp-company">Memphis, TN</div>
         </div>
     </section>
 
