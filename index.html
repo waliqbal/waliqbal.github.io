@@ -46,13 +46,26 @@
         /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
             
-            /* 1. Translucent App Bar */
+            /* 1. Floating Rounded Translucent App Bar */
             .header {
-                padding: 10px 20px; /* Slimmer bar */
+                /* Overrides desktop full width/flush top to create a floating pill */
+                width: 90%; /* Make it narrower than full screen */
+                max-width: 500px;
+                left: 50%; /* Center it horizontally */
+                transform: translateX(-50%); /* Final centering */
+                top: 20px; /* Push it down from the top edge */
+                
+                padding: 10px 15px; /* Slimmer bar */
+                border-radius: 50px; /* Rounded pill shape */
+                
                 background: rgba(10, 10, 10, 0.85); /* Dark translucent */
                 backdrop-filter: blur(12px); /* Glass effect */
                 -webkit-backdrop-filter: blur(12px);
-                border-bottom: 1px solid rgba(255,255,255,0.05);
+                
+                /* Ensure it floats properly */
+                border-bottom: none; 
+                border: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.5); 
             }
 
             /* 2. Resize Logo */
@@ -67,7 +80,8 @@
 
             .nav-link {
                 font-size: 13px; /* Smaller font for links */
-                padding: 0; /* Remove default contact pill padding inherited from desktop */
+                padding: 0; 
+                font-weight: 600;
             }
             
             /* 4. Condense LinkedIn Button (Icon only) */
@@ -75,8 +89,8 @@
                 padding: 8px !important; /* Square-ish button */
                 border-radius: 8px !important; /* Softer square */
                 min-width: 36px;
-                /* Overrides for text color on touch devices */
                 color: var(--accent-yellow) !important;
+                background-color: transparent !important; /* Use transparency on the pill */
             }
 
             .contact-pill:hover {
@@ -91,6 +105,15 @@
                 display: block; /* Show Icon only */
                 width: 20px;
                 height: 20px;
+            }
+
+            /* 5. Adjust Hero Content Padding so the floating bar doesn't cover it */
+            .hero-section {
+                padding-top: 120px; 
+            }
+
+            .hero-title {
+                font-size: 3rem;
             }
         }
     </style>
@@ -107,7 +130,7 @@
             
             <nav class="nav-menu">
                 <a href="projects.html" class="nav-link">Work</a>
-                <a href="about.html" class="nav-link">About Me</a>
+                <a href="about.html" class="nav-link">About</a>
                 
                 <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill" aria-label="Connect on LinkedIn">
                     <span class="btn-text">Let's Connect</span>
