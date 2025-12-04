@@ -151,37 +151,153 @@
             border-color: var(--accent-yellow);
         }
 
-        /* --- UPDATED LINKEDIN BUTTON STYLE (Consistent across pages) --- */
-        .contact-pill {
+        /* --- GLOBAL CTA STYLES --- */
+        .header .contact-pill {
+            /* Default State: Your CTA Color (Electric Gold) */
             border: 1px solid var(--accent-yellow) !important;
             color: var(--accent-yellow) !important;
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
-        .contact-pill:hover {
+        .header .contact-pill:hover {
             background-color: #0077b5 !important; /* LinkedIn Blue */
             border-color: #0077b5 !important;
-            color: #ffffff !important; /* White Text */
+            color: #ffffff !important;
             box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
             transform: translateY(-2px);
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 900px) {
-            .work-header { min-height: 60vh; padding-top: 100px; }
+        /* LinkedIn SVG styling (Desktop hidden by default) */
+        .li-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            display: none;
+        }
+
+        /* --- MOBILE HEADER & PROJECT OVERRIDES (Max Width 768px) --- */
+        @media (max-width: 768px) {
+            
+            /* 1. Floating Rounded Translucent App Bar */
+            .header {
+                /* Overrides desktop full width/flush top to create a floating pill */
+                width: 90%; /* Make it narrower than full screen */
+                max-width: 500px;
+                left: 50%; /* Center it horizontally */
+                transform: translateX(-50%); /* Final centering */
+                top: 20px; /* Push it down from the top edge */
+                
+                padding: 10px 15px; /* Slimmer bar */
+                border-radius: 50px; /* Rounded pill shape */
+                
+                background: rgba(10, 10, 10, 0.85); /* Dark translucent */
+                backdrop-filter: blur(12px); /* Glass effect */
+                -webkit-backdrop-filter: blur(12px);
+                
+                /* Ensure it floats properly */
+                border-bottom: none; 
+                border: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+            }
+
+            /* 2. Resize Logo */
+            .logo-container .logo {
+                height: 32px; /* Smaller logo for mobile */
+            }
+
+            /* 3. Force Menu Display & Formatting */
+            .nav-menu {
+                gap: 15px; /* Tighter spacing for all links */
+            }
+
+            .nav-link {
+                font-size: 13px; /* Smaller font for links */
+                padding: 0; 
+                font-weight: 600;
+            }
+            
+            /* 4. Condense LinkedIn Button (Icon only) */
+            .contact-pill {
+                padding: 8px !important; /* Square-ish button */
+                border-radius: 8px !important; /* Softer square */
+                min-width: 36px;
+                color: var(--accent-yellow) !important;
+                background-color: transparent !important; /* Use transparency on the pill */
+            }
+
+            .contact-pill:hover {
+                transform: none; /* Remove hover animation on mobile */
+            }
+
+            .btn-text {
+                display: none; /* Hide "Let's Connect" text */
+            }
+
+            .li-icon {
+                display: block; /* Show Icon only */
+                width: 20px;
+                height: 20px;
+            }
+
+            /* 5. Adjust Work Header Padding to clear the floating bar */
+            .work-header { 
+                padding-top: 100px; /* Use more padding to prevent floating bar from covering content */
+                min-height: 50vh;
+            }
+            
+            /* 6. Mobile Project Card Adjustments */
             .project-row { 
                 grid-template-columns: 1fr; 
                 gap: 20px; 
                 min-height: auto; 
                 padding: 60px 20px;
+                /* Keep scroll-snap-align: center for a full snap feel, or use start for better scrolling */
                 scroll-snap-align: start;
             }
-            .project-index { font-size: 4rem; margin-bottom: -20px; z-index: 2; position: relative; }
-            .img-container { height: 40vh; }
-            .p-info h2 { font-size: 2.5rem; }
+            
+            .project-index { 
+                /* Move index above the image card and make it more prominent */
+                font-size: 4rem; 
+                margin-bottom: 5px; 
+                text-align: left;
+            }
+
+            .project-card-large {
+                /* Add background to make it stand out as a card */
+                background: var(--card-bg);
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .img-container { 
+                height: 35vh; /* Smaller image height */
+                margin-bottom: 15px;
+            }
+            
+            .p-info h2 { 
+                font-size: 2rem; 
+            }
+            
+            .p-info p {
+                max-width: 100%; /* Use full width for text */
+            }
+
+            .filter-bar {
+                gap: 15px;
+                overflow-x: auto; /* Allow horizontal scrolling for filters */
+                padding-bottom: 10px;
+                flex-wrap: nowrap;
+            }
+            .filter-item {
+                flex-shrink: 0; /* Prevent filters from shrinking */
+            }
         }
     </style>
 </head>
@@ -195,11 +311,16 @@
                 </a>
             </div>
             
-             <nav class="nav-menu">
+            <nav class="nav-menu">
                 <a href="projects.html" class="nav-link" style="color: var(--accent-yellow);">Work</a>
-                <a href="about.html" class="nav-link">About Me</a>
+                <a href="about.html" class="nav-link">About</a>
                 
-                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">Let's Connect</a>
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill" aria-label="Connect on LinkedIn">
+                    <span class="btn-text">Let's Connect</span>
+                    <svg class="li-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.306c0-4.613 5.48-4.515 5.48 0v8.306h5v-10.502c0-8.118-8.74-7.984-10.512-3.807v-1.697z"/>
+                    </svg>
+                </a>
             </nav>
         </div>
     </header>
