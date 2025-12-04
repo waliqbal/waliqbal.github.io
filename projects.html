@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        /* --- SCROLL SNAP SETUP --- */
+        /* --- SCROLL SNAP SETUP (Desktop Default) --- */
         html {
+            /* Kept for Desktop, will be unset on mobile below */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
         }
@@ -87,7 +88,7 @@
             transition: all 0.5s ease;
         }
 
-        /* Keep hover effect for desktop as a secondary interaction */
+        /* Desktop Hover Effects */
         .project-row:hover .project-index {
             color: var(--accent-yellow);
             -webkit-text-stroke: 1px var(--accent-yellow);
@@ -113,20 +114,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.7s ease; /* Added filter to transition */
+            /* Added filter to transition and set default grayscale for desktop */
+            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.7s ease; 
             filter: grayscale(100%);
         }
 
-        /* Desktop Hover Grayscale Removal */
         .project-row:hover .img-container img,
         .project-row:hover .img-container video {
             transform: scale(1.05);
-            filter: grayscale(0%);
-        }
-        
-        /* New Class for Scroll-based Grayscale Removal */
-        .project-row.is-visible .img-container img,
-        .project-row.is-visible .img-container video {
             filter: grayscale(0%);
         }
 
@@ -190,121 +185,140 @@
             display: none;
         }
 
+        /* ---------------------------------------------------------------------- */
         /* --- MOBILE HEADER & PROJECT OVERRIDES (Max Width 768px) --- */
+        /* ---------------------------------------------------------------------- */
         @media (max-width: 768px) {
             
+            /* Remove scroll snap on mobile to ensure smooth scrolling */
+            html {
+                scroll-snap-type: none; 
+            }
+
             /* 1. Floating Rounded Translucent App Bar */
             .header {
-                /* Overrides desktop full width/flush top to create a floating pill */
-                width: 90%; /* Make it narrower than full screen */
+                width: 90%; 
                 max-width: 500px;
-                left: 50%; /* Center it horizontally */
-                transform: translateX(-50%); /* Final centering */
-                top: 20px; /* Push it down from the top edge */
-                
-                padding: 10px 15px; /* Slimmer bar */
-                border-radius: 50px; /* Rounded pill shape */
-                
-                background: rgba(10, 10, 10, 0.85); /* Dark translucent */
-                backdrop-filter: blur(12px); /* Glass effect */
+                left: 50%; 
+                transform: translateX(-50%); 
+                top: 20px; 
+                padding: 10px 15px; 
+                border-radius: 50px; 
+                background: rgba(10, 10, 10, 0.85); 
+                backdrop-filter: blur(12px); 
                 -webkit-backdrop-filter: blur(12px);
-                
-                /* Ensure it floats properly */
-                border-bottom: none; 
+                border-bottom: none;  
                 border: 1px solid rgba(255,255,255,0.1);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+                box-shadow: 0 4px 20px rgba(0,0,0,0.5);  
             }
 
             /* 2. Resize Logo */
             .logo-container .logo {
-                height: 32px; /* Smaller logo for mobile */
+                height: 32px; 
             }
 
             /* 3. Force Menu Display & Formatting */
             .nav-menu {
-                gap: 15px; /* Tighter spacing for all links */
+                gap: 15px; 
             }
 
             .nav-link {
-                font-size: 13px; /* Smaller font for links */
+                font-size: 13px; 
                 padding: 0; 
                 font-weight: 600;
             }
             
             /* 4. Condense LinkedIn Button (Icon only) */
             .contact-pill {
-                padding: 8px !important; /* Square-ish button */
-                border-radius: 8px !important; /* Softer square */
+                padding: 8px !important; 
+                border-radius: 8px !important; 
                 min-width: 36px;
                 color: var(--accent-yellow) !important;
-                background-color: transparent !important; /* Use transparency on the pill */
+                background-color: transparent !important; 
             }
 
             .contact-pill:hover {
-                transform: none; /* Remove hover animation on mobile */
+                transform: none; 
             }
 
             .btn-text {
-                display: none; /* Hide "Let's Connect" text */
+                display: none; 
             }
 
             .li-icon {
-                display: block; /* Show Icon only */
+                display: block; 
                 width: 20px;
                 height: 20px;
             }
 
-            /* 5. Adjust Work Header Padding to clear the floating bar */
+            /* 5. Adjust Work Header Padding and fix overflow */
             .work-header { 
-                padding-top: 100px; /* Use more padding to prevent floating bar from covering content */
+                /* Consolidate padding: Top clears header, 20px for horizontal safety */
+                padding: 100px 20px 0; 
                 min-height: 50vh;
-                /* FIX 1: Add padding for horizontal content safety */
-                padding-left: 20px;
-                padding-right: 20px;
             }
 
-            /* FIX 1: Ensure hero title doesn't overflow container */
+            /* Ensure hero title doesn't overflow */
             .work-header .hero-title {
-                /* Use a safe percentage or adjust max-width */
                 max-width: 100%;
-                /* You may also want to reduce the font size to prevent overflow on very small screens, 
-                   but the padding fix above should generally be enough for the current large text. */
-                font-size: 3.5rem; /* Example size reduction for safety */
+                font-size: 3.5rem; 
                 line-height: 1;
             }
             
-            /* 6. Mobile Project Card Adjustments */
+            /* FIX 1: Fix filter bar overflow and re-align (Horizontal Scrolling) */
+            .filter-bar {
+                gap: 15px;
+                overflow-x: auto; 
+                padding-bottom: 10px;
+                flex-wrap: nowrap;
+                /* Apply padding here to start the content correctly, but keep scrolling working */
+                padding: 0 20px 10px; 
+                /* Override margin-top for tighter look */
+                margin-top: 30px; 
+                /* Reset margins so the element stays within the viewport */
+                margin-left: 0;
+                margin-right: 0;
+                max-width: none;
+            }
+
+            /* FIX 2: Override grayscale to full color on mobile and remove hover/scroll scale */
+            .img-container img, 
+            .img-container video {
+                filter: grayscale(0%) !important; /* Full color by default on mobile */
+                transform: scale(1); /* No scaling on mobile to remove hover/scroll effect */
+            }
+
+            /* 6. Mobile Project Card Adjustments (Modern List UI) */
             .project-row { 
                 grid-template-columns: 1fr; 
                 gap: 20px; 
                 min-height: auto; 
-                padding: 60px 20px;
-                /* Keep scroll-snap-align: center for a full snap feel, or use start for better scrolling */
-                scroll-snap-align: start;
+                /* Reduced vertical padding and added a subtle separator line */
+                padding: 40px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+                scroll-snap-align: unset; /* Disable scroll snap for project rows */
             }
-            
+
             .project-index { 
-                /* Move index above the image card and make it more prominent */
                 font-size: 4rem; 
                 margin-bottom: 5px; 
                 text-align: left;
             }
 
+            /* Modern UI: Remove the background/padding to make it look like a seamless list item */
             .project-card-large {
-                /* Add background to make it stand out as a card */
-                background: var(--card-bg);
-                padding: 15px;
-                border-radius: 12px;
+                background: none;
+                padding: 0;
+                border-radius: 0;
             }
 
-            /* FIX 3: Set image/video container for 16:9 aspect ratio */
+            /* FIX 3: Set image/video container for 16:9 aspect ratio (1920x1080) */
             .img-container { 
                 height: 0; /* Clear height for aspect ratio padding trick */
                 padding-top: 56.25%; /* 1080/1920 = 0.5625 -> 56.25% (16:9) */
                 margin-bottom: 15px;
             }
             
-            /* FIX 3: Position media absolutely to fit the new container */
             .img-container img, 
             .img-container video {
                 position: absolute;
@@ -312,7 +326,6 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                /* object-fit: cover; remains */
             }
             
             .p-info h2 { 
@@ -320,22 +333,7 @@
             }
             
             .p-info p {
-                max-width: 100%; /* Use full width for text */
-            }
-
-            .filter-bar {
-                gap: 15px;
-                overflow-x: auto; /* Allow horizontal scrolling for filters */
-                padding-bottom: 10px;
-                flex-wrap: nowrap;
-                padding-left: 20px; /* Adjust padding to match header for clean alignment */
-                padding-right: 20px;
-                margin-left: -20px; /* Compensate for the new overall work-header padding */
-                margin-right: -20px;
-                max-width: none;
-            }
-            .filter-item {
-                flex-shrink: 0; /* Prevent filters from shrinking */
+                max-width: 100%; 
             }
         }
     </style>
@@ -438,33 +436,5 @@
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const projectRows = document.querySelectorAll('.project-row');
-
-            const observerOptions = {
-                root: null, // viewport is the root
-                rootMargin: '0px',
-                threshold: 0.2 // Trigger when 20% of the item is visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Element is in the viewport
-                        entry.target.classList.add('is-visible');
-                    } else {
-                        // Element is out of the viewport
-                        entry.target.classList.remove('is-visible');
-                    }
-                });
-            }, observerOptions);
-
-            projectRows.forEach(row => {
-                observer.observe(row);
-            });
-        });
-    </script>
-
-</body>
+    </body>
 </html>
