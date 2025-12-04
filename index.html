@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/styles.css"> 
 
     <style>
-        /* --- BUTTON STYLES (Global) --- */
+        /* --- GLOBAL CTA STYLES --- */
         .header .contact-pill {
             /* Default State: Your CTA Color (Electric Gold) */
             border: 1px solid var(--accent-yellow) !important;
@@ -35,15 +35,15 @@
             transform: translateY(-2px);
         }
 
-        /* SVG Icon styling */
+        /* LinkedIn SVG styling (Desktop hidden by default) */
         .li-icon {
             width: 18px;
             height: 18px;
             fill: currentColor;
-            display: none; /* Hidden on desktop by default if you prefer text only */
+            display: none;
         }
 
-        /* --- MOBILE APP OPTIMIZATION (Max Width 768px) --- */
+        /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
             
             /* 1. Translucent App Bar */
@@ -55,37 +55,32 @@
                 border-bottom: 1px solid rgba(255,255,255,0.05);
             }
 
-            .header-inner {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-            }
-
             /* 2. Resize Logo */
             .logo-container .logo {
                 height: 32px; /* Smaller logo for mobile */
-                width: auto;
             }
 
             /* 3. Force Menu Display & Formatting */
             .nav-menu {
-                display: flex !important; /* Force show */
-                align-items: center;
-                gap: 20px; /* Tighter spacing */
+                gap: 15px; /* Tighter spacing for all links */
             }
 
             .nav-link {
-                font-size: 13px; /* Smaller font */
-                margin: 0; /* Remove excess margins */
-                font-weight: 600;
+                font-size: 13px; /* Smaller font for links */
+                padding: 0; /* Remove default contact pill padding inherited from desktop */
             }
-
-            /* 4. Condense LinkedIn Button */
+            
+            /* 4. Condense LinkedIn Button (Icon only) */
             .contact-pill {
                 padding: 8px !important; /* Square-ish button */
                 border-radius: 8px !important; /* Softer square */
                 min-width: 36px;
+                /* Overrides for text color on touch devices */
+                color: var(--accent-yellow) !important;
+            }
+
+            .contact-pill:hover {
+                transform: none; /* Remove hover animation on mobile */
             }
 
             .btn-text {
@@ -97,36 +92,6 @@
                 width: 20px;
                 height: 20px;
             }
-
-            /* 5. Mobile Hero Adjustments */
-            .hero-section {
-                padding-top: 100px;
-                padding-bottom: 40px;
-                display: block; /* Stack layout */
-            }
-
-            .hero-container {
-                display: flex;
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-                line-height: 1;
-            }
-
-            .image-wrapper {
-                transform: rotate(0deg); /* No tilt on mobile */
-            }
-
-            /* 6. Grid Stacking */
-            .works-grid {
-                grid-template-columns: 1fr; /* 1 column */
-                gap: 40px;
-            }
-            
-            .offset-top { margin-top: 0; }
         }
     </style>
 </head>
@@ -142,7 +107,7 @@
             
             <nav class="nav-menu">
                 <a href="projects.html" class="nav-link">Work</a>
-                <a href="about.html" class="nav-link">About</a>
+                <a href="about.html" class="nav-link">About Me</a>
                 
                 <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill" aria-label="Connect on LinkedIn">
                     <span class="btn-text">Let's Connect</span>
