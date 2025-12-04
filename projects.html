@@ -195,6 +195,12 @@
                 scroll-snap-type: none; 
             }
 
+            /* HIDE REQUESTED ELEMENTS */
+            .work-header .hero-title,
+            .filter-bar {
+                display: none !important;
+            }
+
             /* 1. Floating Rounded Translucent App Bar */
             .header {
                 width: 90%; 
@@ -251,36 +257,14 @@
                 height: 20px;
             }
 
-            /* 5. Adjust Work Header Padding and fix overflow */
+            /* 5. Adjust Work Header to collapse space, but maintain clearance for floating header */
             .work-header { 
-                /* Consolidate padding: Top clears header, 20px for horizontal safety */
-                padding: 100px 20px 0; 
-                min-height: 50vh;
-            }
-
-            /* Ensure hero title doesn't overflow */
-            .work-header .hero-title {
-                max-width: 100%;
-                font-size: 3.5rem; 
-                line-height: 1;
+                /* Padding: 100px top to clear the floating header, minimal vertical space below */
+                padding: 100px 20px 20px !important; 
+                /* Significantly reduced height to collapse section, was 50vh */
+                min-height: 100px !important; 
             }
             
-            /* FIX 1: Fix filter bar overflow and re-align (Horizontal Scrolling) */
-            .filter-bar {
-                gap: 15px;
-                overflow-x: auto; 
-                padding-bottom: 10px;
-                flex-wrap: nowrap;
-                /* Apply padding here to start the content correctly, but keep scrolling working */
-                padding: 0 20px 10px; 
-                /* Override margin-top for tighter look */
-                margin-top: 30px; 
-                /* Reset margins so the element stays within the viewport */
-                margin-left: 0;
-                margin-right: 0;
-                max-width: none;
-            }
-
             /* FIX 2: Override grayscale to full color on mobile and remove hover/scroll scale */
             .img-container img, 
             .img-container video {
@@ -436,5 +420,5 @@
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
 
-    </body>
+</body>
 </html>
