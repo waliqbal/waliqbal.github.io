@@ -87,6 +87,7 @@
             transition: all 0.5s ease;
         }
 
+        /* Keep hover effect for desktop as a secondary interaction */
         .project-row:hover .project-index {
             color: var(--accent-yellow);
             -webkit-text-stroke: 1px var(--accent-yellow);
@@ -112,13 +113,20 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.7s ease; /* Added filter to transition */
             filter: grayscale(100%);
         }
 
+        /* Desktop Hover Grayscale Removal */
         .project-row:hover .img-container img,
         .project-row:hover .img-container video {
             transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        
+        /* New Class for Scroll-based Grayscale Removal */
+        .project-row.is-visible .img-container img,
+        .project-row.is-visible .img-container video {
             filter: grayscale(0%);
         }
 
@@ -250,6 +258,19 @@
             .work-header { 
                 padding-top: 100px; /* Use more padding to prevent floating bar from covering content */
                 min-height: 50vh;
+                /* FIX 1: Add padding for horizontal content safety */
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            /* FIX 1: Ensure hero title doesn't overflow container */
+            .work-header .hero-title {
+                /* Use a safe percentage or adjust max-width */
+                max-width: 100%;
+                /* You may also want to reduce the font size to prevent overflow on very small screens, 
+                   but the padding fix above should generally be enough for the current large text. */
+                font-size: 3.5rem; /* Example size reduction for safety */
+                line-height: 1;
             }
             
             /* 6. Mobile Project Card Adjustments */
@@ -276,9 +297,22 @@
                 border-radius: 12px;
             }
 
+            /* FIX 3: Set image/video container for 16:9 aspect ratio */
             .img-container { 
-                height: 35vh; /* Smaller image height */
+                height: 0; /* Clear height for aspect ratio padding trick */
+                padding-top: 56.25%; /* 1080/1920 = 0.5625 -> 56.25% (16:9) */
                 margin-bottom: 15px;
+            }
+            
+            /* FIX 3: Position media absolutely to fit the new container */
+            .img-container img, 
+            .img-container video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                /* object-fit: cover; remains */
             }
             
             .p-info h2 { 
@@ -294,6 +328,11 @@
                 overflow-x: auto; /* Allow horizontal scrolling for filters */
                 padding-bottom: 10px;
                 flex-wrap: nowrap;
+                padding-left: 20px; /* Adjust padding to match header for clean alignment */
+                padding-right: 20px;
+                margin-left: -20px; /* Compensate for the new overall work-header padding */
+                margin-right: -20px;
+                max-width: none;
             }
             .filter-item {
                 flex-shrink: 0; /* Prevent filters from shrinking */
@@ -398,6 +437,34 @@
     <footer class="footer" style="scroll-snap-align: end;">
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectRows = document.querySelectorAll('.project-row');
+
+            const observerOptions = {
+                root: null, // viewport is the root
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is in the viewport
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        // Element is out of the viewport
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            projectRows.forEach(row => {
+                observer.observe(row);
+            });
+        });
+    </script>
 
 </body>
 </html>
