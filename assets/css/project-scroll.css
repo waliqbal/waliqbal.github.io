@@ -2,46 +2,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap');
 
 :root {
-    --color-bg: #050505;
-    --color-text: #ffffff;
-    --color-accent: #ffc933;
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'Manrope', sans-serif;
+    --color-bg: #050505;
+    --color-text: #ffffff;
+    --color-accent: #ffc933;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Manrope', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-body);
-    overflow-x: hidden;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
 }
 
 /* --- 2. NAVIGATION --- */
 .fixed-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    pointer-events: none; /* Let clicks pass through to scroll */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: none; /* Let clicks pass through to scroll */
 }
 
 .fixed-nav a, .fixed-nav img { pointer-events: auto; }
 
 .back-link {
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-decoration: none;
-    color: var(--color-text);
-    opacity: 0.7;
-    transition: opacity 0.3s;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: opacity 0.3s;
 }
 
 .back-link:hover { opacity: 1; color: var(--color-accent); }
@@ -50,257 +50,219 @@ body {
 
 /* --- 3. SCROLL LOGIC (THE MAGIC) --- */
 html {
-    scroll-snap-type: y mandatory;
-    timeline-scope: --section, --main;
+    scroll-snap-type: y mandatory;
+    timeline-scope: --section, --main;
 }
 
 main { view-timeline: --main; }
 
 .section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    view-timeline: --section;
-    height: 100dvh; /* Full viewport height */
-    position: relative;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    view-timeline: --section;
+    height: 100dvh; /* Full viewport height */
+    position: relative;
 }
 
 .content {
-    overflow: hidden;
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    
-    /* ANIMATION LOCK: ZOOM SCROLL */
-    animation: zoom-scroll ease-in-out both;
-    animation-timeline: --section;
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+    /* ANIMATION LOCK: ZOOM SCROLL */
+    animation: zoom-scroll ease-in-out both;
+    animation-timeline: --section;
 }
 
 /* The Zoom Scroll Keyframes */
 @keyframes zoom-scroll {
-    0% {
-        filter: blur(2rem);
-        transform: scale(0.8);
-        opacity: 0;
-        visibility: hidden;
-    }
-    50% {
-        filter: blur(0);
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-    }
-    100% {
-        filter: blur(2rem);
-        transform: scale(1.5); /* Zoom in as you scroll past */
-        opacity: 0;
-        visibility: hidden;
-    }
+    0% {
+        filter: blur(2rem);
+        transform: scale(0.8);
+        opacity: 0;
+        visibility: hidden;
+    }
+    50% {
+        filter: blur(0);
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        filter: blur(2rem);
+        transform: scale(1.5); /* Zoom in as you scroll past */
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 /* --- 4. VISUAL STYLING (THE LOOK) --- */
 
 /* Layout Grid for Content */
 .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
 }
 
 .text-container {
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 50px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
 }
 
 .visual-container {
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 /* Typography */
 h1, h2 {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 6rem);
-    line-height: 0.9;
-    font-weight: 800;
-    margin-bottom: 30px;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.9;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-transform: uppercase;
 }
 
 p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.7);
-    max-width: 500px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    max-width: 500px;
 }
 
 .accent { color: var(--color-accent); }
 .outline-text {
-    -webkit-text-stroke: 1px var(--color-text);
-    color: transparent;
+    -webkit-text-stroke: 1px var(--color-text);
+    color: transparent;
 }
 
 /* Images */
 .hero-img {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    transform: rotate(-5deg);
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: rotate(-5deg);
 }
 
 .detail-img-1 {
-    width: 100%;
-    max-width: 800px;
-    /* Zoom into the blade */
-    object-fit: cover;
-    clip-path: circle(70% at 50% 50%);
+    width: 100%;
+    max-width: 800px;
+    /* Zoom into the blade */
+    object-fit: cover;
+    clip-path: circle(70% at 50% 50%);
 }
 
 .texture-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.3;
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    position: absolute;
 }
 
 /* Last Section Specifics */
 .centered {
-    grid-column: 1 / -1;
-    align-items: center;
-    text-align: center;
-    padding: 0;
+    grid-column: 1 / -1;
+    align-items: center;
+    text-align: center;
+    padding: 0;
 }
 
 .big-legacy {
-    font-size: clamp(5rem, 10vw, 12rem);
-    color: var(--color-accent);
-    line-height: 0.8;
-    margin-bottom: 50px;
+    font-size: clamp(5rem, 10vw, 12rem);
+    color: var(--color-accent);
+    line-height: 0.8;
+    margin-bottom: 50px;
 }
 
 .visit-btn {
-    margin-top: 40px;
-    padding: 20px 50px;
-    background: white;
-    color: black;
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 100px;
-    font-size: 1.5rem;
-    transition: transform 0.3s;
+    margin-top: 40px;
+    padding: 20px 50px;
+    background: white;
+    color: black;
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
 }
 
 .visit-btn:hover {
-    transform: scale(1.1);
-    background: var(--color-accent);
+    transform: scale(1.1);
+    background: var(--color-accent);
 }
 
 /* --- 5. INDICATORS (DOTS) --- */
 .indicator-wrapper {
-    position: fixed;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
 }
 
 .indicator {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .indicator li a {
-    display: block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transition: background 0.3s;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background 0.3s;
 }
 
 .indicator li a:hover { background: var(--color-accent); }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* --- 6. MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
-    /* Navigation adjustments */
-    .fixed-nav { padding: 20px; }
-    .indicator-wrapper { display: none; } /* Hide indicators on mobile */
-
-    /* Main content container adjustments (for stacking) */
-    .content {
-        grid-template-columns: 1fr; /* Stack vertically */
-        gap: 30px; /* Reduced gap */
-        padding: 50px 20px; /* Adjusted padding */
-        text-align: center;
-    }
-    
-    .text-container { padding-left: 0; align-items: center; }
-    
-    /* Typography Scaling */
-    h1, h2 { 
-        font-size: clamp(2.2rem, 10vw, 4rem); 
-        margin-bottom: 15px; 
-    }
-    p { 
-        font-size: 1rem; 
-        max-width: 100%; /* Allow body text to use full width */
-    }
-
-    /* Image and Video adjustments */
-    .hero-img { 
-        max-width: 100%; /* Use full available width */
-        margin-top: 20px; 
-        transform: rotate(0deg); /* Remove rotation for better portrait fit */
-    }
-    
-    /* Blade Section Specific Overrides */
-    /* This overrides the inline style to stop the text container from being sticky when stacked */
-    #blade .text-container {
-        position: relative !important; 
-        top: auto !important;
-        margin-bottom: 30px; /* Add space between text and card */
-    }
-
-    /* Legacy Section Adjustments */
-    .big-legacy { font-size: clamp(4rem, 15vw, 8rem); margin-bottom: 30px; }
-    .visit-btn { font-size: 1.1rem; padding: 15px 30px; }
-
-    /* Specs Section Adjustments */
-    .specs-wrapper { 
-        grid-template-columns: 1fr; /* Stack header and grid vertically */
-        gap: 30px; 
-    }
-    .specs-header { text-align: center; }
-    .stats-grid { grid-template-columns: 1fr; } /* Stack stat cards vertically */
+    .content {
+        grid-template-columns: 1fr;
+        padding: 80px 20px;
+        text-align: center;
+    }
+    
+    .text-container { padding-left: 0; align-items: center; }
+    
+    .hero-img { max-width: 300px; margin-top: 30px; }
+    
+    h1, h2 { font-size: 3rem; }
+    .big-legacy { font-size: 5rem; }
 }
