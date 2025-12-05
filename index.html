@@ -115,6 +115,62 @@
             .hero-title {
                 font-size: 3rem;
             }
+
+            /* --- PROJECT SECTION OVERRIDES --- */
+
+            /* Re-align header and adjust padding */
+            .works-section {
+                padding: 60px 0;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .section-title {
+                font-size: 2.5rem; /* Slightly smaller title */
+            }
+
+            /* Single-column, stacked layout for projects */
+            .works-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 60px; /* Generous vertical space between projects */
+                padding: 0 20px; /* Add horizontal padding */
+            }
+
+            .project-item {
+                width: 100%; /* Ensure full width */
+                display: block; /* Ensure no floating/inline issues */
+            }
+
+            /* Remove the desktop-specific vertical stagger */
+            .project-item.offset-top {
+                margin-top: 0 !important;
+            }
+
+            /* Polish the project image container */
+            .project-visual {
+                border-radius: 12px;
+                overflow: hidden;
+                margin-bottom: 15px;
+            }
+
+            .project-visual img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .project-title {
+                font-size: 1.8rem;
+                margin-top: 5px;
+            }
+            
+            .project-meta {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
