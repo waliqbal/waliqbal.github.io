@@ -14,7 +14,6 @@
     <style>
         /* --- GLOBAL CTA STYLES --- */
         .header .contact-pill {
-            /* Default State: Your CTA Color (Electric Gold) */
             border: 1px solid var(--accent-yellow) !important;
             color: var(--accent-yellow) !important;
             transition: all 0.3s ease;
@@ -28,149 +27,35 @@
         }
         
         .header .contact-pill:hover {
-            background-color: #0077b5 !important; /* LinkedIn Blue */
+            background-color: #0077b5 !important; 
             border-color: #0077b5 !important;
-            color: #ffffff !important;
+            color: #ffffff !important; 
             box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
             transform: translateY(-2px);
         }
 
-        /* LinkedIn SVG styling (Desktop hidden by default) */
-        .li-icon {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            display: none;
-        }
+        .li-icon { width: 18px; height: 18px; fill: currentColor; display: none; }
 
         /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
-            
-            /* 1. Floating Rounded Translucent App Bar */
             .header {
-                /* Overrides desktop full width/flush top to create a floating pill */
-                width: 90%; /* Make it narrower than full screen */
-                max-width: 500px;
-                left: 50%; /* Center it horizontally */
-                transform: translateX(-50%); /* Final centering */
-                top: 20px; /* Push it down from the top edge */
-                
-                padding: 10px 15px; /* Slimmer bar */
-                border-radius: 50px; /* Rounded pill shape */
-                
-                background: rgba(10, 10, 10, 0.85); /* Dark translucent */
-                backdrop-filter: blur(12px); /* Glass effect */
-                -webkit-backdrop-filter: blur(12px);
-                
-                /* Ensure it floats properly */
-                border-bottom: none; 
-                border: 1px solid rgba(255,255,255,0.1);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+                width: 90%; max-width: 500px; left: 50%; transform: translateX(-50%); top: 20px;
+                padding: 10px 15px; border-radius: 50px;
+                background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+                border-bottom: none; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.5); 
             }
-
-            /* 2. Resize Logo */
-            .logo-container .logo {
-                height: 32px; /* Smaller logo for mobile */
-            }
-
-            /* 3. Force Menu Display & Formatting */
-            .nav-menu {
-                gap: 15px; /* Tighter spacing for all links */
-            }
-
-            .nav-link {
-                font-size: 13px; /* Smaller font for links */
-                padding: 0; 
-                font-weight: 600;
-            }
-            
-            /* 4. Condense LinkedIn Button (Icon only) */
+            .logo-container .logo { height: 32px; }
+            .nav-menu { gap: 15px; }
+            .nav-link { font-size: 13px; padding: 0; font-weight: 600; }
             .contact-pill {
-                padding: 8px !important; /* Square-ish button */
-                border-radius: 8px !important; /* Softer square */
-                min-width: 36px;
-                color: var(--accent-yellow) !important;
-                background-color: transparent !important; /* Use transparency on the pill */
+                padding: 8px !important; border-radius: 8px !important; min-width: 36px;
+                color: var(--accent-yellow) !important; background-color: transparent !important; 
             }
-
-            .contact-pill:hover {
-                transform: none; /* Remove hover animation on mobile */
-            }
-
-            .btn-text {
-                display: none; /* Hide "Let's Connect" text */
-            }
-
-            .li-icon {
-                display: block; /* Show Icon only */
-                width: 20px;
-                height: 20px;
-            }
-
-            /* 5. Adjust Hero Content Padding so the floating bar doesn't cover it */
-            .hero-section {
-                padding-top: 120px; 
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            /* --- PROJECT SECTION OVERRIDES --- */
-
-            /* Re-align header and adjust padding */
-            .works-section {
-                padding: 60px 0;
-            }
-
-            .section-header {
-                text-align: center;
-                margin-bottom: 40px;
-            }
-
-            .section-title {
-                font-size: 2.5rem; /* Slightly smaller title */
-            }
-
-            /* Single-column, stacked layout for projects */
-            .works-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 60px; /* Generous vertical space between projects */
-                padding: 0 20px; /* Add horizontal padding */
-            }
-
-            .project-item {
-                width: 100%; /* Ensure full width */
-                display: block; /* Ensure no floating/inline issues */
-            }
-
-            /* Remove the desktop-specific vertical stagger */
-            .project-item.offset-top {
-                margin-top: 0 !important;
-            }
-
-            /* Polish the project image container */
-            .project-visual {
-                border-radius: 12px;
-                overflow: hidden;
-                margin-bottom: 15px;
-            }
-
-            .project-visual img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-
-            .project-title {
-                font-size: 1.8rem;
-                margin-top: 5px;
-            }
-            
-            .project-meta {
-                font-size: 0.9rem;
-            }
+            .contact-pill:hover { transform: none; }
+            .btn-text { display: none; }
+            .li-icon { display: block; width: 20px; height: 20px; }
+            .hero-section { padding-top: 120px; }
+            .hero-title { font-size: 3rem; }
         }
     </style>
 </head>
@@ -186,9 +71,9 @@
             
             <nav class="nav-menu">
                 <a href="projects.html" class="nav-link">Work</a>
-                <a href="about.html" class="nav-link">About</a>
+                <a href="about.html" class="nav-link">About Me</a>
                 
-                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill" aria-label="Connect on LinkedIn">
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">
                     <span class="btn-text">Let's Connect</span>
                     <svg class="li-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.306c0-4.613 5.48-4.515 5.48 0v8.306h5v-10.502c0-8.118-8.74-7.984-10.512-3.807v-1.697z"/>
@@ -237,7 +122,7 @@
 
         <div class="works-grid">
             
-            <a href="evilbullknives.html" class="project-item">
+            <a href="evilbullknives.html" class="project-item project-link" data-mobile="evilbullknivesmobile.html">
                 <div class="project-visual">
                     <div class="overlay"></div>
                     <img src="assets/images/Copy_of_Untitled_1.png" alt="EvilBullKnives">
@@ -254,7 +139,7 @@
                 </div>
             </a>
 
-            <a href="zackwholesale.html" class="project-item offset-top">
+            <a href="zackwholesale.html" class="project-item offset-top project-link" data-mobile="zackwholesalemobile.html">
                 <div class="project-visual">
                     <div class="overlay"></div>
                     <img src="assets/images/Untitled design (53).png" alt="Zack Wholesale">
@@ -271,7 +156,7 @@
                 </div>
             </a>
 
-            <a href="charitywater.html" class="project-item">
+            <a href="charitywater.html" class="project-item project-link" data-mobile="charitywatermobile.html">
                 <div class="project-visual">
                     <div class="overlay"></div>
                     <img src="assets/images/Copy of Untitled Design.png" alt="Charity Water">
@@ -294,6 +179,22 @@
     <footer class="footer">
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectLinks = document.querySelectorAll('.project-link');
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+            if (isMobile) {
+                projectLinks.forEach(link => {
+                    const mobileUrl = link.getAttribute('data-mobile');
+                    if (mobileUrl) {
+                        link.setAttribute('href', mobileUrl);
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
