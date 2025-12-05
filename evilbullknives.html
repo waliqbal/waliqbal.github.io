@@ -29,6 +29,79 @@
             padding-top: 50px;
             padding-bottom: 50px;
         }
+
+        /* --- START: NEW MOBILE VIEW OVERRIDES (max-width: 767px) --- */
+        @media (max-width: 767px) {
+            /* Slide 1: Intro - Move visual to top, heading on one line */
+            #intro .content {
+                flex-direction: column; /* Stack visual and text containers */
+                gap: 20px; /* Add spacing between elements */
+            }
+            #intro .visual-container {
+                order: -1; /* Move video to the top */
+                width: 100%;
+            }
+            #intro .text-container {
+                width: 100%;
+                text-align: center;
+            }
+            #intro .project-title {
+                font-size: 2.5rem; /* Adjust size to help fit 'Evil Bull Knives' on one line */
+                line-height: 1;
+            }
+            #intro .project-title br {
+                display: none; /* Remove the explicit line break */
+            }
+            
+            /* Slide 2: The Blade - Stack text and card, heading on one line, remove sticky */
+            #blade .content {
+                flex-direction: column; /* Stack text and card vertically */
+                padding-top: 30px;
+                padding-bottom: 30px;
+                gap: 30px; /* Space between text and card */
+            }
+            #blade .text-container {
+                position: static !important; /* Remove sticky position */
+                top: auto !important;
+                align-self: auto !important;
+                width: 100%;
+                text-align: center; /* Center the text for mobile stacking */
+                margin-bottom: 0;
+            }
+            #blade .visual-container {
+                width: 100%;
+            }
+            #blade .text-container h2 br {
+                display: none; /* Remove line break for single line heading */
+            }
+
+            /* Slide 3: Impact - Heading top right, stat cards fit */
+            #specs .specs-wrapper {
+                gap: 30px; /* Ensure proper stacking gap */
+            }
+            #specs .specs-header {
+                text-align: right; /* Requested alignment */
+            }
+            #specs .specs-header h2 br {
+                display: none; /* Remove line break for single line heading */
+            }
+
+            /* Slide 4: Legacy - Ensure everything fits */
+            #legacy.section {
+                min-height: auto;
+            }
+            #legacy .content {
+                padding: 50px 20px; /* Ensure content is well-padded */
+            }
+            #legacy .big-legacy {
+                font-size: 3rem; /* Adjust heading size */
+                line-height: 1.1;
+            }
+            #legacy .big-legacy br {
+                display: none; /* Remove line break */
+            }
+        }
+        /* --- END: NEW MOBILE VIEW OVERRIDES --- */
     </style>
 </head>
 <body>
@@ -186,10 +259,10 @@
                         .ebkrs h2{font-size:2.45rem}
                         .specs{grid-template-columns:repeat(3,minmax(0,1fr))}
                       }
-                      /* New Mobile Styles for Portrait Screens */
+                      /* Existing Mobile Styles for Portrait Screens (Condensing the Card Content) */
                       @media (max-width: 767px) {
                         .ebkrs{
-                            padding: 24px 18px; 
+                            padding: 24px 18px; 
                             border-radius: 18px;
                         }
                         .eyebrow{font-size: 0.65rem; margin: 0 0 .3rem;}
@@ -198,7 +271,7 @@
                         .chip{font-size: 0.65rem; padding: .3rem .6rem;}
                         .specs{
                             grid-template-columns: 1fr; /* Stack specs vertically */
-                            gap: 10px; 
+                            gap: 10px; 
                             margin: 0.5rem 0 1rem;
                         }
                         .spec{padding: 0.8rem;}
@@ -347,19 +420,19 @@
 
                     @media (max-width: 900px) {
                         /* The core styles for specs-wrapper are now handled in project-scroll.css to avoid repetition. */
-                        .specs-wrapper { 
-                            grid-template-columns: 1fr; 
+                        .specs-wrapper { 
+                            grid-template-columns: 1fr; 
                             gap: 30px; /* Adjusted gap */
                         }
-                        .stats-grid { 
-                            grid-template-columns: 1fr; 
+                        .stats-grid { 
+                            grid-template-columns: 1fr; 
                         }
                         .span-full { grid-column: auto; }
                         .specs-header { text-align: center; }
                         .specs-header p { max-width: none; margin-top: 15px; }
 
                         .stat-card { text-align: left; padding: 20px; }
-                        .stat-list { justify-content: center; } 
+                        .stat-list { justify-content: center; } 
                         .stat-value { font-size: 3rem; }
                         .stat-label { font-size: 0.75rem; }
                     }
