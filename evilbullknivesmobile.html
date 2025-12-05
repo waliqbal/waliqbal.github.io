@@ -3,158 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zack Wholesale | Project View</title>
+    <title>Zack Wholesale | Mobile Case Study</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/css/project-scroll.css">
-
     <style>
+        /* --- 1. GLOBAL & VARIABLE SETUP (Mobile First, No Scroll Snap) --- */
         :root {
+            --color-dark: #0f1013;
+            --color-text: #ececec;
             --color-accent: #F36F21; /* Zack Wholesale Orange */
+            --color-link: #0077b5;
+            --font-body: 'Manrope', sans-serif;
+            --font-display: 'Syne', sans-serif;
+            --mobile-padding: 20px;
         }
-        
-        /* --- SECTION 1 & 2 CUSTOMIZATION --- */
-        .zack-hero {
-            width: 100%;
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: var(--color-accent); }
+
+        /* --- 2. NAVIGATION (Fixed Top Bar) --- */
+        .mobile-header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px var(--mobile-padding);
+            background: rgba(15, 16, 19, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-link { font-size: 0.9rem; font-weight: 600; color: var(--color-text); opacity: 0.8; }
+        .nav-logo { height: 32px; opacity: 0.8; }
+
+        /* --- 3. SECTION LAYOUTS (Standard Vertical Flow) --- */
+        .section {
+            padding: 40px var(--mobile-padding);
             max-width: 700px;
-            border-radius: 8px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            transform: rotate(3deg) !important; 
+            margin: 0 auto;
+            box-sizing: border-box;
+            position: relative;
         }
         
-        /* Added specific class for the hero video to fix sizing */
+        .content {
+            display: flex;
+            flex-direction: column; /* Ensure all children stack */
+            gap: 40px;
+            text-align: center;
+        }
+
+        .text-container { width: 100%; }
+        .visual-container { width: 100%; display: flex; justify-content: center; }
+
+        /* --- 4. TYPOGRAPHY SCALING --- */
+        h1, h2 { font-family: var(--font-display); font-size: 2.5rem; line-height: 1.1; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+        h1 { font-size: 3rem; }
+        .project-subtitle { font-size: 1rem; opacity: 0.8; }
+        .accent { color: var(--color-accent); }
+        .outline-text { -webkit-text-stroke: 1px var(--color-text); color: transparent; }
+
+        /* Fix line break display for mobile stacking */
+        .project-title br, .text-container h2 br { display: none; }
+
+        /* --- 5. VISUALS (Images/Video) --- */
+        .hero-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* FIX: Added specific style for Hero Video to fit screen width */
         .hero-video {
             width: 100%;        /* Fits width of container */
             height: auto;       /* Maintains aspect ratio */
             max-width: 100%;    /* Prevents overflow */
             border-radius: 12px;
-            box-shadow: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             object-fit: cover;
         }
         
-        .zack-detail {
+        .detail-video {
             width: 100%;
-            max-width: 800px;
-            object-fit: cover;
+            max-height: 300px;
             border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* --- SECTION 3: SPECS GRID --- */
-        .specs-wrapper { width: 100%; max-width: 1200px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
-        .specs-header h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
-        .specs-header p { font-size: 1.1rem; opacity: 0.7; max-width: 300px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        
+        /* --- 6. SPECS & STATS --- */
+        #ux { background: #101010; padding-bottom: 80px; }
+        .specs-wrapper { width: 100%; display: flex; flex-direction: column; gap: 30px; }
+
+        .specs-header { text-align: left; }
+        .specs-header h2 { font-size: 2.5rem; }
+        .specs-header p { font-size: 1rem; opacity: 0.7; }
+
+        /* Stat Grid (Converted to Stack) */
+        .stats-grid { display: flex; flex-direction: column; gap: 15px; }
         .stat-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(243, 111, 33, 0.2);
-            padding: 30px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .stat-card:hover { transform: translateY(-5px); border-color: var(--color-accent); background: rgba(255,255,255,0.05); }
-        .stat-value { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
-        .stat-label { font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; opacity: 0.6; margin-bottom: 5px; }
-        .stat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-        .stat-pill { font-size: 0.8rem; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 50px; white-space: nowrap; }
-        .span-full { grid-column: span 2; }
-
-        /* --- SECTION 4: OUTRO OVERLAY --- */
-        #outro .content {
-            display: block; /* Override default grid */
-            padding: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(243, 111, 33, 0.25);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
         }
         
-        #outro .visual-container {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+        .stat-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 5px; }
+        .stat-label { font-family: var(--font-display); letter-spacing: 1px; font-size: 0.75rem; opacity: 0.6; margin-bottom: 5px; }
+        .stat-list { list-style: none; padding: 0; margin-top: 10px; }
+        .stat-pill { font-size: 0.75rem; background: rgba(255, 255, 255, 0.1); padding: 4px 10px; border-radius: 50px; display: inline-block; margin-right: 5px; margin-bottom: 5px; }
+
+        /* --- 7. OUTRO --- */
+        #outro { padding: 0; min-height: 60vh; display: flex; justify-content: center; align-items: center; }
+
+        .outro-img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 0; border-radius: 0; }
+        
+        .visit-btn {
+            position: relative; z-index: 2; background-color: var(--color-accent); color: var(--color-dark);
+            font-family: var(--font-display); font-weight: 700; padding: 15px 35px; border-radius: 100px;
+            margin-top: 40px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        #outro .outro-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Fill the screen */
+        /* --- SCROLL ANIMATION CSS (for scroll reveal) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
             opacity: 1;
-        }
-
-        /* Dark overlay optional here depending on the new image brightness */
-        #outro .visual-container::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.1); 
-            z-index: 1;
-        }
-
-        #outro .text-container {
-            position: relative;
-            z-index: 2; 
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Button pushed to bottom & CENTERED */
-        #outro .visit-btn {
-            position: absolute;
-            bottom: 80px; 
-            /* Centering Trick */
-            left: 50%;
-            transform: translateX(-50%);
-            
-            background: var(--color-accent);
-            color: black;
-            border: none;
-            box-shadow: 0 10px 30px rgba(243, 111, 33, 0.4);
-        }
-        
-        #outro .visit-btn:hover {
-            background: white;
-            /* Maintain Horizontal Center + Add Lift/Scale */
-            transform: translateX(-50%) translateY(-5px) scale(1.05);
-        }
-
-        @media (max-width: 900px) {
-            .specs-wrapper { grid-template-columns: 1fr; gap: 40px; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .span-full { grid-column: auto; }
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <nav class="fixed-nav">
+    <header class="mobile-header">
         <a href="index.html" class="back-link">← Back to Portfolio</a>
         <img src="assets/images/Copy of WALEED (1).png" alt="Logo" class="nav-logo">
-    </nav>
-
-    <div class="indicator-wrapper">
-        <ul class="indicator">
-            <li><a href="#intro"><span class="sr-only">Intro</span></a></li>
-            <li><a href="#scale"><span class="sr-only">Scale</span></a></li>
-            <li><a href="#ux"><span class="sr-only">Impact</span></a></li>
-            <li><a href="#outro"><span class="sr-only">Legacy</span></a></li>
-        </ul>
-    </div>
+    </header>
 
     <main>
         
         <section id="intro" class="section">
             <div class="content">
                 <div class="text-container">
-                    <h1 class="project-title">Zack <br><span class="accent">Wholesale</span></h1>
+                    <h1 class="project-title">Zack <span class="accent">Wholesale</span></h1>
                     <p class="project-subtitle">Redefining the B2B purchasing experience with speed, scale, and omnichannel integration.</p>
                 </div>
-                <div class="visual-container">
+                <div class="visual-container animate-on-scroll">
                     <video class="hero-video" autoplay loop muted playsinline>
                         <source src="assets/videos/Untitled (1920 x 1080 px) (1).mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -166,11 +175,11 @@
         <section id="scale" class="section">
             <div class="content">
                 <div class="text-container">
-                    <h2>Built for <br><span class="outline-text">Volume</span></h2>
+                    <h2>Built for <span class="outline-text">Volume</span></h2>
                     <p>Unlike standard retail, this platform handles high-volume inventory management and tiered pricing structures effortlessly, ensuring wholesale buyers get exactly what they need, fast.</p>
                 </div>
                 <div class="visual-container">
-                    <video class="detail-img-1 zack-detail" autoplay loop muted playsinline>
+                    <video class="detail-video" autoplay loop muted playsinline>
                         <source src="assets/videos/zw landing.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -182,7 +191,7 @@
             <div class="content">
                 <div class="specs-wrapper">
                     <div class="specs-header">
-                        <h2>Business <br><span class="accent">Growth</span></h2>
+                        <h2>Business <span class="accent">Growth</span></h2>
                         <p>A complete digital transformation transitioning the business into a fully integrated omnichannel wholesaler.</p>
                     </div>
 
@@ -190,52 +199,47 @@
                         
                         <div class="stat-card">
                             <span class="stat-label">Efficiency Boost</span>
-                            <span class="stat-value">70%</span>
+                            <span class="stat-value js-counter" data-target="70" data-suffix="%">0</span>
                             <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Reduction in processing time via AI & Automation.</p>
                         </div>
 
                         <div class="stat-card">
                             <span class="stat-label">New Revenue</span>
-                            <span class="stat-value">$60k+</span>
+                            <span class="stat-value js-counter" data-target="60000" data-prefix="$" data-k="true">0</span>
                             <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated via targeted online campaigns.</p>
                         </div>
 
-                        <div class="stat-card span-full">
+                        <div class="stat-card">
                             <div style="display:flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <span class="stat-label">Online Visibility</span>
-                                    <span class="stat-value">600%</span>
-                                    <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Increase via SEO & Backlink Optimization (SEMrush).</p>
+                                    <span class="stat-value js-counter" data-target="600" data-suffix="%">0</span>
                                 </div>
                                 <div style="text-align: right; opacity: 0.8;">
-                                    <span style="display:block; font-size:1.5rem; font-weight:800; color:white;">28k+</span>
+                                    <span style="display:block; font-size:1.5rem; font-weight:800; color:white;" class="js-counter" data-target="28000" data-k="true">0</span>
                                     <span style="font-size:0.8rem; text-transform:uppercase;">Unique Visitors</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="stat-card span-full">
-                            <div style="display:flex; justify-content: space-between; align-items: flex-start; flex-wrap:wrap; gap: 20px;">
-                                <div>
-                                    <span class="stat-label" style="display:block; margin-bottom:15px; color:var(--color-accent);">My Role (Solo)</span>
-                                    <ul class="stat-list">
-                                        <li class="stat-pill">Full Stack Dev</li>
-                                        <li class="stat-pill">Product Manager</li>
-                                        <li class="stat-pill">Paid Marketing (Google/Meta)</li>
-                                        <li class="stat-pill">SEO & Automation</li>
-                                        <li class="stat-pill">Sales Strategy</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <span class="stat-label" style="display:block; margin-bottom:15px; color:var(--color-accent);">Tools</span>
-                                    <ul class="stat-list">
-                                        <li class="stat-pill">Shopify Plus</li>
-                                        <li class="stat-pill">SEMrush</li>
-                                        <li class="stat-pill">Generative AI</li>
-                                        <li class="stat-pill">Excel Automation</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="stat-card">
+                            <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">My Role (Solo)</span>
+                            <ul class="stat-list">
+                                <li class="stat-pill">Full Stack Dev</li>
+                                <li class="stat-pill">Product Manager</li>
+                                <li class="stat-pill">Paid Marketing (Google/Meta)</li>
+                                <li class="stat-pill">SEO & Automation</li>
+                                <li class="stat-pill">Sales Strategy</li>
+                            </ul>
+                        </div>
+                         <div class="stat-card">
+                            <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">Tech Stack</span>
+                            <ul class="stat-list">
+                                <li class="stat-pill">Shopify Plus</li>
+                                <li class="stat-pill">SEMrush</li>
+                                <li class="stat-pill">Generative AI</li>
+                                <li class="stat-pill">Excel Automation</li>
+                            </ul>
                         </div>
 
                     </div>
@@ -257,6 +261,70 @@
 
     </main>
 
-    <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
+    <footer class="footer">
+        <p>© 2025 WUI. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.js-counter');
+            
+            const formatNumber = (num, prefix = '', suffix = '', isK = false) => {
+                if (isK && num >= 1000) {
+                    const roundedNum = Math.floor(num / 1000);
+                    return prefix + roundedNum + 'k' + suffix + (num > 1000 ? '+' : '');
+                }
+                return prefix + Math.floor(num).toLocaleString() + suffix;
+            };
+
+            const animateCount = (element) => {
+                const target = parseInt(element.getAttribute('data-target'));
+                const prefix = element.getAttribute('data-prefix') || '';
+                const suffix = element.getAttribute('data-suffix') || '';
+                const isK = element.getAttribute('data-k') === 'true';
+                const duration = 1500;
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const percentage = Math.min(progress / duration, 1);
+                    const currentValue = Math.floor(percentage * target);
+
+                    element.textContent = formatNumber(currentValue, prefix, suffix, isK);
+
+                    if (percentage < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        element.textContent = formatNumber(target, prefix, suffix, isK);
+                    }
+                };
+                requestAnimationFrame(step);
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                        animateCount(entry.target);
+                        entry.target.classList.add('counted');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+
+            // Scroll Animation Observer
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            scrollElements.forEach(el => scrollObserver.observe(el));
+        });
+    </script>
 </body>
 </html>
