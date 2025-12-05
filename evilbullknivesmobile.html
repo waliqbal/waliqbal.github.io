@@ -10,358 +10,136 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CSS Variables & Global Resets (Mobile First) --- */
+        /* --- 1. GLOBAL & MOBILE-FIRST BASE STYLES --- */
         :root {
             --color-dark: #0f1013;
             --color-text: #ececec;
             --color-accent: #FFAC00; /* Evil Bull Knives Orange/Yellow */
-            --color-link: #0077b5;
-            --font-body: 'Manrope', sans-serif;
             --font-display: 'Syne', sans-serif;
+            --font-body: 'Manrope', sans-serif;
             --mobile-padding: 20px;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             background-color: var(--color-dark);
             color: var(--color-text);
             font-family: var(--font-body);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
             overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+            min-height: 100vh;
         }
 
-        a {
-            text-decoration: none;
-            color: var(--color-accent);
-            transition: color 0.3s ease;
-        }
+        a { text-decoration: none; color: var(--color-accent); transition: color 0.3s ease; }
 
-        h1, h2, h3 {
-            font-family: var(--font-display);
-            line-height: 1.1;
-            font-weight: 800;
-            margin-top: 0;
+        /* --- 2. NAVIGATION (Fixed Top Bar) --- */
+        .mobile-header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px var(--mobile-padding);
+            background: rgba(15, 16, 19, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .accent {
-            color: var(--color-accent);
-        }
-
-        /* --- Layout Structure --- */
+        .back-link { font-size: 0.9rem; font-weight: 600; color: var(--color-text); opacity: 0.8; }
+        .nav-logo { height: 32px; opacity: 0.8; }
+        .indicator-wrapper { display: none; } /* Hide dots on mobile */
+        
+        /* --- 3. SECTION LAYOUTS (Standard Vertical Flow) --- */
         .section {
-            padding: 80px var(--mobile-padding);
-            width: 100%;
+            padding: 40px var(--mobile-padding);
+            max-width: 700px;
+            margin: 0 auto;
             box-sizing: border-box;
-            position: relative; /* For flow control */
+            position: relative;
         }
         
         .content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* --- Navigation --- */
-        .mobile-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px var(--mobile-padding);
-            background: rgba(15, 16, 19, 0.9);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-direction: column; 
+            gap: 40px;
         }
 
-        .back-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--color-text);
-            opacity: 0.8;
-        }
+        .text-container { padding: 0; text-align: center; width: 100%; }
+        .visual-container { width: 100%; display: flex; justify-content: center; }
 
-        .nav-logo {
-            height: 28px;
-            opacity: 0.8;
-        }
+        h1, h2 { font-family: var(--font-display); line-height: 1.1; font-weight: 800; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2.2rem; }
+        .accent { color: var(--color-accent); }
+        .outline-text { -webkit-text-stroke: 1px var(--color-text); color: transparent; }
+        .project-subtitle, .lede { font-size: 1rem; opacity: 0.8; }
 
-        /* --- Hero Section --- */
-        #intro {
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
+        /* Fix line break display for mobile stacking */
+        .project-title br, .text-container h2 br { display: none; }
 
-        .project-title {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-        }
 
-        .project-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.7;
-            margin-bottom: 30px;
-        }
-
-        .hero-video {
-            width: 100%;
-            min-height: 250px;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
-            overflow: hidden;
-            display: block;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        /* --- The Blade Section (Product Card Text) --- */
-        #blade h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-        
-        #blade .text-container p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* --- Product Card (EBKRS) Styles - Minimal Mobile Adjustments --- */
+        /* --- 4. PRODUCT CARD STYLING (EBKRS) --- */
         .ebkrs {
             --ebk-orange: var(--color-accent);
-            --ink: #0c0d0e;
-            --text: #ececec;
             --muted: #cfcfcf;
             font-family: var(--font-body);
-            color: var(--text);
-            line-height: 1.65;
             border: 1px solid rgba(255, 172, 0, .28);
-            border-radius: 18px; /* Mobile size */
-            padding: 24px 18px; /* Mobile size */
-            position: relative;
+            border-radius: 18px; 
+            padding: 24px 18px;
             background: #0f1013;
             width: 100%;
             height: auto;
-            overflow: visible;
-            margin-top: 50px; /* Space after intro text */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            margin-top: 30px;
         }
         
-        .ebkrs::before {
-            content: "";
-            position: absolute; inset: 0; z-index: 0;
-            background:
-                linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .65) 45%, #0f1013 85%),
-                url("https://cdn.shopify.com/s/files/1/0774/4687/3365/files/a-look-across-the-landscape-with-view-of-the-sea.jpg?v=1759944827")
-                top/cover no-repeat;
-            filter: saturate(.9) contrast(1.02);
-            border-radius: 18px;
+        .ebkrs::before { /* Background image */
+            content: ""; position: absolute; inset: 0; z-index: 0; border-radius: 18px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .65) 45%, #0f1013 85%),
+                        url("https://cdn.shopify.com/s/files/1/0774/4687/3365/files/a-look-across-the-landscape-with-view-of-the-sea.jpg?v=1759944827") top/cover no-repeat;
         }
+        .ebkrs * { position: relative; z-index: 1; }
+        .ebkrs h2 { font-size: 1.8rem; margin: .1rem 0 0.8rem; font-family: var(--font-display); }
+        .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: .1rem 0 1rem; }
+        .chip { font-size: .65rem; padding: .3rem .6rem; border-radius: 999px; border: 1px solid rgba(255, 172, 0, .32); background: rgba(18, 18, 20, .92); }
+        .specs, .facts { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 1rem 0; } /* Stacked columns */
+        .spec { padding: 0.8rem; background: rgba(15, 15, 16, .96); border-radius: 12px; border: 1px solid rgba(255, 172, 0, .28); }
+        .k { font-size: .72rem; letter-spacing: .12em; color: #ffdda4; }
+        .panel { background: rgba(16, 16, 18, .96); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+        .panel h4 { font-size: 0.9rem; color: var(--ebk-orange); }
+        .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: .9rem 0 0; }
         
-        .ebkrs::after {
-            content: "";
-            position: absolute; inset: -30% -10%; z-index: 0;
-            background: linear-gradient(90deg, transparent,
-                rgba(31, 111, 127, .18), rgba(23, 79, 107, .22), rgba(255, 172, 0, .10),
-                rgba(23, 79, 107, .22), rgba(31, 111, 127, .18), transparent);
-            filter: blur(90px);
-            animation: horizonSweep 16s ease-in-out infinite;
-        }
-        
-        @keyframes horizonSweep {
-            0% { transform: translateX(-45%); opacity: .8 }
-            50% { transform: translateX(45%); opacity: .95 }
-            100% { transform: translateX(-45%); opacity: .8 }
-        }
-        
-        .ebkrs * { position: relative; z-index: 1; box-sizing: border-box }
-        
-        .eyebrow {
-            text-transform: uppercase; letter-spacing: .15em; font-weight: 900;
-            color: var(--ebk-orange); margin: 0 0 .3rem; font-size: 0.65rem;
-        }
-        
-        .ebkrs h2 { margin: .1rem 0 0.8rem; font-size: 1.6rem; font-weight: 1000; color: #fff }
-        
-        .lede { max-width: 75ch; color: var(--muted); margin: .45rem 0 1.15rem; font-size: 0.9rem; }
-        
-        .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .1rem 0 1rem }
-        
-        .chip {
-            background: rgba(18, 18, 20, .92);
-            border: 1px solid rgba(255, 172, 0, .32);
-            color: #fff; border-radius: 999px; padding: .3rem .6rem;
-            font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 800;
-        }
-        
-        .divider { height: 8px; border-radius: 8px; margin: 1rem 0 1.25rem;
-            background: linear-gradient(90deg, rgba(255, 172, 0, .95), rgba(255, 172, 0, 0))
-        }
-        
-        .specs {
-            display: grid; gap: 10px; 
-            grid-template-columns: 1fr; /* Stack specs vertically on mobile */
-            margin: .5rem 0 1rem;
-        }
-        
-        .spec { background: rgba(15, 15, 16, .96); border: 1px solid rgba(255, 172, 0, .28); border-radius: 12px; padding: 0.8rem }
-        
-        .k { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #ffdda4; margin-bottom: .35rem }
-        
-        .v { font-weight: 850; color: #fff }
-        
-        .facts {
-            display: grid; gap: 10px; 
-            grid-template-columns: 1fr; /* Stack facts vertically on mobile */
-            margin: .35rem 0 1.2rem;
-        }
-        
-        .fact {
-            display: flex; gap: .8rem; align-items: flex-start; padding: 1rem; border-radius: 12px;
-            background: linear-gradient(180deg, rgba(23, 79, 107, .14), rgba(18, 19, 21, .96));
-            border: 1px solid rgba(255, 172, 0, .25)
-        }
-        
-        .glyph {
-            width: 28px; height: 28px; flex: 0 0 28px; border-radius: 50%;
-            background:
-                radial-gradient(circle at 32% 30%, rgba(255, 172, 0, .65), transparent 62%),
-                linear-gradient(135deg, rgba(255, 172, 0, .18), rgba(0, 0, 0, 0));
-            border: 1px solid rgba(255, 172, 0, .55)
-        }
-        
-        .fact h5 { margin: .05rem 0 .2rem; font-size: .9rem; color: #fff }
-        
-        .fact p { margin: 0; color: #e7dfd0; font-size: 0.8rem; }
-        
-        .panel { background: rgba(16, 16, 18, .96); border: 1px solid rgba(255, 172, 0, .28); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 0 14px rgba(255, 172, 0, .08) }
-        
-        .panel h4 { font-weight: 900; text-transform: uppercase; letter-spacing: .08em; color: var(--ebk-orange); font-size: 1rem; margin: 0 0 .55rem }
-        
-        .panel ul { margin: .2rem 0 .2rem 1.2rem; padding: 0; }
-        
-        .badges { display: flex; flex-wrap: wrap; gap: 6px; margin: .9rem 0 0 }
-        
-        .badge {
-            font-weight: 900; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
-            color: #111; padding: .4rem .6rem; border-radius: 8px;
-            background: linear-gradient(90deg, #FFAC00, #ffd37a, #FFAC00);
-            background-size: 200% 100%; animation: shine 5s linear infinite;
-            border: 1px solid rgba(0, 0, 0, .2)
-        }
-        
-        .note { color: #e9e1d4; margin-top: .6rem; font-size: 0.8rem;}
-
-        /* --- Impact Section --- */
-        #specs h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        #specs .specs-header p {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 40px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Single column on mobile */
-            gap: 20px;
-        }
+        /* --- 5. IMPACT STATS --- */
+        .specs-header { text-align: center; }
+        .stats-grid { display: flex; flex-direction: column; gap: 15px; }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 172, 0, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 172, 0, 0.25);
             padding: 20px;
             border-radius: 12px;
-            display: flex;
-            flex-direction: column;
         }
         
-        .stat-value {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--color-accent);
-            line-height: 1;
-            margin-bottom: 10px;
-        }
+        .stat-value { font-size: 2.5rem; }
+        .stat-list { justify-content: center; } 
+        .stat-pill { font-size: 0.75rem; }
 
-        .stat-label {
-            font-family: var(--font-display);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.75rem;
-            opacity: 0.6;
-            margin-bottom: 5px;
-        }
-
-        .stat-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .stat-pill {
-            font-size: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 4px 10px;
-            border-radius: 50px;
-            white-space: nowrap;
-        }
-        
-        /* Ensure span-full only applies to grid-column for desktop, not mobile */
-        .span-full { grid-column: auto; } 
-
-        /* Adjusting layout for the multi-list stat card */
-        .stat-card > div {
-            display: block;
-        }
-        .stat-card > div > div:first-child {
-            margin-bottom: 20px;
-        }
-
-        /* --- Legacy/CTA Section --- */
-        #legacy .content {
-            text-align: center;
-        }
-
-        .big-legacy {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 10px;
-        }
-
+        /* --- 6. OUTRO --- */
+        .big-legacy { font-size: 3rem; margin-bottom: 20px; }
         .visit-btn {
-            display: inline-block;
-            background-color: var(--color-accent);
-            color: var(--color-dark);
-            font-family: var(--font-display);
-            font-weight: 700;
-            padding: 12px 25px;
-            border-radius: 50px;
-            margin-top: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 172, 0, 0.4);
+            background-color: var(--color-accent); color: var(--color-dark);
+            font-family: var(--font-display); font-weight: 700;
+            padding: 12px 30px; border-radius: 50px;
+            margin-top: 25px; box-shadow: 0 4px 15px rgba(255, 172, 0, 0.4);
         }
 
-        .visit-btn:hover {
-            background-color: #ffd37a;
-            box-shadow: 0 6px 20px rgba(255, 172, 0, 0.6);
+        /* --- SCROLL ANIMATION CSS (for scroll reveal) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
-        /* --- Footer --- */
-        .footer {
-            padding: 20px var(--mobile-padding);
-            text-align: center;
-            font-size: 0.8rem;
-            opacity: 0.6;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
     </style>
@@ -377,15 +155,15 @@
         
         <section id="intro" class="section">
             <div class="content">
-                <div class="text-container">
-                    <h1 class="project-title">Evil Bull <br><span class="accent">Knives</span></h1>
-                    <p class="project-subtitle">A fully functional ecommerce platform for a handmade knife brand targeting outdoor enthusiasts.</p>
-                </div>
-                <div class="visual-container">
+                <div class="visual-container animate-on-scroll">
                     <video class="hero-video" autoplay loop muted playsinline>
                         <source src="assets/videos/Untitled (1920 x 1080 px) (1).mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                </div>
+                <div class="text-container animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h1 class="project-title">Evil Bull <span class="accent">Knives</span></h1>
+                    <p class="project-subtitle">A fully functional ecommerce platform for a handmade knife brand targeting outdoor enthusiasts.</p>
                 </div>
             </div>
         </section>
@@ -393,13 +171,13 @@
         <section id="blade" class="section">
             <div class="content">
                 
-                <div class="text-container">
-                    <h2>Modern <br><span class="accent">Product Card</span> Design</h2>
+                <div class="text-container animate-on-scroll">
+                    <h2>Modern <span class="accent">Product Card</span> Design</h2>
                     <p>I redesigned the product detail experience to be immersive and data-rich. By blending high-fidelity specs with ambient, outdoor visuals, we create a vibe anyone crazy about knives enjoys.</p>
                     <p>Every element, from the typography to the horizon glow, reinforces the brand's rugged, premium ethos.</p>
                 </div>
 
-                <div class="visual-container">
+                <div class="visual-container animate-on-scroll" style="animation-delay: 0.1s;">
                     <div class="ebkrs">
                         <div class="eyebrow">Evil Bull Knives®</div>
                         <h2>EBKRS — Rasp Steel Knife</h2>
@@ -425,24 +203,18 @@
                         <div class="facts">
                             <div class="fact">
                                 <div class="glyph" aria-hidden="true"><br></div>
-                                <div>
-                                    <h5>Utility Grind</h5>
-                                    <p>Durable edge geometry for slicing, light carving, and daily tasks.</p>
-                                </div>
+                                <div><h5>Utility Grind</h5><p>Durable edge geometry for slicing, light carving, and daily tasks.</p></div>
                             </div>
                             <div class="fact">
                                 <div class="glyph" aria-hidden="true"><br></div>
-                                <div>
-                                    <h5>Grip &amp; Balance</h5>
-                                    <p>Contoured walnut scales with secure palm index for confident control.</p>
-                                </div>
+                                <div><h5>Grip &amp; Balance</h5><p>Contoured walnut scales with secure palm index for confident control.</p></div>
                             </div>
                         </div>
                         <div class="panel">
                             <h4>Shipping &amp; Production</h4>
                             <ul>
-                                <li>Estimated delivery date shown at checkout; tracking code emailed upon shipment.</li>
-                                <li>Custom engraving (optional) adds 2–3 weeks to production.</li>
+                                <li>Estimated delivery date shown at checkout.</li>
+                                <li>Custom engraving (optional) adds 2–3 weeks.</li>
                             </ul>
                         </div>
                         <div class="badges">
@@ -457,78 +229,130 @@
 
         <section id="specs" class="section">
             <div class="content">
+                <div class="specs-header animate-on-scroll">
+                    <h2>Project <span class="accent">Impact</span></h2>
+                    <p>A comprehensive solo development effort resulting in a high-performing e-commerce asset.</p>
+                </div>
 
-                <div class="specs-wrapper">
-                    <div class="specs-header">
-                        <h2>Project <br><span class="accent">Impact</span></h2>
-                        <p>A comprehensive solo development effort resulting in a high-performing e-commerce asset.</p>
+                <div class="stats-grid animate-on-scroll" style="animation-delay: 0.1s;">
+                    
+                    <div class="stat-card">
+                        <span class="stat-label">Total Sales</span>
+                        <span class="stat-value js-counter" data-target="6000" data-prefix="$" data-k="true">0</span>
+                        <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated revenue</p>
                     </div>
 
-                    <div class="stats-grid">
-                        
-                        <div class="stat-card">
-                            <span class="stat-label">Total Sales</span>
-                            <span class="stat-value">$6k+</span>
-                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated revenue</p>
-                        </div>
+                    <div class="stat-card">
+                        <span class="stat-label">User Sessions</span>
+                        <span class="stat-value js-counter" data-target="17000" data-k="true">0</span>
+                        <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Traffic delivered</p>
+                    </div>
 
-                        <div class="stat-card">
-                            <span class="stat-label">User Sessions</span>
-                            <span class="stat-value">17k+</span>
-                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Traffic delivered</p>
-                        </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Development Timeline</span>
+                        <span class="stat-value" style="color: white; font-size: 2.5rem;">3 Months</span>
+                        <p style="font-size: 0.9rem; opacity: 0.5; margin-top:5px;">From initial concept to full market launch.</p>
+                    </div>
 
-                        <div class="stat-card span-full">
-                            <span class="stat-label">Development Timeline</span>
-                            <span class="stat-value" style="color: white; font-size: 2.5rem;">3 Months</span>
-                            <p style="font-size: 0.9rem; opacity: 0.5; margin-top:5px;">From initial concept to full market launch.</p>
-                        </div>
-
-                        <div class="stat-card span-full">
-                            <div>
-                                <div style="margin-bottom: 20px;">
-                                    <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">My Role (Solo)</span>
-                                    <ul class="stat-list">
-                                        <li class="stat-pill">UI/UX Design</li>
-                                        <li class="stat-pill">Full Stack Dev</li>
-                                        <li class="stat-pill">Brand Imagery</li>
-                                        <li class="stat-pill">SEO Strategy</li>
-                                        <li class="stat-pill">Email Marketing</li>
-                                        <li class="stat-pill">Product Upload</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">Tech Stack</span>
-                                    <ul class="stat-list">
-                                        <li class="stat-pill">Shopify Liquid</li>
-                                        <li class="stat-pill">Canva</li>
-                                        <li class="stat-pill">Generative AI</li>
-                                        <li class="stat-pill">HTML/CSS</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="stat-card">
+                        <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">My Role (Solo)</span>
+                        <ul class="stat-list">
+                            <li class="stat-pill">UI/UX Design</li>
+                            <li class="stat-pill">Full Stack Dev</li>
+                            <li class="stat-pill">SEO Strategy</li>
+                            <li class="stat-pill">Email Marketing</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="legacy" class="section">
-            <div class="content">
-                <div class="text-container centered">
-                    <h2 class="big-legacy">Seal Your <br><span class="accent">Legacy</span></h2>
-                    <p>The final result is a brand identity that stands the test of time.</p>
-                    <a href="https://evilbullknives.com" target="_blank" class="visit-btn">Visit Live Site</a>
-                </div>
+            <div class="content centered">
+                <h2 class="big-legacy animate-on-scroll">Seal Your <span class="accent">Legacy</span></h2>
+                <p class="animate-on-scroll" style="animation-delay: 0.1s;">The final result is a brand identity that stands the test of time.</p>
+                <a href="https://evilbullknives.com" target="_blank" class="visit-btn animate-on-scroll" style="animation-delay: 0.2s;">Visit Live Site</a>
             </div>
         </section>
 
     </main>
 
-    <footer class="footer">
-        <p>© 2025 WUI. All Rights Reserved.</p>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* --- Counter Animation Logic --- */
+            const counters = document.querySelectorAll('.js-counter');
+            
+            const formatNumber = (num, prefix = '', suffix = '', isK = false) => {
+                if (isK && num >= 1000) {
+                    const roundedNum = Math.floor(num / 1000);
+                    return prefix + roundedNum + 'k' + suffix + (num > 1000 ? '+' : '');
+                }
+                return prefix + Math.floor(num).toLocaleString() + suffix;
+            };
 
+            const animateCount = (element) => {
+                const target = parseInt(element.getAttribute('data-target'));
+                const prefix = element.getAttribute('data-prefix') || '';
+                const suffix = element.getAttribute('data-suffix') || '';
+                const isK = element.getAttribute('data-k') === 'true';
+                const duration = 2000;
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const percentage = Math.min(progress / duration, 1);
+                    const currentValue = percentage * target;
+
+                    element.textContent = formatNumber(currentValue, prefix, suffix, isK);
+
+                    if (percentage < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        element.textContent = formatNumber(target, prefix, suffix, isK);
+                    }
+                };
+
+                requestAnimationFrame(step);
+            };
+
+            /* --- Intersection Observer for Scroll Reveal & Counters --- */
+            const scrollAnimatedElements = document.querySelectorAll('.animate-on-scroll, .js-counter');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        
+                        // Start counter animation if it's a counter element
+                        if (entry.target.classList.contains('js-counter') && !entry.target.classList.contains('counted')) {
+                            animateCount(entry.target);
+                            entry.target.classList.add('counted');
+                        }
+                    } else {
+                        // Optional: remove visible class if desired for re-triggering
+                        // entry.target.classList.remove('is-visible'); 
+                    }
+                });
+            }, observerOptions);
+
+            scrollAnimatedElements.forEach(element => {
+                // Initialize counters to zero visually
+                if (element.classList.contains('js-counter')) {
+                    const prefix = element.getAttribute('data-prefix') || '';
+                    const suffix = element.getAttribute('data-suffix') || '';
+                    element.textContent = prefix + '0' + suffix;
+                }
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
