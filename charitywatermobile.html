@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity: Water | Mobile Case Study</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. GLOBAL & VARIABLE SETUP (Mobile First, No Scroll Snap) --- */
+        :root {
+            --color-dark: #0f1013;
+            --color-text: #ececec;
+            --color-accent: #FFE000; /* Charity Water Yellow */
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+            --mobile-padding: 20px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px; /* Space for fixed header */
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: var(--color-accent); }
+
+        /* --- 2. NAVIGATION (Fixed Top Bar) --- */
+        .mobile-header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px var(--mobile-padding);
+            background: rgba(15, 16, 19, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-link { font-size: 0.9rem; font-weight: 600; color: var(--color-text); opacity: 0.8; }
+        .nav-logo { height: 32px; opacity: 0.8; }
+
+        /* --- 3. SECTION LAYOUTS (Standard Vertical Flow) --- */
+        .section {
+            padding: 40px var(--mobile-padding);
+            max-width: 700px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column; /* Ensure all children stack */
+            gap: 40px;
+            text-align: center;
+        }
+
+        .text-container { width: 100%; }
+        .visual-container { width: 100%; display: flex; justify-content: center; }
+
+        /* --- 4. TYPOGRAPHY SCALING --- */
+        h1, h2 { font-family: var(--font-display); font-size: 2.5rem; line-height: 1.1; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+        h1 { font-size: 3rem; }
+        .project-subtitle { font-size: 1rem; opacity: 0.8; }
+        .accent { color: var(--color-accent); }
+        .outline-text { -webkit-text-stroke: 1px var(--color-text); color: transparent; }
+
+        /* Fix line break display for mobile stacking */
+        .project-title br, .text-container h2 br { display: none; }
+
+        /* --- 5. VISUALS --- */
+        .cw-hero-video {
+            width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .logo-display {
+            width: 100%;
+            max-width: 250px; /* Logos constrained */
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 224, 0, 0.1));
+        }
+
+        /* --- 6. SPECS & STATS --- */
+        #specs { background: #101010; padding-bottom: 80px; }
+        .specs-wrapper { width: 100%; display: flex; flex-direction: column; gap: 30px; }
+
+        /* Stat Grid (Converted to Stack) */
+        .stats-grid { display: flex; flex-direction: column; gap: 15px; }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 224, 0, 0.25);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+        }
+        
+        .stat-value { font-family: var(--font-display); font-size: 2rem; color: var(--color-accent); margin-bottom: 5px; }
+        .stat-label { font-family: var(--font-display); letter-spacing: 1px; font-size: 0.75rem; opacity: 0.6; margin-bottom: 5px; }
+        .stat-list { list-style: none; padding: 0; margin-top: 10px; }
+        .stat-pill { font-size: 0.75rem; background: rgba(255, 255, 255, 0.1); padding: 4px 10px; border-radius: 50px; display: inline-block; margin-right: 5px; margin-bottom: 5px; }
+
+        /* --- 7. OUTRO --- */
+        .concept-badge {
+            display: inline-block;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            font-family: var(--font-display);
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin-top: 25px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="mobile-header">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <img src="assets/images/Copy of WALEED (1).png" alt="Logo" class="nav-logo">
+    </header>
+
+    <main>
+        
+        <section id="intro" class="section">
+            <div class="content">
+                <div class="text-container">
+                    <h1 class="project-title">Charity: <span class="accent">Water</span></h1>
+                    <p class="project-subtitle">Data-driven digital marketing strategy designed to accelerate the fight against the global water crisis.</p>
+                </div>
+                <div class="visual-container">
+                    <video class="cw-hero-video" autoplay loop muted playsinline>
+                        <source src="assets/videos/Untitled design (9).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategy" class="section">
+            <div class="content">
+                <div class="text-container">
+                    <h2>The <span class="outline-text">Mission</span></h2>
+                    <p>The project brief was to create a landing page and social media campaign aimed at persuading college demographics to become regular donors of Charity: Water.</p>
+                </div>
+                <div class="visual-container">
+                    <img src="assets/images/Copy of Untitled Design.png" alt="Charity Water Logo" class="logo-display">
+                </div>
+            </div>
+        </section>
+
+        <section id="collab" class="section">
+            <div class="content">
+                <div class="text-container">
+                    <h2>Agency <span class="accent">Simulation</span></h2>
+                    <p>Operating under a mock agency I created a mock company named "War on Thirst" and led a mock college student targeting campaign from conception to execution under a collaboration effort between "War on Thirst" and "Charity: Water". This involved persona development, keyword research, and designing visual assets that align with global non-profit standards.</p>
+                </div>
+                <div class="visual-container">
+                     <img src="assets/images/Copy of Untitled (9).png" alt="Chenity Agency Logo" class="logo-display">
+                </div>
+            </div>
+        </section>
+
+        <section id="specs" class="section">
+            <div class="content">
+                <div class="specs-wrapper">
+                    <div class="specs-header">
+                        <h2>Campaign <span class="accent">Specs</span></h2>
+                        <p>Global Career Accelerator Capstone Project focused on Digital Marketing & Data Analytics.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        
+                        <div class="stat-card">
+                            <span class="stat-label">Project Type</span>
+                            <span class="stat-value" style="font-size: 2rem;">Mock Targeting Campaign</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Under the Supervision of The Global Career Accelerator</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-label">Duration</span>
+                            <span class="stat-value">4 Weeks</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Intensive Sprint</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-label">Key Focus</span>
+                            <span class="stat-value" style="color: white; font-size: 2rem;">Full-Funnel Strategy</span>
+                            <p style="font-size: 0.9rem; opacity: 0.5; margin-top:5px;">From Awareness (Top of Funnel) to Conversion (Donation).</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">Deliverables</span>
+                            <ul class="stat-list">
+                                <li class="stat-pill">Campaign Deck</li>
+                                <li class="stat-pill">Ad Creatives</li>
+                                <li class="stat-pill">Landing Page Mockup</li>
+                                <li class="stat-pill">Persona Profiles</li>
+                            </ul>
+                        </div>
+                         <div class="stat-card">
+                            <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">Tools</span>
+                            <ul class="stat-list">
+                                <li class="stat-pill">Canva</li>
+                                <li class="stat-pill">Tableau</li>
+                                <li class="stat-pill">Google Ads</li>
+                                <li class="stat-pill">Meta Suite</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="legacy" class="section">
+            <div class="content">
+                <div class="text-container">
+                    <h2 class="big-legacy">Clean Water <span class="accent">For Everyone</span></h2>
+                    <div class="concept-badge">Concept Project</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 WUI. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
