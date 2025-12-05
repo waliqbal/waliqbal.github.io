@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. GLOBAL & VARIABLE SETUP (Mobile First) --- */
+        /* --- 1. GLOBAL & VARIABLE SETUP (Mobile First, No Scroll Snap) --- */
         :root {
             --color-dark: #0f1013;
             --color-text: #ffffff;
@@ -54,7 +54,7 @@
         .back-link { font-size: 0.9rem; font-weight: 600; color: var(--color-text); opacity: 0.8; }
         .nav-logo { height: 32px; opacity: 0.8; }
         
-        /* --- 3. SECTION LAYOUTS (Standard Vertical Flow) --- */
+        /* --- 3. LAYOUT & CONTENT BLOCKS --- */
         .section {
             padding: 40px var(--mobile-padding);
             width: 100%;
@@ -66,15 +66,17 @@
         
         .content {
             display: flex;
-            flex-direction: column; /* Ensure all children stack */
+            flex-direction: column; /* Everything stacks */
             gap: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .text-container {
             width: 100%;
-            text-align: center;
         }
-        
+
         .visual-container {
             width: 100%;
             display: flex;
@@ -91,7 +93,13 @@
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem; /* Adjusted for better fit */
+        }
+        
+        .project-title {
+            /* Fix 1: Ensure H1 respects the screen boundaries */
+            font-size: 2.8rem; 
+            padding: 0 5px; 
         }
 
         .project-subtitle { font-size: 1rem; opacity: 0.8; }
@@ -103,8 +111,10 @@
             width: 100%;
             max-width: 400px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: none !important; /* Remove rotation */
+            /* Fix 2: Remove the shadow box around the hero image */
+            box-shadow: none; 
+            /* Remove rotation */
+            transform: none !important; 
         }
         
         .detail-video {
@@ -113,7 +123,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
+        
         /* --- 6. SPECS & STATS --- */
         #ux {
             background: #101010; 
@@ -129,10 +139,10 @@
 
         .specs-header { text-align: left; }
         .specs-header h2 { font-size: 2.5rem; }
-        .specs-header p { font-size: 1rem; opacity: 0.7; }
+        .specs-header p { font-size: 1rem; opacity: 0.7; max-width: none; margin: 0 0 20px 0;}
 
         .stats-grid {
-            display: flex; /* Simpler flex-wrap for stats */
+            display: flex; 
             flex-direction: column; 
             gap: 15px;
         }
@@ -146,7 +156,7 @@
         }
         
         .stat-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 5px; }
-        .stat-label { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; opacity: 0.6; margin-bottom: 5px; }
+        .stat-label { font-family: var(--font-display); letter-spacing: 1px; font-size: 0.75rem; opacity: 0.6; margin-bottom: 5px; }
         
         .stat-list { list-style: none; padding: 0; margin-top: 10px; }
         .stat-pill { font-size: 0.75rem; background: rgba(255, 255, 255, 0.1); padding: 4px 10px; border-radius: 50px; display: inline-block; margin-right: 5px; margin-bottom: 5px; }
@@ -154,7 +164,7 @@
         /* --- 7. OUTRO --- */
         #outro {
             padding: 0; 
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -164,6 +174,10 @@
             height: 100%;
             width: 100%;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .outro-img {
@@ -171,10 +185,11 @@
             height: 100%;
             object-fit: cover;
             position: absolute;
+            inset: 0;
             z-index: 0;
             border-radius: 0;
         }
-
+        
         .visit-btn {
             position: relative;
             z-index: 2;
@@ -184,10 +199,9 @@
             font-weight: 700;
             padding: 15px 35px;
             border-radius: 100px;
+            margin-top: 40px;
             text-transform: uppercase;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin-top: auto; /* Push button to bottom */
-            margin-bottom: 50px;
         }
 
     </style>
@@ -208,7 +222,7 @@
                     <p class="project-subtitle">Redefining the B2B purchasing experience with speed, scale, and omnichannel integration.</p>
                 </div>
                 <div class="visual-container">
-                    <img src="assets/images/Untitled design (53).png" alt="Zack Wholesale Homepage" class="hero-img">
+                    <img src="assets/images/Untitled design (53).png" alt="Zack Wholesale Homepage" class="hero-img zack-hero">
                 </div>
             </div>
         </section>
