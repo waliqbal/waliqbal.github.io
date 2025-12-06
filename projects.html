@@ -14,12 +14,97 @@
     <style>
         /* --- SCROLL SNAP SETUP (Desktop Default) --- */
         html {
-            /* Kept for Desktop, will be unset on mobile below */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
         }
 
         body { overflow-x: hidden; }
+
+        /* --- DESKTOP HEADER STYLES (Floating & Translucent) --- */
+        .header {
+            position: fixed;
+            top: 20px; /* Push down from top */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 100;
+            padding: 10px 30px; /* Compact padding */
+            
+            /* Floating styling */
+            border-radius: 50px;
+            background: rgba(10, 10, 10, 0.85); /* Dark translucent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            /* Overwrite potential bottom border from main styles if needed */
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .header-inner {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-light); /* Assuming variable exists or inherits white */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--accent-yellow); }
+
+        /* --- GLOBAL CTA STYLES --- */
+        .header .contact-pill {
+            /* Default State: Your CTA Color (Electric Gold) */
+            border: 1px solid var(--accent-yellow) !important;
+            color: var(--accent-yellow) !important;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 24px; /* Default desktop padding */
+            border-radius: 100px;
+        }
+        
+        .header .contact-pill:hover {
+            background-color: #0077b5 !important; /* LinkedIn Blue */
+            border-color: #0077b5 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* LinkedIn SVG styling (Desktop visible) */
+        .li-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            display: block; 
+        }
 
         /* Page Specific Styles for "Editorial" Look */
         .work-header {
@@ -124,6 +209,12 @@
             transform: scale(1.05);
             filter: grayscale(0%);
         }
+        
+        /* New Class for Scroll-based Grayscale Removal */
+        .project-row.is-visible .img-container img,
+        .project-row.is-visible .img-container video {
+            filter: grayscale(0%);
+        }
 
         .p-info h2 {
             font-family: 'Syne', sans-serif;
@@ -154,171 +245,73 @@
             border-color: var(--accent-yellow);
         }
 
-        /* --- GLOBAL CTA STYLES --- */
-        .header .contact-pill {
-            /* Default State: Your CTA Color (Electric Gold) */
-            border: 1px solid var(--accent-yellow) !important;
-            color: var(--accent-yellow) !important;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .header .contact-pill:hover {
-            background-color: #0077b5 !important; /* LinkedIn Blue */
-            border-color: #0077b5 !important;
-            color: #ffffff !important;
-            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* LinkedIn SVG styling (Desktop hidden by default) */
-        .li-icon {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            display: none;
-        }
-
-        /* ---------------------------------------------------------------------- */
-        /* --- MOBILE HEADER & PROJECT OVERRIDES (Max Width 768px) --- */
-        /* ---------------------------------------------------------------------- */
+        /* --- MOBILE OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
             
-            /* Remove scroll snap on mobile to ensure smooth scrolling */
-            html {
-                scroll-snap-type: none; 
-            }
+            html { scroll-snap-type: none; }
 
-            /* HIDE REQUESTED ELEMENTS */
-            .work-header .hero-title,
-            .filter-bar {
-                display: none !important;
-            }
-
-            /* 1. Floating Rounded Translucent App Bar */
+            /* Header (Reverts to mobile specific look if needed, but mostly inherits floating style now with tweaks) */
             .header {
+                /* Ensure mobile width constraints are met */
                 width: 90%; 
                 max-width: 500px;
-                left: 50%; 
-                transform: translateX(-50%); 
-                top: 20px; 
                 padding: 10px 15px; 
-                border-radius: 50px; 
-                background: rgba(10, 10, 10, 0.85); 
-                backdrop-filter: blur(12px); 
-                -webkit-backdrop-filter: blur(12px);
-                border-bottom: none;  
-                border: 1px solid rgba(255,255,255,0.1);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5);  
-            }
-
-            /* 2. Resize Logo */
-            .logo-container .logo {
-                height: 32px; 
-            }
-
-            /* 3. Force Menu Display & Formatting */
-            .nav-menu {
-                gap: 15px; 
-            }
-
-            .nav-link {
-                font-size: 13px; 
-                padding: 0; 
-                font-weight: 600;
             }
             
-            /* 4. Condense LinkedIn Button (Icon only) */
+            .logo-container .logo { height: 32px; }
+            .nav-menu { gap: 15px; }
+            .nav-link { font-size: 13px; padding: 0; }
+            
+            /* Mobile Button: Icon Only */
             .contact-pill {
                 padding: 8px !important; 
                 border-radius: 8px !important; 
                 min-width: 36px;
-                color: var(--accent-yellow) !important;
+                color: var(--accent-yellow) !important; 
                 background-color: transparent !important; 
             }
+            .contact-pill:hover { transform: none; }
+            
+            .btn-text { display: none; } /* Hide text on mobile */
+            .li-icon { width: 20px; height: 20px; }
 
-            .contact-pill:hover {
-                transform: none; 
-            }
-
-            .btn-text {
-                display: none; 
-            }
-
-            .li-icon {
-                display: block; 
-                width: 20px;
-                height: 20px;
-            }
-
-            /* 5. Adjust Work Header to collapse space, but maintain clearance for floating header */
+            /* Work Header */
             .work-header { 
-                /* Padding: 100px top to clear the floating header, minimal vertical space below */
-                padding: 100px 20px 20px !important; 
-                /* Significantly reduced height to collapse section, was 50vh */
-                min-height: 100px !important; 
-            }
-            
-            /* FIX 2: Override grayscale to full color on mobile and remove hover/scroll scale */
-            .img-container img, 
-            .img-container video {
-                filter: grayscale(0%) !important; /* Full color by default on mobile */
-                transform: scale(1); /* No scaling on mobile to remove hover/scroll effect */
+                padding-top: 140px; /* Clear fixed header */
+                min-height: 50vh;
+                padding-left: 20px;
+                padding-right: 20px;
             }
 
-            /* 6. Mobile Project Card Adjustments (Modern List UI) */
+             .work-header .hero-title, .filter-bar {
+                display: none !important; /* Hiding per previous instruction */
+             }
+             
+             /* But if we hide title, we need padding adjustment to not leave huge gap */
+             .work-header {
+                 padding-top: 100px !important;
+                 min-height: 100px !important;
+             }
+
+            /* Override grayscale */
+            .img-container img, .img-container video {
+                filter: grayscale(0%) !important; transform: scale(1); 
+            }
+
+            /* Project Cards */
             .project-row { 
-                grid-template-columns: 1fr; 
-                gap: 20px; 
-                min-height: auto; 
-                /* Reduced vertical padding and added a subtle separator line */
-                padding: 40px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-                scroll-snap-align: unset; /* Disable scroll snap for project rows */
+                grid-template-columns: 1fr; gap: 20px; min-height: auto; 
+                padding: 40px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); scroll-snap-align: unset; 
             }
-
-            .project-index { 
-                font-size: 4rem; 
-                margin-bottom: 5px; 
-                text-align: left;
-            }
-
-            /* Modern UI: Remove the background/padding to make it look like a seamless list item */
-            .project-card-large {
-                background: none;
-                padding: 0;
-                border-radius: 0;
-            }
-
-            /* FIX 3: Set image/video container for 16:9 aspect ratio (1920x1080) */
-            .img-container { 
-                height: 0; /* Clear height for aspect ratio padding trick */
-                padding-top: 56.25%; /* 1080/1920 = 0.5625 -> 56.25% (16:9) */
-                margin-bottom: 15px;
-            }
+            .project-index { font-size: 4rem; margin-bottom: 5px; text-align: left; }
+            .project-card-large { background: none; padding: 0; border-radius: 0; }
             
-            .img-container img, 
-            .img-container video {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
+            /* Aspect Ratio */
+            .img-container { height: 0; padding-top: 56.25%; margin-bottom: 15px; }
+            .img-container img, .img-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
             
-            .p-info h2 { 
-                font-size: 2rem; 
-            }
-            
-            .p-info p {
-                max-width: 100%; 
-            }
+            .p-info h2 { font-size: 2rem; }
+            .p-info p { max-width: 100%; }
         }
     </style>
 </head>
@@ -334,9 +327,9 @@
             
             <nav class="nav-menu">
                 <a href="projects.html" class="nav-link" style="color: var(--accent-yellow);">Work</a>
-                <a href="about.html" class="nav-link">About Me</a>
+                <a href="about.html" class="nav-link">About</a>
                 
-                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill" aria-label="Connect on LinkedIn">
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">
                     <span class="btn-text">Let's Connect</span>
                     <svg class="li-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.306c0-4.613 5.48-4.515 5.48 0v8.306h5v-10.502c0-8.118-8.74-7.984-10.512-3.807v-1.697z"/>
@@ -360,7 +353,7 @@
 
     <section class="project-list">
 
-        <a href="evilbullknives.html" class="project-row">
+        <a href="evilbullknives.html" class="project-row project-link" data-mobile="evilbullknivesmobile.html">
             <div class="project-index">01</div>
             <div class="project-card-large">
                 <div class="img-container">
@@ -378,7 +371,7 @@
             </div>
         </a>
 
-        <a href="zackwholesale.html" class="project-row">
+        <a href="zackwholesale.html" class="project-row project-link" data-mobile="zackwholesalemobile.html">
             <div class="project-index">02</div>
             <div class="project-card-large">
                 <div class="img-container">
@@ -396,7 +389,7 @@
             </div>
         </a>
 
-        <a href="charitywater.html" class="project-row">
+        <a href="charitywater.html" class="project-row project-link" data-mobile="charitywatermobile.html">
             <div class="project-index">03</div>
             <div class="project-card-large">
                 <div class="img-container">
@@ -419,6 +412,43 @@
     <footer class="footer" style="scroll-snap-align: end;">
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Mobile Redirection Logic
+            const projectLinks = document.querySelectorAll('.project-link');
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+            if (isMobile) {
+                projectLinks.forEach(link => {
+                    const mobileUrl = link.getAttribute('data-mobile');
+                    if (mobileUrl) {
+                        link.setAttribute('href', mobileUrl);
+                    }
+                });
+            }
+
+            // 2. Intersection Observer for Desktop Grayscale Removal
+            // Only runs if NOT mobile (since mobile forces color via CSS)
+            if (!isMobile) {
+                const projectRows = document.querySelectorAll('.project-row');
+                const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            entry.target.classList.remove('is-visible');
+                        }
+                    });
+                }, observerOptions);
+
+                projectRows.forEach(row => observer.observe(row));
+            }
+        });
+    </script>
 
 </body>
 </html>
