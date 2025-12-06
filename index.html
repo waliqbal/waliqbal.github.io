@@ -12,8 +12,63 @@
     <link rel="stylesheet" href="assets/css/styles.css"> 
 
     <style>
-        /* --- GLOBAL CTA STYLES --- */
+        /* --- GLOBAL HEADER STYLES (Floating & Translucent) --- */
+        .header {
+            position: fixed;
+            top: 20px; /* Push down from top */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 100;
+            padding: 10px 30px; /* Compact padding */
+            
+            /* Floating styling */
+            border-radius: 50px;
+            background: rgba(10, 10, 10, 0.85); /* Dark translucent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            /* Remove old bottom border */
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .header-inner {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* --- NAVIGATION MENU --- */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--accent-yellow); }
+
+        /* --- LINKEDIN BUTTON STYLES --- */
         .header .contact-pill {
+            /* Default State: Your CTA Color */
             border: 1px solid var(--accent-yellow) !important;
             color: var(--accent-yellow) !important;
             transition: all 0.3s ease;
@@ -23,38 +78,56 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 8px; /* Space between text and icon */
+            padding: 10px 24px;
+            border-radius: 100px;
         }
         
         .header .contact-pill:hover {
-            background-color: #0077b5 !important; 
+            background-color: #0077b5 !important; /* LinkedIn Blue */
             border-color: #0077b5 !important;
-            color: #ffffff !important; 
+            color: #ffffff !important;
             box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
             transform: translateY(-2px);
         }
-
-        .li-icon { width: 18px; height: 18px; fill: currentColor; display: none; }
+        
+        /* Icon styling - visible on desktop now */
+        .li-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            display: block; /* Ensure visible */
+        }
 
         /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
             .header {
-                width: 90%; max-width: 500px; left: 50%; transform: translateX(-50%); top: 20px;
-                padding: 10px 15px; border-radius: 50px;
-                background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-                border-bottom: none; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+                width: 90%; 
+                max-width: 500px;
+                padding: 10px 15px; 
             }
+            
             .logo-container .logo { height: 32px; }
+            
             .nav-menu { gap: 15px; }
-            .nav-link { font-size: 13px; padding: 0; font-weight: 600; }
+            
+            .nav-link { font-size: 13px; padding: 0; }
+            
+            /* Mobile Button: Icon Only */
             .contact-pill {
-                padding: 8px !important; border-radius: 8px !important; min-width: 36px;
-                color: var(--accent-yellow) !important; background-color: transparent !important; 
+                padding: 8px !important; 
+                border-radius: 8px !important; 
+                min-width: 36px;
+                color: var(--accent-yellow) !important; 
+                background-color: transparent !important; 
             }
             .contact-pill:hover { transform: none; }
-            .btn-text { display: none; }
-            .li-icon { display: block; width: 20px; height: 20px; }
-            .hero-section { padding-top: 120px; }
+            
+            .btn-text { display: none; } /* Hide text on mobile */
+            
+            .li-icon { width: 20px; height: 20px; }
+
+            .hero-section { padding-top: 140px; } /* Increase padding to clear floating header */
             .hero-title { font-size: 3rem; }
         }
     </style>
