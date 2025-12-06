@@ -93,7 +93,7 @@
         .hobby-pill { border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 10px 25px; border-radius: 50px; font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: all 0.3s; }
         .hobby-pill:hover { background: var(--accent-yellow); color: black; }
 
-        /* Offline Video Styling */
+        /* Offline Video Styling (Desktop) */
         .offline-video-container {
             width: 100%; height: 400px; 
             border-radius: 20px; 
@@ -140,116 +140,123 @@
             .btn-text { display: none; }
             .li-icon { width: 20px; height: 20px; }
 
-            /* --- NEW MOBILE HERO (ID Card Style) --- */
+            /* Mobile Hero */
             .mobile-hero-wrapper {
-                height: 90vh;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                padding: 30px;
-                overflow: hidden;
-                margin-bottom: 50px;
-                background: #111; /* Fallback color if image fails */
+                height: 90vh; position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+                padding: 30px; overflow: hidden; margin-bottom: 50px; background: #111;
             }
-            
-            /* UPDATED: Container for the image */
-            .mobile-hero-bg {
-                position: absolute; 
-                top: 0; 
-                left: 0; 
-                width: 100%; 
-                height: 100%;
-                z-index: 0; /* Behind content */
-            }
-
-            /* NEW: The actual image styling */
-            .mobile-bg-img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover; /* Ensures it covers the screen like a background */
-                object-position: center;
-                filter: grayscale(100%) brightness(0.6);
-            }
-            
+            .mobile-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+            .mobile-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(100%) brightness(0.6); }
             .mobile-hero-content {
-                z-index: 2; /* In front of image */
-                position: relative;
-                background: rgba(0,0,0,0.7);
-                backdrop-filter: blur(10px);
-                padding: 25px;
-                border-radius: 20px;
-                border: 1px solid rgba(255,255,255,0.15);
+                z-index: 2; position: relative; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+                padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);
             }
             .m-hero-title { font-family: 'Syne', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; color: white; }
             .m-hero-subtitle { font-family: 'Manrope', sans-serif; color: var(--accent-yellow); font-weight: 700; font-size: 1rem; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
-            /* --- NEW MOBILE CAROUSEL (For Certs) --- */
-            .cert-section-mobile {
-                padding-left: 20px;
-                margin-bottom: 80px;
-            }
-            .mobile-scroll-container {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 15px;
-                padding-bottom: 20px;
-                padding-right: 20px; /* Space for last card */
-                -webkit-overflow-scrolling: touch; /* Smooth scroll iOS */
-            }
+            /* Mobile Carousel */
+            .cert-section-mobile { padding-left: 20px; margin-bottom: 80px; }
+            .mobile-scroll-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; padding-bottom: 20px; padding-right: 20px; -webkit-overflow-scrolling: touch; }
             .cert-card-mobile {
-                flex: 0 0 85vw; /* Card takes 85% of screen width */
-                scroll-snap-align: center;
-                background: #111;
-                border: 1px solid rgba(255,255,255,0.1);
-                border-radius: 16px;
-                padding: 30px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 300px;
+                flex: 0 0 85vw; scroll-snap-align: center; background: #111; border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 16px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px;
             }
             .cert-card-mobile img { filter: grayscale(0%); max-height: 120px; margin-bottom: 20px; }
 
-            /* --- NEW MOBILE TIMELINE (Compact History) --- */
+            /* Mobile Timeline */
             .xp-mobile-wrapper { padding: 0 20px; margin-bottom: 80px; }
-            .xp-mobile-card {
-                position: relative;
-                padding-left: 30px;
-                margin-bottom: 40px;
-                border-left: 2px solid rgba(255,255,255,0.1);
-            }
-            .xp-mobile-card::before {
-                content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px;
-                background: var(--accent-yellow); border-radius: 50%;
-            }
+            .xp-mobile-card { position: relative; padding-left: 30px; margin-bottom: 40px; border-left: 2px solid rgba(255,255,255,0.1); }
+            .xp-mobile-card::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--accent-yellow); border-radius: 50%; }
             .xp-m-role { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 5px; }
             .xp-m-company { color: var(--accent-yellow); font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
             .xp-m-date { opacity: 0.5; font-size: 0.8rem; font-family: 'Syne', sans-serif; }
 
-            /* --- MOBILE EDU CARD --- */
+            /* Mobile Edu */
             .edu-mobile-wrapper { padding: 0 20px; margin-bottom: 80px; }
             .edu-mobile-card {
-                background: linear-gradient(135deg, #003087 0%, #000000 80%);
-                border-radius: 20px; padding: 30px; text-align: center;
-                border: 1px solid rgba(255,255,255,0.1);
+                background: linear-gradient(135deg, #003087 0%, #000000 80%); border-radius: 20px; padding: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
             }
             .edu-mobile-card img { width: 100px; margin-bottom: 20px; filter: grayscale(0%); }
             .honors-mobile { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
             
-            /* Mobile Offline Video */
-            .mobile-video-wrapper {
-                margin-bottom: 80px;
-                padding: 0 20px;
+            /* --- UPDATED: MOBILE OFFLINE CARD --- */
+            .mobile-video-wrapper { margin-bottom: 80px; padding: 0 20px; }
+            
+            .offline-card-mobile {
+                position: relative;
+                width: 100%;
+                height: 450px;
+                border-radius: 24px;
+                overflow: hidden;
+                border: 1px solid rgba(255,255,255,0.15);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+                background: #000;
             }
+
             .mobile-offline-video {
                 width: 100%;
-                height: 300px;
+                height: 100%;
                 object-fit: cover;
-                border-radius: 20px;
+                display: block;
+            }
+
+            /* Glass Panel at Bottom */
+            .offline-glass-panel {
+                position: absolute;
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
+                background: rgba(15, 15, 15, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
                 border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 18px;
+                padding: 20px;
+                z-index: 10;
+            }
+
+            .offline-header-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+
+            .offline-title-m {
+                font-family: 'Syne', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: white;
+            }
+
+            .rec-indicator {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: #ff4444;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .rec-dot {
+                width: 8px; height: 8px; background: #ff4444; border-radius: 50%;
+                animation: blink 2s infinite;
+            }
+            @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.4;} 100% {opacity: 1;} }
+
+            .offline-hobbies-m {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .hobby-pill-m {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+                background: rgba(255,255,255,0.05);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 50px;
+                color: rgba(255,255,255,0.8);
             }
         }
     </style>
@@ -469,12 +476,26 @@
         </div>
 
         <div class="mobile-video-wrapper">
-             <div style="position: relative;">
+             <div class="offline-card-mobile">
                 <video class="mobile-offline-video" autoplay loop muted playsinline>
                     <source src="assets/videos/1000050380.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="offline-overlay" style="left: 10px; bottom: 10px; font-size: 1rem;">Waleed.Offline()</div>
+                
+                <div class="offline-glass-panel">
+                    <div class="offline-header-row">
+                        <div class="offline-title-m">Offline Mode</div>
+                        <div class="rec-indicator">
+                            <div class="rec-dot"></div> REC
+                        </div>
+                    </div>
+                    
+                    <div class="offline-hobbies-m">
+                         <span class="hobby-pill-m">🌲 Outdoors</span>
+                         <span class="hobby-pill-m">⚽ Soccer</span>
+                         <span class="hobby-pill-m">✈️ Travel</span>
+                    </div>
+                </div>
              </div>
         </div>
 
