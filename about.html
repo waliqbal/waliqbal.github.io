@@ -12,8 +12,95 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        /* --- ABOUT PAGE SPECIFIC STYLES --- */
-        
+        /* --- GLOBAL & MOBILE HEADER DEFAULTS (Floating & Translucent) --- */
+        body { margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 100;
+            padding: 10px 30px;
+            
+            /* Box Sizing for correct width calculation */
+            box-sizing: border-box; 
+
+            border-radius: 50px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .header-inner {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--accent-yellow); }
+
+        /* --- BUTTON STYLES --- */
+        .contact-pill {
+            /* Default State: Your CTA Color */
+            border: 1px solid var(--accent-yellow) !important;
+            color: var(--accent-yellow) !important;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 100px;
+        }
+
+        .contact-pill:hover {
+            background-color: #0077b5 !important; /* LinkedIn Blue */
+            border-color: #0077b5 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .li-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            display: block; 
+        }
+
+        /* --- ABOUT PAGE CONTENT STYLES --- */
         .about-hero { padding: 200px 40px 100px; max-width: 1400px; margin: 0 auto; }
         .huge-text { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 9rem); line-height: 0.9; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; }
         .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 100px; align-items: start; }
@@ -55,58 +142,36 @@
         .honor-badge { background: rgba(255, 255, 255, 0.1); border: 1px solid #8996a0; padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; color: #fff; }
         .honor-badge.summa { border-color: var(--accent-yellow); color: var(--accent-yellow); background: rgba(255, 172, 0, 0.1); }
 
-        /* --- UPDATED LINKEDIN BUTTON & ICON --- */
-        .contact-pill {
-            /* Default State: Your CTA Color */
-            border: 1px solid var(--accent-yellow) !important;
-            color: var(--accent-yellow) !important;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            /* Flex for Icon Alignment */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
 
-        .contact-pill:hover {
-            background-color: #0077b5 !important; /* LinkedIn Blue */
-            border-color: #0077b5 !important;
-            color: #ffffff !important; /* White Text */
-            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .li-icon {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-            display: block; 
-        }
-
-        /* --- DESKTOP HEADER OVERRIDES (Only apply to screens larger than 900px) --- */
-        @media (min-width: 901px) {
+        /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
+        @media (max-width: 768px) {
             .header {
-                position: fixed;
-                top: 20px; /* Push down */
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                max-width: 1200px;
-                padding: 10px 30px;
-                border-radius: 50px; /* Rounded Corners */
-                background: rgba(10, 10, 10, 0.85); /* Translucent */
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(255,255,255,0.1);
-                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-                border-bottom: 1px solid rgba(255,255,255,0.1); 
+                width: 90%; 
+                max-width: 500px;
+                padding: 10px 15px; 
             }
+            
+            .logo-container .logo { height: 32px; }
+            .nav-menu { gap: 15px; }
+            .nav-link { font-size: 13px; padding: 0; }
+            
+            /* --- Mobile Button: Icon Only --- */
+            .contact-pill {
+                padding: 8px !important; 
+                border-radius: 8px !important; 
+                min-width: 36px;
+                color: var(--accent-yellow) !important; 
+                background-color: transparent !important; 
+            }
+            .contact-pill:hover { transform: none; }
+            
+            .btn-text { display: none; } /* Hide text on mobile */
+            .li-icon { width: 20px; height: 20px; }
+
+            .about-hero { padding-top: 140px; } /* Increase padding to clear floating header */
         }
 
-        /* --- MOBILE RESPONSIVE (Preserved) --- */
+        /* --- TABLET/MOBILE CONTENT STYLES (Max Width 900px) --- */
         @media (max-width: 900px) {
             .bio-grid { grid-template-columns: 1fr; }
             .xp-row { grid-template-columns: 1fr; gap: 10px; }
@@ -230,6 +295,37 @@
                 <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Alumni</span></div>
             </div>
 
+        </div>
+    </section>
+
+    <section class="xp-section">
+        <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
+        
+        <div class="xp-row">
+            <div class="xp-date">2021 - Present</div>
+            <div class="xp-role">
+                <h3>Ecommerce & Marketing Specialist</h3>
+                <p>Zack Wholesale</p>
+            </div>
+            <div class="xp-company">Memphis, TN</div>
+        </div>
+
+        <div class="xp-row">
+            <div class="xp-date">2023 - Present</div>
+            <div class="xp-role">
+                <h3>Freelance Developer & Strategist</h3>
+                <p>Evil Bull Knives & Others</p>
+            </div>
+            <div class="xp-company">Remote</div>
+        </div>
+
+        <div class="xp-row">
+            <div class="xp-date">2019 - 2021</div>
+            <div class="xp-role">
+                <h3>Sales Associate</h3>
+                <p>Retail Sector</p>
+            </div>
+            <div class="xp-company">Memphis, TN</div>
         </div>
     </section>
 
