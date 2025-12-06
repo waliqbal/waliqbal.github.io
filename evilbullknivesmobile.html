@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zack Wholesale | Mobile Case Study</title>
+    <title>Evil Bull Knives | Mobile Case Study</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. GLOBAL & VARIABLE SETUP (Mobile First, No Scroll Snap) --- */
+        /* --- 1. GLOBAL & MOBILE-FIRST BASE STYLES --- */
         :root {
             --color-dark: #0f1013;
             --color-text: #ececec;
-            --color-accent: #F36F21; /* Zack Wholesale Orange */
-            --color-link: #0077b5;
-            --font-body: 'Manrope', sans-serif;
+            --color-accent: #FFAC00; /* Evil Bull Knives Orange/Yellow */
             --font-display: 'Syne', sans-serif;
+            --font-body: 'Manrope', sans-serif;
             --mobile-padding: 20px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        
         body {
             background-color: var(--color-dark);
             color: var(--color-text);
@@ -33,7 +32,7 @@
             min-height: 100vh;
         }
 
-        a { text-decoration: none; color: var(--color-accent); }
+        a { text-decoration: none; color: var(--color-accent); transition: color 0.3s ease; }
 
         /* --- 2. NAVIGATION (Fixed Top Bar) --- */
         .mobile-header {
@@ -44,10 +43,10 @@
             backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .back-link { font-size: 0.9rem; font-weight: 600; color: var(--color-text); opacity: 0.8; }
         .nav-logo { height: 32px; opacity: 0.8; }
-
+        .indicator-wrapper { display: none; } /* Hide dots on mobile */
+        
         /* --- 3. SECTION LAYOUTS (Standard Vertical Flow) --- */
         .section {
             padding: 40px var(--mobile-padding);
@@ -59,81 +58,90 @@
         
         .content {
             display: flex;
-            flex-direction: column; /* Ensure all children stack */
+            flex-direction: column; 
             gap: 40px;
-            text-align: center;
         }
 
-        .text-container { width: 100%; }
+        .text-container { padding: 0; text-align: center; width: 100%; }
         .visual-container { width: 100%; display: flex; justify-content: center; }
 
-        /* --- 4. TYPOGRAPHY SCALING --- */
-        h1, h2 { font-family: var(--font-display); font-size: 2.5rem; line-height: 1.1; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
-        h1 { font-size: 3rem; }
-        .project-subtitle { font-size: 1rem; opacity: 0.8; }
+        h1, h2 { font-family: var(--font-display); line-height: 1.1; font-weight: 800; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2.2rem; }
         .accent { color: var(--color-accent); }
         .outline-text { -webkit-text-stroke: 1px var(--color-text); color: transparent; }
+        .project-subtitle, .lede { font-size: 1rem; opacity: 0.8; }
 
         /* Fix line break display for mobile stacking */
         .project-title br, .text-container h2 br { display: none; }
 
-        /* --- 5. VISUALS (Images/Video) --- */
-        .hero-img {
+        /* --- 4. HERO VIDEO FIX --- */
+        /* Ensuring video fits container width and maintains aspect ratio */
+        .hero-video {
             width: 100%;
-            max-width: 400px;
+            height: auto; /* Let height adjust automatically */
+            max-width: 100%;
+            object-fit: cover;
             border-radius: 12px;
+            overflow: hidden;
+            display: block;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* FIX: Added specific style for Hero Video to fit screen width */
-        .hero-video {
-            width: 100%;        /* Fits width of container */
-            height: auto;       /* Maintains aspect ratio */
-            max-width: 100%;    /* Prevents overflow */
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            object-fit: cover;
+
+        /* --- 5. PRODUCT CARD STYLING (EBKRS) --- */
+        .ebkrs {
+            --ebk-orange: var(--color-accent);
+            --muted: #cfcfcf;
+            font-family: var(--font-body);
+            border: 1px solid rgba(255, 172, 0, .28);
+            border-radius: 18px; 
+            padding: 24px 18px;
+            background: #0f1013;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            margin-top: 30px;
         }
         
-        .detail-video {
-            width: 100%;
-            max-height: 300px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .ebkrs::before { /* Background image */
+            content: ""; position: absolute; inset: 0; z-index: 0; border-radius: 18px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .65) 45%, #0f1013 85%),
+                        url("https://cdn.shopify.com/s/files/1/0774/4687/3365/files/a-look-across-the-landscape-with-view-of-the-sea.jpg?v=1759944827") top/cover no-repeat;
         }
-
-        /* --- 6. SPECS & STATS --- */
-        #ux { background: #101010; padding-bottom: 80px; }
-        .specs-wrapper { width: 100%; display: flex; flex-direction: column; gap: 30px; }
-
-        .specs-header { text-align: left; }
-        .specs-header h2 { font-size: 2.5rem; }
-        .specs-header p { font-size: 1rem; opacity: 0.7; }
-
-        /* Stat Grid (Converted to Stack) */
+        .ebkrs * { position: relative; z-index: 1; }
+        .ebkrs h2 { font-size: 1.8rem; margin: .1rem 0 0.8rem; font-family: var(--font-display); }
+        .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: .1rem 0 1rem; }
+        .chip { font-size: .65rem; padding: .3rem .6rem; border-radius: 999px; border: 1px solid rgba(255, 172, 0, .32); background: rgba(18, 18, 20, .92); }
+        .specs, .facts { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 1rem 0; } /* Stacked columns */
+        .spec { padding: 0.8rem; background: rgba(15, 15, 16, .96); border-radius: 12px; border: 1px solid rgba(255, 172, 0, .28); }
+        .k { font-size: .72rem; letter-spacing: .12em; color: #ffdda4; }
+        .panel { background: rgba(16, 16, 18, .96); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+        .panel h4 { font-size: 0.9rem; color: var(--ebk-orange); }
+        .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: .9rem 0 0; }
+        
+        /* --- 6. IMPACT STATS --- */
+        .specs-header { text-align: center; }
         .stats-grid { display: flex; flex-direction: column; gap: 15px; }
+
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(243, 111, 33, 0.25);
+            border: 1px solid rgba(255, 172, 0, 0.25);
             padding: 20px;
             border-radius: 12px;
-            text-align: left;
         }
         
-        .stat-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 5px; }
-        .stat-label { font-family: var(--font-display); letter-spacing: 1px; font-size: 0.75rem; opacity: 0.6; margin-bottom: 5px; }
-        .stat-list { list-style: none; padding: 0; margin-top: 10px; }
-        .stat-pill { font-size: 0.75rem; background: rgba(255, 255, 255, 0.1); padding: 4px 10px; border-radius: 50px; display: inline-block; margin-right: 5px; margin-bottom: 5px; }
+        .stat-value { font-size: 2.5rem; }
+        .stat-list { justify-content: center; } 
+        .stat-pill { font-size: 0.75rem; }
 
         /* --- 7. OUTRO --- */
-        #outro { padding: 0; min-height: 60vh; display: flex; justify-content: center; align-items: center; }
-
-        .outro-img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 0; border-radius: 0; }
-        
+        .big-legacy { font-size: 3rem; margin-bottom: 20px; }
         .visit-btn {
-            position: relative; z-index: 2; background-color: var(--color-accent); color: var(--color-dark);
-            font-family: var(--font-display); font-weight: 700; padding: 15px 35px; border-radius: 100px;
-            margin-top: 40px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background-color: var(--color-accent); color: var(--color-dark);
+            font-family: var(--font-display); font-weight: 700;
+            padding: 12px 30px; border-radius: 50px;
+            margin-top: 25px; box-shadow: 0 4px 15px rgba(255, 172, 0, 0.4);
         }
 
         /* --- SCROLL ANIMATION CSS (for scroll reveal) --- */
@@ -146,6 +154,7 @@
             opacity: 1;
             transform: translateY(0);
         }
+
     </style>
 </head>
 <body>
@@ -159,114 +168,132 @@
         
         <section id="intro" class="section">
             <div class="content">
-                <div class="text-container">
-                    <h1 class="project-title">Zack <span class="accent">Wholesale</span></h1>
-                    <p class="project-subtitle">Redefining the B2B purchasing experience with speed, scale, and omnichannel integration.</p>
-                </div>
                 <div class="visual-container animate-on-scroll">
                     <video class="hero-video" autoplay loop muted playsinline>
                         <source src="assets/videos/Untitled (1920 x 1080 px) (1).mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-            </div>
-        </section>
-
-        <section id="scale" class="section">
-            <div class="content">
-                <div class="text-container">
-                    <h2>Built for <span class="outline-text">Volume</span></h2>
-                    <p>Unlike standard retail, this platform handles high-volume inventory management and tiered pricing structures effortlessly, ensuring wholesale buyers get exactly what they need, fast.</p>
-                </div>
-                <div class="visual-container">
-                    <video class="detail-video" autoplay loop muted playsinline>
-                        <source src="assets/videos/zw landing.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <div class="text-container animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h1 class="project-title">Evil Bull <span class="accent">Knives</span></h1>
+                    <p class="project-subtitle">A fully functional ecommerce platform for a handmade knife brand targeting outdoor enthusiasts.</p>
                 </div>
             </div>
         </section>
 
-        <section id="ux" class="section">
+        <section id="blade" class="section">
             <div class="content">
-                <div class="specs-wrapper">
-                    <div class="specs-header">
-                        <h2>Business <span class="accent">Growth</span></h2>
-                        <p>A complete digital transformation transitioning the business into a fully integrated omnichannel wholesaler.</p>
-                    </div>
+                
+                <div class="text-container animate-on-scroll">
+                    <h2>Modern <span class="accent">Product Card</span> Design</h2>
+                    <p>I redesigned the product detail experience to be immersive and data-rich. By blending high-fidelity specs with ambient, outdoor visuals, we create a vibe anyone crazy about knives enjoys.</p>
+                    <p>Every element, from the typography to the horizon glow, reinforces the brand's rugged, premium ethos.</p>
+                </div>
 
-                    <div class="stats-grid">
-                        
-                        <div class="stat-card">
-                            <span class="stat-label">Efficiency Boost</span>
-                            <span class="stat-value js-counter" data-target="70" data-suffix="%">0</span>
-                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Reduction in processing time via AI & Automation.</p>
+                <div class="visual-container animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="ebkrs">
+                        <div class="eyebrow">Evil Bull Knives®</div>
+                        <h2>EBKRS — Rasp Steel Knife</h2>
+                        <p class="lede">A compact masterwork blending <strong>rasp-steel</strong> character with EBK’s signature finish — built for everyday utility and heirloom appeal.</p>
+                        <div class="chips">
+                            <span class="chip">Rasp Steel</span> <span class="chip">Walnut Handle</span> <span class="chip">Leather Sheath</span> <span class="chip">Gift-Ready</span> <span class="chip">Handmade</span>
                         </div>
-
-                        <div class="stat-card">
-                            <span class="stat-label">New Revenue</span>
-                            <span class="stat-value js-counter" data-target="60000" data-prefix="$" data-k="true">0</span>
-                            <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated via targeted online campaigns.</p>
-                        </div>
-
-                        <div class="stat-card">
-                            <div style="display:flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <span class="stat-label">Online Visibility</span>
-                                    <span class="stat-value js-counter" data-target="600" data-suffix="%">0</span>
-                                </div>
-                                <div style="text-align: right; opacity: 0.8;">
-                                    <span style="display:block; font-size:1.5rem; font-weight:800; color:white;" class="js-counter" data-target="28000" data-k="true">0</span>
-                                    <span style="font-size:0.8rem; text-transform:uppercase;">Unique Visitors</span>
-                                </div>
+                        <div class="divider"><br></div>
+                        <div class="specs">
+                            <div class="spec">
+                                <span class="k">Overall Length</span><span class="v">8.0″ (20.3 cm)</span>
+                                <div>Balanced compact profile for control.</div>
+                            </div>
+                            <div class="spec">
+                                <span class="k">Blade Length</span><span class="v">4.0″ (10.2 cm)</span>
+                                <div>Everyday versatility with confident bite.</div>
+                            </div>
+                            <div class="spec">
+                                <span class="k">Handle Length</span><span class="v">4.0″ (10.2 cm)</span>
+                                <div>Ergonomic fit for secure grip.</div>
                             </div>
                         </div>
-
-                        <div class="stat-card">
-                            <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">My Role (Solo)</span>
-                            <ul class="stat-list">
-                                <li class="stat-pill">Full Stack Dev</li>
-                                <li class="stat-pill">Product Manager</li>
-                                <li class="stat-pill">Paid Marketing (Google/Meta)</li>
-                                <li class="stat-pill">SEO & Automation</li>
-                                <li class="stat-pill">Sales Strategy</li>
+                        <div class="facts">
+                            <div class="fact">
+                                <div class="glyph" aria-hidden="true"><br></div>
+                                <div><h5>Utility Grind</h5><p>Durable edge geometry for slicing, light carving, and daily tasks.</p></div>
+                            </div>
+                            <div class="fact">
+                                <div class="glyph" aria-hidden="true"><br></div>
+                                <div><h5>Grip &amp; Balance</h5><p>Contoured walnut scales with secure palm index for confident control.</p></div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <h4>Shipping &amp; Production</h4>
+                            <ul>
+                                <li>Estimated delivery date shown at checkout.</li>
+                                <li>Custom engraving (optional) adds 2–3 weeks.</li>
                             </ul>
                         </div>
-                         <div class="stat-card">
-                            <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">Tech Stack</span>
-                            <ul class="stat-list">
-                                <li class="stat-pill">Shopify Plus</li>
-                                <li class="stat-pill">SEMrush</li>
-                                <li class="stat-pill">Generative AI</li>
-                                <li class="stat-pill">Excel Automation</li>
-                            </ul>
+                        <div class="badges">
+                            <div class="badge">Crafted for Generations</div>
+                            <div class="badge">Premium Quality</div>
                         </div>
-
+                        <p class="note"><strong>Handmade Notice:</strong> We often use natural materials; slight differences in color and texture are normal and make your knife unique.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="outro" class="section">
+        <section id="specs" class="section">
             <div class="content">
-                <div class="visual-container">
-                    <img src="assets/images/ZWvisit.png" alt="Zack Wholesale Branding" class="outro-img">
+                <div class="specs-header animate-on-scroll">
+                    <h2>Project <span class="accent">Impact</span></h2>
+                    <p>A comprehensive solo development effort resulting in a high-performing e-commerce asset.</p>
                 </div>
-                
-                <div class="text-container">
-                    <a href="https://zackwholesale.net" target="_blank" class="visit-btn">Visit Live Site</a>
+
+                <div class="stats-grid animate-on-scroll" style="animation-delay: 0.1s;">
+                    
+                    <div class="stat-card">
+                        <span class="stat-label">Total Sales</span>
+                        <span class="stat-value js-counter" data-target="6000" data-prefix="$" data-k="true">0</span>
+                        <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Generated revenue</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-label">User Sessions</span>
+                        <span class="stat-value js-counter" data-target="17000" data-k="true">0</span>
+                        <p style="font-size: 0.9rem; opacity: 0.5; margin:0;">Traffic delivered</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-label">Development Timeline</span>
+                        <span class="stat-value" style="color: white; font-size: 2.5rem;">3 Months</span>
+                        <p style="font-size: 0.9rem; opacity: 0.5; margin-top:5px;">From initial concept to full market launch.</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-label" style="display:block; margin-bottom:10px; color:var(--color-accent);">My Role (Solo)</span>
+                        <ul class="stat-list">
+                            <li class="stat-pill">UI/UX Design</li>
+                            <li class="stat-pill">Full Stack Dev</li>
+                            <li class="stat-pill">SEO Strategy</li>
+                            <li class="stat-pill">Email Marketing</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="legacy" class="section">
+            <div class="content centered">
+                <h2 class="big-legacy animate-on-scroll">Seal Your <span class="accent">Legacy</span></h2>
+                <p class="animate-on-scroll" style="animation-delay: 0.1s;">The final result is a brand identity that stands the test of time.</p>
+                <a href="https://evilbullknives.com" target="_blank" class="visit-btn animate-on-scroll" style="animation-delay: 0.2s;">Visit Live Site</a>
             </div>
         </section>
 
     </main>
 
-    <footer class="footer">
-        <p>© 2025 WUI. All Rights Reserved.</p>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            /* --- Counter Animation Logic --- */
             const counters = document.querySelectorAll('.js-counter');
             
             const formatNumber = (num, prefix = '', suffix = '', isK = false) => {
@@ -282,14 +309,14 @@
                 const prefix = element.getAttribute('data-prefix') || '';
                 const suffix = element.getAttribute('data-suffix') || '';
                 const isK = element.getAttribute('data-k') === 'true';
-                const duration = 1500;
+                const duration = 2000;
                 let startTime = null;
 
                 const step = (timestamp) => {
                     if (!startTime) startTime = timestamp;
                     const progress = timestamp - startTime;
                     const percentage = Math.min(progress / duration, 1);
-                    const currentValue = Math.floor(percentage * target);
+                    const currentValue = percentage * target;
 
                     element.textContent = formatNumber(currentValue, prefix, suffix, isK);
 
@@ -299,31 +326,45 @@
                         element.textContent = formatNumber(target, prefix, suffix, isK);
                     }
                 };
+
                 requestAnimationFrame(step);
+            };
+
+            /* --- Intersection Observer for Scroll Reveal & Counters --- */
+            const scrollAnimatedElements = document.querySelectorAll('.animate-on-scroll, .js-counter');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of element is visible
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                        animateCount(entry.target);
-                        entry.target.classList.add('counted');
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            counters.forEach(counter => observer.observe(counter));
-
-            // Scroll Animation Observer
-            const scrollElements = document.querySelectorAll('.animate-on-scroll');
-            const scrollObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        
+                        // Start counter animation if it's a counter element
+                        if (entry.target.classList.contains('js-counter') && !entry.target.classList.contains('counted')) {
+                            animateCount(entry.target);
+                            entry.target.classList.add('counted');
+                        }
+                    } else {
+                        // Optional: remove visible class if desired for re-triggering
+                        // entry.target.classList.remove('is-visible'); 
                     }
                 });
-            }, { threshold: 0.1 });
+            }, observerOptions);
 
-            scrollElements.forEach(el => scrollObserver.observe(el));
+            scrollAnimatedElements.forEach(element => {
+                // Initialize counters to zero visually
+                if (element.classList.contains('js-counter')) {
+                    const prefix = element.getAttribute('data-prefix') || '';
+                    const suffix = element.getAttribute('data-suffix') || '';
+                    element.textContent = prefix + '0' + suffix;
+                }
+                observer.observe(element);
+            });
         });
     </script>
 </body>
