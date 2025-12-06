@@ -22,25 +22,27 @@
 
         /* --- DESKTOP HEADER STYLES (Floating & Translucent) --- */
         .header {
-            position: fixed;
-            top: 20px; /* Push down from top */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            z-index: 100;
-            padding: 10px 30px; /* Compact padding */
-            
-            /* Floating styling */
-            border-radius: 50px;
-            background: rgba(10, 10, 10, 0.85); /* Dark translucent */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            /* Overwrite potential bottom border from main styles if needed */
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
-        }
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1200px;
+        z-index: 100;
+        padding: 10px 30px;
+        
+        /* --- ADD THIS LINE --- */
+        box-sizing: border-box; 
+        /* --------------------- */
+
+        border-radius: 50px;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+    }
 
         .header-inner {
             width: 100%;
