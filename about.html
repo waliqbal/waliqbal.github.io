@@ -12,129 +12,91 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        /* --- GLOBAL & MOBILE HEADER DEFAULTS (Floating & Translucent) --- */
-        body { margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+        /* --- 1. GLOBAL UTILITIES --- */
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; overflow-x: hidden; width: 100%; background-color: #050505; color: white; }
 
+        /* Utility classes to toggle UI modes */
+        .mobile-only { display: none !important; }
+        .desktop-only { display: block !important; }
+
+        /* --- 2. HEADER STYLES (Shared) --- */
         .header {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            z-index: 100;
+            top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1200px; z-index: 100;
             padding: 10px 30px;
-            
-            /* Box Sizing for correct width calculation */
-            box-sizing: border-box; 
-
             border-radius: 50px;
             background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
-
-        .header-inner {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
+        .header-inner { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 40px; width: auto; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
         .nav-link {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: color 0.3s;
+            font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8);
+            text-decoration: none; transition: color 0.3s;
         }
-
         .nav-link:hover { color: var(--accent-yellow); }
-
-        /* --- BUTTON STYLES --- */
         .contact-pill {
-            /* Default State: Your CTA Color */
-            border: 1px solid var(--accent-yellow) !important;
-            color: var(--accent-yellow) !important;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: 100px;
+            border: 1px solid var(--accent-yellow) !important; color: var(--accent-yellow) !important;
+            transition: all 0.3s ease; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 24px; border-radius: 100px;
         }
-
         .contact-pill:hover {
-            background-color: #0077b5 !important; /* LinkedIn Blue */
-            border-color: #0077b5 !important;
-            color: #ffffff !important;
-            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
-            transform: translateY(-2px);
+            background-color: #0077b5 !important; border-color: #0077b5 !important;
+            color: #ffffff !important; box-shadow: 0 0 15px rgba(0, 119, 181, 0.4); transform: translateY(-2px);
         }
+        .li-icon { width: 16px; height: 16px; fill: currentColor; display: block; }
 
-        .li-icon {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-            display: block; 
-        }
-
-        /* --- ABOUT PAGE CONTENT STYLES --- */
-        .about-hero { padding: 200px 40px 100px; max-width: 1400px; margin: 0 auto; }
+        /* --- 3. DESKTOP UI STYLES --- */
+        .about-hero { padding: 200px 40px 100px; max-width: 1400px; margin: 0 auto; width: 100%; }
         .huge-text { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 9rem); line-height: 0.9; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; }
         .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 100px; align-items: start; }
         .bio-text { font-size: 1.25rem; line-height: 1.7; color: rgba(255,255,255,0.8); }
         .bio-text strong { color: var(--accent-yellow); font-weight: 600; }
-        .profile-img-container { position: relative; border-radius: 20px; overflow: hidden; transform: rotate(2deg); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid rgba(255,255,255,0.1); }
+        
+        .profile-img-container { position: relative; border-radius: 20px; overflow: hidden; transform: rotate(2deg); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid rgba(255,255,255,0.1); width: 100%; }
         .profile-img-container:hover { transform: rotate(0deg) scale(1.02); }
         .profile-img { width: 100%; height: auto; display: block; filter: grayscale(100%) contrast(1.1); transition: filter 0.5s ease; }
         .profile-img-container:hover .profile-img { filter: grayscale(0%); }
-        .xp-section { max-width: 1000px; margin: 150px auto; padding: 0 40px; }
-        .xp-row { border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0; display: grid; grid-template-columns: 1fr 2fr 1fr; transition: background 0.3s; }
-        .xp-row:hover { background: rgba(255,255,255,0.02); }
-        .xp-date { font-family: 'Syne', sans-serif; opacity: 0.5; }
-        .xp-role h3 { font-size: 1.5rem; margin-bottom: 5px; color:white; }
-        .xp-role p { font-size: 0.9rem; opacity: 0.7; }
-        .xp-company { text-align: right; color: var(--accent-yellow); font-weight: 700; }
-        .cert-section { margin: 150px auto; padding: 0 40px; max-width: 1400px; }
+        
+        /* Desktop Cert Grid */
+        .cert-section { margin: 150px auto; padding: 0 40px; max-width: 1400px; width: 100%; }
         .section-header-center { text-align: center; margin-bottom: 60px; }
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
-        .cert-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.3s ease, border-color 0.3s ease; height: 250px; }
+        .cert-card { 
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 16px; padding: 20px; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; transition: transform 0.3s ease, border-color 0.3s ease; 
+            height: 250px; 
+        }
         .cert-card:hover { transform: translateY(-10px); border-color: var(--accent-yellow); background: rgba(255,255,255,0.06); }
         .cert-img { max-width: 100%; max-height: 150px; object-fit: contain; margin-bottom: 20px; filter: grayscale(100%); transition: filter 0.3s ease; }
         .cert-card:hover .cert-img { filter: grayscale(0%); }
         .cert-name { font-family: 'Manrope', sans-serif; font-size: 0.9rem; text-align: center; font-weight: 600; color: rgba(255,255,255,0.8); }
-        .personal-section { background: #101010; padding: 100px 40px; margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        .xp-section { max-width: 1000px; margin: 150px auto; padding: 0 40px; width: 100%; }
+        .xp-row { border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0; display: grid; grid-template-columns: 1fr 2fr 1fr; transition: background 0.3s; }
+        .xp-date { font-family: 'Syne', sans-serif; opacity: 0.5; }
+        .xp-role h3 { font-size: 1.5rem; margin-bottom: 5px; color:white; }
+        .xp-role p { font-size: 0.9rem; opacity: 0.7; }
+        .xp-company { text-align: right; color: var(--accent-yellow); font-weight: 700; }
+
+        .personal-section { background: #101010; padding: 100px 40px; margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; }
         .personal-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .hobbies-list { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
         .hobby-pill { border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 10px 25px; border-radius: 50px; font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: all 0.3s; }
         .hobby-pill:hover { background: var(--accent-yellow); color: black; }
-        .edu-section { margin: 150px auto; max-width: 1200px; padding: 0 40px; position: relative; }
+
+        .edu-section { margin: 150px auto; max-width: 1200px; padding: 0 40px; position: relative; width: 100%; }
         .edu-card { background: linear-gradient(135deg, #003087 0%, #000000 80%); border-radius: 30px; overflow: hidden; position: relative; padding: 60px; display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 48, 135, 0.15); }
         .tiger-stripes { position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 20px, transparent 20px, transparent 40px); z-index: 0; opacity: 0.5; }
         .edu-emblem { width: 100%; max-width: 250px; filter: grayscale(100%) brightness(1.2); transition: all 0.5s ease; position: relative; z-index: 1; }
-        .edu-card:hover .edu-emblem { filter: grayscale(0%); transform: scale(1.05) rotate(-5deg); }
         .edu-content { position: relative; z-index: 1; }
         .edu-header { font-family: 'Syne', sans-serif; font-size: 2.5rem; line-height: 1; margin-bottom: 20px; color: white; }
         .edu-sub { font-size: 1.2rem; color: rgba(255,255,255,0.8); margin-bottom: 30px; }
@@ -143,44 +105,111 @@
         .honor-badge.summa { border-color: var(--accent-yellow); color: var(--accent-yellow); background: rgba(255, 172, 0, 0.1); }
 
 
-        /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
+        /* --- 4. MOBILE-ONLY UI OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
-            .header {
-                width: 90%; 
-                max-width: 500px;
-                padding: 10px 15px; 
-            }
             
+            /* Toggle Utilities */
+            .mobile-only { display: block !important; }
+            .desktop-only { display: none !important; }
+
+            /* Header Adjustments */
+            .header { width: 90%; max-width: 500px; padding: 10px 15px; }
             .logo-container .logo { height: 32px; }
             .nav-menu { gap: 15px; }
             .nav-link { font-size: 13px; padding: 0; }
-            
-            /* --- Mobile Button: Icon Only --- */
-            .contact-pill {
-                padding: 8px !important; 
-                border-radius: 8px !important; 
-                min-width: 36px;
-                color: var(--accent-yellow) !important; 
-                background-color: transparent !important; 
-            }
-            .contact-pill:hover { transform: none; }
-            
-            .btn-text { display: none; } /* Hide text on mobile */
+            .contact-pill { padding: 8px !important; border-radius: 8px !important; min-width: 36px; color: var(--accent-yellow) !important; background-color: transparent !important; }
+            .btn-text { display: none; }
             .li-icon { width: 20px; height: 20px; }
 
-            .about-hero { padding-top: 140px; } /* Increase padding to clear floating header */
-        }
+            /* --- NEW MOBILE HERO (ID Card Style) --- */
+            .mobile-hero-wrapper {
+                height: 90vh; /* Nearly full screen */
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 30px;
+                overflow: hidden;
+                margin-bottom: 50px;
+            }
+            
+            .mobile-hero-bg {
+                position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                /* Using profile pic as background for cool effect */
+                background-image: url('assets/images/pfpportfolio.jpeg'); 
+                background-size: cover;
+                background-position: center;
+                filter: grayscale(100%) brightness(0.6);
+                z-index: -1;
+            }
+            
+            .mobile-hero-content {
+                z-index: 2;
+                background: rgba(0,0,0,0.7);
+                backdrop-filter: blur(10px);
+                padding: 25px;
+                border-radius: 20px;
+                border: 1px solid rgba(255,255,255,0.15);
+            }
 
-        /* --- TABLET/MOBILE CONTENT STYLES (Max Width 900px) --- */
-        @media (max-width: 900px) {
-            .bio-grid { grid-template-columns: 1fr; }
-            .xp-row { grid-template-columns: 1fr; gap: 10px; }
-            .xp-company { text-align: left; }
-            .huge-text { font-size: 3.5rem; }
-            .personal-container { grid-template-columns: 1fr; }
-            .edu-card { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
-            .edu-emblem { max-width: 150px; margin: 0 auto; }
-            .honors-list { justify-content: center; }
+            .m-hero-title { font-family: 'Syne', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; color: white; }
+            .m-hero-subtitle { font-family: 'Manrope', sans-serif; color: var(--accent-yellow); font-weight: 700; font-size: 1rem; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+            /* --- NEW MOBILE CAROUSEL (For Certs) --- */
+            /* This turns the grid into a horizontal scroll snap area */
+            .cert-section-mobile {
+                padding-left: 20px;
+                margin-bottom: 80px;
+            }
+            .mobile-scroll-container {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding-bottom: 20px;
+                padding-right: 20px; /* Space for last card */
+                -webkit-overflow-scrolling: touch; /* Smooth scroll iOS */
+            }
+            .cert-card-mobile {
+                flex: 0 0 85vw; /* Card takes 85% of screen width */
+                scroll-snap-align: center;
+                background: #111;
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 16px;
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 300px;
+            }
+            .cert-card-mobile img { filter: grayscale(0%); max-height: 120px; margin-bottom: 20px; }
+
+            /* --- NEW MOBILE TIMELINE (Compact History) --- */
+            .xp-mobile-wrapper { padding: 0 20px; margin-bottom: 80px; }
+            .xp-mobile-card {
+                position: relative;
+                padding-left: 30px;
+                margin-bottom: 40px;
+                border-left: 2px solid rgba(255,255,255,0.1);
+            }
+            .xp-mobile-card::before {
+                content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px;
+                background: var(--accent-yellow); border-radius: 50%;
+            }
+            .xp-m-role { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 5px; }
+            .xp-m-company { color: var(--accent-yellow); font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+            .xp-m-date { opacity: 0.5; font-size: 0.8rem; font-family: 'Syne', sans-serif; }
+
+            /* --- MOBILE EDU CARD --- */
+            .edu-mobile-wrapper { padding: 0 20px; margin-bottom: 80px; }
+            .edu-mobile-card {
+                background: linear-gradient(135deg, #003087 0%, #000000 80%);
+                border-radius: 20px; padding: 30px; text-align: center;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            .edu-mobile-card img { width: 100px; margin-bottom: 20px; filter: grayscale(0%); }
+            .honors-mobile { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
         }
     </style>
 </head>
@@ -208,148 +237,222 @@
         </div>
     </header>
 
-    <section class="about-hero">
-        <h1 class="huge-text reveal-text">
-            Data Driven <br>
-            <span style="color: transparent; -webkit-text-stroke: 2px var(--accent-yellow);">Design</span>
-        </h1>
+    <div class="desktop-only">
+        <section class="about-hero">
+            <h1 class="huge-text reveal-text">
+                Data Driven <br>
+                <span style="color: transparent; -webkit-text-stroke: 2px var(--accent-yellow);">Design</span>
+            </h1>
 
-        <div class="bio-grid">
-            <div class="profile-img-container reveal-text-delay">
-                <img src="assets/images/pfpportfolio.jpeg" alt="Waleed Iqbal" class="profile-img"> 
-            </div>
-
-            <div class="bio-text reveal-text-delay">
-                <p>
-                    I am an <strong>E-commerce Strategist</strong> and <strong>Creative Technologist</strong> based in Memphis, TN. I bridge the gap between data and vibes.
-                </p>
-                <br>
-                <p>
-                    I recently graduated from the <strong>University of Memphis</strong> with a degree in Management Information Systems, obsessed with data driven decision making.
-                </p>
-                
-                <br><br>
-                <img src="assets/images/Copy of WALEED (1).png" alt="Signature" style="height: 40px; opacity: 0.8;">
-            </div>
-        </div>
-    </section>
-
-    <section class="edu-section">
-        <div class="edu-card">
-            <div class="tiger-stripes"></div>
-            
-            <img src="assets/images/uofmbadge.png" alt="University of Memphis" class="edu-emblem">
-            
-            <div class="edu-content">
-                <div class="edu-header">University of Memphis</div>
-                <div class="edu-sub">
-                    <strong>Fogelman College of Business & Economics</strong><br>
-                    Bachelor's in Management Information Systems<br>
-                    <span style="opacity: 0.6; font-size: 0.9rem;">Class of 2025</span>
+            <div class="bio-grid">
+                <div class="profile-img-container reveal-text-delay">
+                    <img src="assets/images/pfpportfolio.jpeg" alt="Waleed Iqbal" class="profile-img"> 
                 </div>
-                
-                <div class="honors-list">
-                    <span class="honor-badge summa">Summa Cum Laude</span>
-                    <span class="honor-badge">University Honors</span>
-                    <span class="honor-badge">Dean's List</span>
+
+                <div class="bio-text reveal-text-delay">
+                    <p>
+                        I am an <strong>E-commerce Strategist</strong> and <strong>Creative Technologist</strong> based in Memphis, TN. I bridge the gap between data and vibes.
+                    </p>
+                    <br>
+                    <p>
+                        I recently graduated from the <strong>University of Memphis</strong> with a degree in Management Information Systems, obsessed with data driven decision making.
+                    </p>
+                    
+                    <br><br>
+                    <img src="assets/images/Copy of WALEED (1).png" alt="Signature" style="height: 40px; opacity: 0.8;">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="cert-section">
-        <div class="section-header-center">
-            <h2 style="font-family:'Syne', sans-serif; font-size:3rem;">Credentials</h2>
-            <p style="opacity:0.6;">Certified expertise across marketing, data, and management.</p>
-        </div>
+        <section class="edu-section">
+            <div class="edu-card">
+                <div class="tiger-stripes"></div>
+                <img src="assets/images/uofmbadge.png" alt="University of Memphis" class="edu-emblem">
+                <div class="edu-content">
+                    <div class="edu-header">University of Memphis</div>
+                    <div class="edu-sub">
+                        <strong>Fogelman College of Business & Economics</strong><br>
+                        Bachelor's in Management Information Systems<br>
+                        <span style="opacity: 0.6; font-size: 0.9rem;">Class of 2025</span>
+                    </div>
+                    <div class="honors-list">
+                        <span class="honor-badge summa">Summa Cum Laude</span>
+                        <span class="honor-badge">University Honors</span>
+                        <span class="honor-badge">Dean's List</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cert-section">
+            <div class="section-header-center">
+                <h2 style="font-family:'Syne', sans-serif; font-size:3rem;">Credentials</h2>
+                <p style="opacity:0.6;">Certified expertise across marketing, data, and management.</p>
+            </div>
+            
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <img src="assets/images/MOScert.png" alt="Microsoft Excel" class="cert-img">
+                    <div class="cert-name">Microsoft Office Specialist<br><span style="opacity:0.6; font-size:0.8rem;">Excel Associate</span></div>
+                </div>
+                <div class="cert-card">
+                    <img src="assets/images/digitalmarketcert.png" alt="Digital Marketing" class="cert-img">
+                    <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Digital Marketing Specialist</span></div>
+                </div>
+                <div class="cert-card">
+                    <img src="assets/images/semrushcert (2).png" alt="Semrush" class="cert-img">
+                    <div class="cert-name">SEMrush<br><span style="opacity:0.6; font-size:0.8rem;">Getting Started with Semrush</span></div>
+                </div>
+                <div class="cert-card">
+                    <img src="assets/images/fundofpMI.png" alt="PMI Agile" class="cert-img">
+                    <div class="cert-name">Project Management Institute<br><span style="opacity:0.6; font-size:0.8rem;">Fundamentals of Agile</span></div>
+                </div>
+                <div class="cert-card">
+                    <img src="assets/images/UOFMdigcert.jpeg" alt="UofM Digital" class="cert-img">
+                    <div class="cert-name">University of Memphis<br><span style="opacity:0.6; font-size:0.8rem;">Completion of Digital Marketing Track</span></div>
+                </div>
+                <div class="cert-card">
+                    <img src="assets/images/globalcareer acceleratormini logo.jpeg" alt="GCA" class="cert-img" style="border-radius:50%;">
+                    <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Alumni</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="xp-section">
+            <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
+            <div class="xp-row">
+                <div class="xp-date">2021 - Present</div>
+                <div class="xp-role">
+                    <h3>Ecommerce & Marketing Specialist</h3>
+                    <p>Zack Wholesale</p>
+                </div>
+                <div class="xp-company">Memphis, TN</div>
+            </div>
+            <div class="xp-row">
+                <div class="xp-date">2023 - Present</div>
+                <div class="xp-role">
+                    <h3>Freelance Developer & Strategist</h3>
+                    <p>Evil Bull Knives & Others</p>
+                </div>
+                <div class="xp-company">Remote</div>
+            </div>
+            <div class="xp-row">
+                <div class="xp-date">2019 - 2021</div>
+                <div class="xp-role">
+                    <h3>Sales Associate</h3>
+                    <p>Retail Sector</p>
+                </div>
+                <div class="xp-company">Memphis, TN</div>
+            </div>
+        </section>
+
+        <section class="personal-section">
+            <div class="personal-container">
+                <div class="personal-text">
+                    <h2 class="huge-text" style="font-size: 4rem; margin-bottom: 20px;">Offline <span style="color:var(--accent-yellow)">Mode</span></h2>
+                    <p class="bio-text">
+                        In my free time I love connecting with nature and getting some downtime. 
+                    </p>
+                    <div class="hobbies-list">
+                        <span class="hobby-pill">🌲 Outdoors</span>
+                        <span class="hobby-pill">✈️ Travel</span>
+                        <span class="hobby-pill">⚽ Soccer</span>
+                        <span class="hobby-pill">🍜 Food</span>
+                    </div>
+                </div>
+                <div style="width:100%; height: 400px; background: radial-gradient(circle, rgba(255,201,51,0.1), transparent); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;">
+                    <span style="font-family:'Syne', sans-serif; font-size: 2rem; opacity: 0.5;">Waleed.Offline()</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="mobile-only">
         
-        <div class="cert-grid">
-            
-            <div class="cert-card">
-                <img src="assets/images/MOScert.png" alt="Microsoft Excel" class="cert-img">
-                <div class="cert-name">Microsoft Office Specialist<br><span style="opacity:0.6; font-size:0.8rem;">Excel Associate</span></div>
-            </div>
-
-            <div class="cert-card">
-                <img src="assets/images/digitalmarketcert.png" alt="Digital Marketing" class="cert-img">
-                <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Digital Marketing Specialist</span></div>
-            </div>
-
-            <div class="cert-card">
-                <img src="assets/images/semrushcert (2).png" alt="Semrush" class="cert-img">
-                <div class="cert-name">SEMrush<br><span style="opacity:0.6; font-size:0.8rem;">Getting Started with Semrush</span></div>
-            </div>
-
-            <div class="cert-card">
-                <img src="assets/images/fundofpMI.png" alt="PMI Agile" class="cert-img">
-                <div class="cert-name">Project Management Institute<br><span style="opacity:0.6; font-size:0.8rem;">Fundamentals of Agile</span></div>
-            </div>
-
-            <div class="cert-card">
-                <img src="assets/images/UOFMdigcert.jpeg" alt="UofM Digital" class="cert-img">
-                <div class="cert-name">University of Memphis<br><span style="opacity:0.6; font-size:0.8rem;">Completion of Digital Marketing Track</span></div>
-            </div>
-
-            <div class="cert-card">
-                <img src="assets/images/globalcareer acceleratormini logo.jpeg" alt="GCA" class="cert-img" style="border-radius:50%;">
-                <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Alumni</span></div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="xp-section">
-        <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
-        
-        <div class="xp-row">
-            <div class="xp-date">2021 - Present</div>
-            <div class="xp-role">
-                <h3>Ecommerce & Marketing Specialist</h3>
-                <p>Zack Wholesale</p>
-            </div>
-            <div class="xp-company">Memphis, TN</div>
-        </div>
-
-        <div class="xp-row">
-            <div class="xp-date">2023 - Present</div>
-            <div class="xp-role">
-                <h3>Freelance Developer & Strategist</h3>
-                <p>Evil Bull Knives & Others</p>
-            </div>
-            <div class="xp-company">Remote</div>
-        </div>
-
-        <div class="xp-row">
-            <div class="xp-date">2019 - 2021</div>
-            <div class="xp-role">
-                <h3>Sales Associate</h3>
-                <p>Retail Sector</p>
-            </div>
-            <div class="xp-company">Memphis, TN</div>
-        </div>
-    </section>
-
-    <section class="personal-section">
-        <div class="personal-container">
-            <div class="personal-text">
-                <h2 class="huge-text" style="font-size: 4rem; margin-bottom: 20px;">Offline <span style="color:var(--accent-yellow)">Mode</span></h2>
-                <p class="bio-text">
-                    In my free time I love connecting with nature and getting some downtime. 
+        <div class="mobile-hero-wrapper">
+            <div class="mobile-hero-bg"></div>
+            <div class="mobile-hero-content">
+                <h1 class="m-hero-title">Waleed <br>Iqbal</h1>
+                <div class="m-hero-subtitle">Creative Technologist</div>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 15px;">
+                    Memphis-based Strategist bridging the gap between data & vibes.
                 </p>
-                
-                <div class="hobbies-list">
-                    <span class="hobby-pill">🌲 Outdoors</span>
-                    <span class="hobby-pill">✈️ Travel</span>
-                    <span class="hobby-pill">⚽ Soccer</span>
-                    <span class="hobby-pill">🍜 Food</span>
+                <div class="hobbies-list" style="margin-top: 15px;">
+                    <span class="hobby-pill" style="font-size: 0.7rem; padding: 5px 15px;">Memphis, TN</span>
+                    <span class="hobby-pill" style="font-size: 0.7rem; padding: 5px 15px;">MIS '25</span>
                 </div>
             </div>
-            
-            <div style="width:100%; height: 400px; background: radial-gradient(circle, rgba(255,201,51,0.1), transparent); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;">
-                <span style="font-family:'Syne', sans-serif; font-size: 2rem; opacity: 0.5;">Waleed.Offline()</span>
+        </div>
+
+        <div class="edu-mobile-wrapper">
+            <h2 style="font-family:'Syne'; font-size: 1.5rem; margin-bottom: 20px; color:white;">Education</h2>
+            <div class="edu-mobile-card">
+                <img src="assets/images/uofmbadge.png" alt="UofM">
+                <div style="font-family:'Syne'; font-size: 1.2rem; color: white; line-height: 1.1;">University of Memphis</div>
+                <div style="font-size: 0.9rem; opacity: 0.7; margin-top: 5px;">B.B.A Management Info Systems</div>
+                <div class="honors-mobile">
+                    <span class="honor-badge summa" style="font-size: 0.7rem;">Summa Cum Laude</span>
+                    <span class="honor-badge" style="font-size: 0.7rem;">University Honors</span>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div class="cert-section-mobile">
+            <h2 style="font-family:'Syne'; font-size: 1.5rem; margin-bottom: 20px; color:white;">Credentials</h2>
+            <div class="mobile-scroll-container">
+                <div class="cert-card-mobile">
+                    <img src="assets/images/MOScert.png" alt="Microsoft Excel">
+                    <div class="cert-name">Microsoft Office Specialist<br><span style="opacity:0.6; font-size:0.8rem;">Excel Associate</span></div>
+                </div>
+                <div class="cert-card-mobile">
+                    <img src="assets/images/digitalmarketcert.png" alt="Digital Marketing">
+                    <div class="cert-name">Global Career Accelerator<br><span style="opacity:0.6; font-size:0.8rem;">Digital Marketing Specialist</span></div>
+                </div>
+                <div class="cert-card-mobile">
+                    <img src="assets/images/semrushcert (2).png" alt="Semrush">
+                    <div class="cert-name">SEMrush<br><span style="opacity:0.6; font-size:0.8rem;">SEO Toolkit</span></div>
+                </div>
+                <div class="cert-card-mobile">
+                    <img src="assets/images/fundofpMI.png" alt="PMI">
+                    <div class="cert-name">Project Management Inst.<br><span style="opacity:0.6; font-size:0.8rem;">Fundamentals of Agile</span></div>
+                </div>
+            </div>
+            <div style="text-align: center; font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">← Swipe to view more →</div>
+        </div>
+
+        <div class="xp-mobile-wrapper">
+            <h2 style="font-family:'Syne'; font-size: 1.5rem; margin-bottom: 20px; color:white;">History</h2>
+            
+            <div class="xp-mobile-card">
+                <div class="xp-m-role">Ecommerce Specialist</div>
+                <div class="xp-m-company">Zack Wholesale • 2021 - Present</div>
+                <div class="xp-m-date">Driving digital strategy and automation for B2B operations.</div>
+            </div>
+
+            <div class="xp-mobile-card">
+                <div class="xp-m-role">Freelance Dev</div>
+                <div class="xp-m-company">Evil Bull Knives • 2023 - Present</div>
+                <div class="xp-m-date">Custom Shopify development and brand identity design.</div>
+            </div>
+
+            <div class="xp-mobile-card" style="border-left: 2px solid rgba(255,255,255,0.05);">
+                <div class="xp-m-role">Sales Associate</div>
+                <div class="xp-m-company">Retail Sector • 2019 - 2021</div>
+                <div class="xp-m-date">Foundational experience in customer relations.</div>
+            </div>
+        </div>
+
+        <div class="xp-mobile-wrapper">
+             <div style="width:100%; height: 200px; background: radial-gradient(circle, rgba(255,201,51,0.1), transparent); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display:flex; flex-direction: column; align-items:center; justify-content:center;">
+                <span style="font-family:'Syne', sans-serif; font-size: 1.5rem; color: white;">Offline Mode</span>
+                <div class="hobbies-list" style="justify-content: center; margin-top: 15px;">
+                    <span class="hobby-pill" style="font-size: 0.7rem;">🌲 Outdoors</span>
+                    <span class="hobby-pill" style="font-size: 0.7rem;">⚽ Soccer</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <footer class="footer">
         <p>© 2025 WUI. All Rights Reserved.</p>
