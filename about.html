@@ -93,6 +93,25 @@
         .hobby-pill { border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 10px 25px; border-radius: 50px; font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: all 0.3s; }
         .hobby-pill:hover { background: var(--accent-yellow); color: black; }
 
+        /* Offline Video Styling */
+        .offline-video-container {
+            width: 100%; height: 400px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .offline-video {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .offline-overlay {
+            position: absolute; bottom: 20px; left: 20px;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            padding: 10px 20px; border-radius: 50px;
+            font-family: 'Syne', sans-serif; font-size: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
         .edu-section { margin: 150px auto; max-width: 1200px; padding: 0 40px; position: relative; width: 100%; }
         .edu-card { background: linear-gradient(135deg, #003087 0%, #000000 80%); border-radius: 30px; overflow: hidden; position: relative; padding: 60px; display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 48, 135, 0.15); }
         .tiger-stripes { position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 20px, transparent 20px, transparent 40px); z-index: 0; opacity: 0.5; }
@@ -122,8 +141,6 @@
             .li-icon { width: 20px; height: 20px; }
 
             /* --- NEW MOBILE HERO (ID Card Style) --- */
-            /* ... inside your @media (max-width: 768px) block ... */
-
             .mobile-hero-wrapper {
                 height: 90vh;
                 position: relative;
@@ -168,7 +185,6 @@
             .m-hero-subtitle { font-family: 'Manrope', sans-serif; color: var(--accent-yellow); font-weight: 700; font-size: 1rem; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
             /* --- NEW MOBILE CAROUSEL (For Certs) --- */
-            /* This turns the grid into a horizontal scroll snap area */
             .cert-section-mobile {
                 padding-left: 20px;
                 margin-bottom: 80px;
@@ -222,6 +238,19 @@
             }
             .edu-mobile-card img { width: 100px; margin-bottom: 20px; filter: grayscale(0%); }
             .honors-mobile { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
+            
+            /* Mobile Offline Video */
+            .mobile-video-wrapper {
+                margin-bottom: 80px;
+                padding: 0 20px;
+            }
+            .mobile-offline-video {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 20px;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
         }
     </style>
 </head>
@@ -330,6 +359,34 @@
             </div>
         </section>
 
+        <section class="xp-section">
+            <h2 style="font-family:'Syne', sans-serif; font-size:3rem; margin-bottom:50px;">History</h2>
+            <div class="xp-row">
+                <div class="xp-date">2021 - Present</div>
+                <div class="xp-role">
+                    <h3>Ecommerce & Marketing Specialist</h3>
+                    <p>Zack Wholesale</p>
+                </div>
+                <div class="xp-company">Memphis, TN</div>
+            </div>
+            <div class="xp-row">
+                <div class="xp-date">2023 - Present</div>
+                <div class="xp-role">
+                    <h3>Freelance Developer & Strategist</h3>
+                    <p>Evil Bull Knives & Others</p>
+                </div>
+                <div class="xp-company">Remote</div>
+            </div>
+            <div class="xp-row">
+                <div class="xp-date">2019 - 2021</div>
+                <div class="xp-role">
+                    <h3>Sales Associate</h3>
+                    <p>Retail Sector</p>
+                </div>
+                <div class="xp-company">Memphis, TN</div>
+            </div>
+        </section>
+
         <section class="personal-section">
             <div class="personal-container">
                 <div class="personal-text">
@@ -344,14 +401,18 @@
                         <span class="hobby-pill">🍜 Food</span>
                     </div>
                 </div>
-                <div style="width:100%; height: 400px; background: radial-gradient(circle, rgba(255,201,51,0.1), transparent); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;">
-                    <span style="font-family:'Syne', sans-serif; font-size: 2rem; opacity: 0.5;">Waleed.Offline()</span>
+                <div class="offline-video-container">
+                    <video class="offline-video" autoplay loop muted playsinline>
+                        <source src="assets/videos/1000050380.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="offline-overlay">Waleed.Offline()</div>
                 </div>
             </div>
         </section>
     </div>
 
-   <div class="mobile-only">
+    <div class="mobile-only">
         
         <div class="mobile-hero-wrapper">
             <div class="mobile-hero-bg">
@@ -407,36 +468,14 @@
             <div style="text-align: center; font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">← Swipe to view more →</div>
         </div>
 
-        <div class="xp-mobile-wrapper">
-            <h2 style="font-family:'Syne'; font-size: 1.5rem; margin-bottom: 20px; color:white;">History</h2>
-            
-            <div class="xp-mobile-card">
-                <div class="xp-m-role">Ecommerce Specialist</div>
-                <div class="xp-m-company">Zack Wholesale • 2021 - Present</div>
-                <div class="xp-m-date">Driving digital strategy and automation for B2B operations.</div>
-            </div>
-
-            <div class="xp-mobile-card">
-                <div class="xp-m-role">Freelance Dev</div>
-                <div class="xp-m-company">Evil Bull Knives • 2023 - Present</div>
-                <div class="xp-m-date">Custom Shopify development and brand identity design.</div>
-            </div>
-
-            <div class="xp-mobile-card" style="border-left: 2px solid rgba(255,255,255,0.05);">
-                <div class="xp-m-role">Sales Associate</div>
-                <div class="xp-m-company">Retail Sector • 2019 - 2021</div>
-                <div class="xp-m-date">Foundational experience in customer relations.</div>
-            </div>
-        </div>
-
-        <div class="xp-mobile-wrapper">
-             <div style="width:100%; height: 200px; background: radial-gradient(circle, rgba(255,201,51,0.1), transparent); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display:flex; flex-direction: column; align-items:center; justify-content:center;">
-                <span style="font-family:'Syne', sans-serif; font-size: 1.5rem; color: white;">Offline Mode</span>
-                <div class="hobbies-list" style="justify-content: center; margin-top: 15px;">
-                    <span class="hobby-pill" style="font-size: 0.7rem;">🌲 Outdoors</span>
-                    <span class="hobby-pill" style="font-size: 0.7rem;">⚽ Soccer</span>
-                </div>
-            </div>
+        <div class="mobile-video-wrapper">
+             <div style="position: relative;">
+                <video class="mobile-offline-video" autoplay loop muted playsinline>
+                    <source src="assets/videos/1000050380.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="offline-overlay" style="left: 10px; bottom: 10px; font-size: 1rem;">Waleed.Offline()</div>
+             </div>
         </div>
 
     </div>
