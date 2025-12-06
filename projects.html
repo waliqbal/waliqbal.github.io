@@ -12,14 +12,68 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        /* --- SCROLL SNAP SETUP (Desktop Default) --- */
+        /* --- SCROLL SNAP SETUP --- */
         html {
-            /* Kept for Desktop, will be unset on mobile below */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
         }
 
         body { overflow-x: hidden; }
+
+        /* --- GLOBAL HEADER STYLES (Floating & Translucent) --- */
+        .header {
+            position: fixed;
+            top: 20px; /* Push down from top */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 100;
+            padding: 10px 30px; /* Compact padding */
+            
+            /* Floating styling */
+            border-radius: 50px;
+            background: rgba(10, 10, 10, 0.85); /* Dark translucent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            /* Remove old bottom border if it existed in main styles */
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .header-inner {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        /* --- NAVIGATION MENU --- */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--accent-yellow); }
+
 
         /* Page Specific Styles for "Editorial" Look */
         .work-header {
@@ -88,7 +142,6 @@
             transition: all 0.5s ease;
         }
 
-        /* Desktop Hover Effects */
         .project-row:hover .project-index {
             color: var(--accent-yellow);
             -webkit-text-stroke: 1px var(--accent-yellow);
@@ -114,8 +167,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Added filter to transition and set default grayscale for desktop */
-            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.7s ease; 
+            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
             filter: grayscale(100%);
         }
 
@@ -167,6 +219,8 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            padding: 10px 24px; /* Added desktop padding */
+            border-radius: 100px;
         }
         
         .header .contact-pill:hover {
@@ -177,148 +231,59 @@
             transform: translateY(-2px);
         }
 
-        /* LinkedIn SVG styling (Desktop hidden by default) */
+        /* LinkedIn SVG styling */
         .li-icon {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
-            display: none;
+            display: block; /* Visible on desktop now */
         }
 
-        /* ---------------------------------------------------------------------- */
-        /* --- MOBILE HEADER & PROJECT OVERRIDES (Max Width 768px) --- */
-        /* ---------------------------------------------------------------------- */
+        /* --- MOBILE OVERRIDES (Max Width 768px) --- */
         @media (max-width: 768px) {
             
-            /* Remove scroll snap on mobile to ensure smooth scrolling */
-            html {
-                scroll-snap-type: none; 
-            }
+            html { scroll-snap-type: none; }
 
-            /* HIDE REQUESTED ELEMENTS */
-            .work-header .hero-title,
-            .filter-bar {
-                display: none !important;
-            }
-
-            /* 1. Floating Rounded Translucent App Bar */
+            /* 1. Mobile Header adjustments */
             .header {
                 width: 90%; 
                 max-width: 500px;
-                left: 50%; 
-                transform: translateX(-50%); 
-                top: 20px; 
                 padding: 10px 15px; 
-                border-radius: 50px; 
-                background: rgba(10, 10, 10, 0.85); 
-                backdrop-filter: blur(12px); 
-                -webkit-backdrop-filter: blur(12px);
-                border-bottom: none;  
-                border: 1px solid rgba(255,255,255,0.1);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5);  
-            }
-
-            /* 2. Resize Logo */
-            .logo-container .logo {
-                height: 32px; 
-            }
-
-            /* 3. Force Menu Display & Formatting */
-            .nav-menu {
-                gap: 15px; 
-            }
-
-            .nav-link {
-                font-size: 13px; 
-                padding: 0; 
-                font-weight: 600;
             }
             
-            /* 4. Condense LinkedIn Button (Icon only) */
+            .logo-container .logo { height: 32px; }
+            .nav-menu { gap: 15px; }
+            .nav-link { font-size: 13px; padding: 0; }
+            
+            /* Mobile Button: Icon Only */
             .contact-pill {
                 padding: 8px !important; 
                 border-radius: 8px !important; 
                 min-width: 36px;
-                color: var(--accent-yellow) !important;
                 background-color: transparent !important; 
             }
+            .contact-pill:hover { transform: none; }
+            
+            .btn-text { display: none; } /* Hide text on mobile */
+            .li-icon { width: 20px; height: 20px; }
 
-            .contact-pill:hover {
-                transform: none; 
-            }
-
-            .btn-text {
-                display: none; 
-            }
-
-            .li-icon {
-                display: block; 
-                width: 20px;
-                height: 20px;
-            }
-
-            /* 5. Adjust Work Header to collapse space, but maintain clearance for floating header */
+            /* Work Header */
             .work-header { 
-                /* Padding: 100px top to clear the floating header, minimal vertical space below */
-                padding: 100px 20px 20px !important; 
-                /* Significantly reduced height to collapse section, was 50vh */
-                min-height: 100px !important; 
+                padding-top: 140px; /* Increased to clear floating header */
+                min-height: 50vh;
             }
             
-            /* FIX 2: Override grayscale to full color on mobile and remove hover/scroll scale */
-            .img-container img, 
-            .img-container video {
-                filter: grayscale(0%) !important; /* Full color by default on mobile */
-                transform: scale(1); /* No scaling on mobile to remove hover/scroll effect */
-            }
-
-            /* 6. Mobile Project Card Adjustments (Modern List UI) */
+            /* Mobile Project Card Adjustments */
             .project-row { 
                 grid-template-columns: 1fr; 
                 gap: 20px; 
                 min-height: auto; 
-                /* Reduced vertical padding and added a subtle separator line */
-                padding: 40px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-                scroll-snap-align: unset; /* Disable scroll snap for project rows */
+                padding: 60px 20px;
+                scroll-snap-align: start;
             }
-
-            .project-index { 
-                font-size: 4rem; 
-                margin-bottom: 5px; 
-                text-align: left;
-            }
-
-            /* Modern UI: Remove the background/padding to make it look like a seamless list item */
-            .project-card-large {
-                background: none;
-                padding: 0;
-                border-radius: 0;
-            }
-
-            /* FIX 3: Set image/video container for 16:9 aspect ratio (1920x1080) */
-            .img-container { 
-                height: 0; /* Clear height for aspect ratio padding trick */
-                padding-top: 56.25%; /* 1080/1920 = 0.5625 -> 56.25% (16:9) */
-                margin-bottom: 15px;
-            }
-            
-            .img-container img, 
-            .img-container video {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-            
-            .p-info h2 { 
-                font-size: 2rem; 
-            }
-            
-            .p-info p {
-                max-width: 100%; 
-            }
+            .project-index { font-size: 4rem; margin-bottom: -20px; z-index: 2; position: relative; }
+            .img-container { height: 40vh; }
+            .p-info h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -334,9 +299,9 @@
             
             <nav class="nav-menu">
                 <a href="projects.html" class="nav-link" style="color: var(--accent-yellow);">Work</a>
-                <a href="about.html" class="nav-link">About Me</a>
+                <a href="about.html" class="nav-link">About</a>
                 
-                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill" aria-label="Connect on LinkedIn">
+                <a href="https://www.linkedin.com/in/waleediqba-l/" target="_blank" rel="noopener noreferrer" class="nav-link contact-pill">
                     <span class="btn-text">Let's Connect</span>
                     <svg class="li-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.306c0-4.613 5.48-4.515 5.48 0v8.306h5v-10.502c0-8.118-8.74-7.984-10.512-3.807v-1.697z"/>
@@ -360,7 +325,7 @@
 
     <section class="project-list">
 
-        <a href="evilbullknives.html" class="project-row">
+        <a href="evilbullknives.html" class="project-row project-link" data-mobile="evilbullknivesmobile.html">
             <div class="project-index">01</div>
             <div class="project-card-large">
                 <div class="img-container">
@@ -378,7 +343,7 @@
             </div>
         </a>
 
-        <a href="zackwholesale.html" class="project-row">
+        <a href="zackwholesale.html" class="project-row project-link" data-mobile="zackwholesalemobile.html">
             <div class="project-index">02</div>
             <div class="project-card-large">
                 <div class="img-container">
@@ -396,7 +361,7 @@
             </div>
         </a>
 
-        <a href="charitywater.html" class="project-row">
+        <a href="charitywater.html" class="project-row project-link" data-mobile="charitywatermobile.html">
             <div class="project-index">03</div>
             <div class="project-card-large">
                 <div class="img-container">
@@ -419,6 +384,22 @@
     <footer class="footer" style="scroll-snap-align: end;">
         <p>© 2025 WUI. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectLinks = document.querySelectorAll('.project-link');
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+            if (isMobile) {
+                projectLinks.forEach(link => {
+                    const mobileUrl = link.getAttribute('data-mobile');
+                    if (mobileUrl) {
+                        link.setAttribute('href', mobileUrl);
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
