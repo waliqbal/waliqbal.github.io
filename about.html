@@ -122,8 +122,10 @@
             .li-icon { width: 20px; height: 20px; }
 
             /* --- NEW MOBILE HERO (ID Card Style) --- */
+            /* ... inside your @media (max-width: 768px) block ... */
+
             .mobile-hero-wrapper {
-                height: 90vh; /* Nearly full screen */
+                height: 90vh;
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -131,27 +133,37 @@
                 padding: 30px;
                 overflow: hidden;
                 margin-bottom: 50px;
+                background: #111; /* Fallback color if image fails */
             }
             
+            /* UPDATED: Container for the image */
             .mobile-hero-bg {
-                position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                /* Using profile pic as background for cool effect */
-                background-image: url('assets/images/pfpportfolio.jpeg'); 
-                background-size: cover;
-                background-position: center;
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                width: 100%; 
+                height: 100%;
+                z-index: 0; /* Behind content */
+            }
+
+            /* NEW: The actual image styling */
+            .mobile-bg-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ensures it covers the screen like a background */
+                object-position: center;
                 filter: grayscale(100%) brightness(0.6);
-                z-index: -1;
             }
             
             .mobile-hero-content {
-                z-index: 2;
+                z-index: 2; /* In front of image */
+                position: relative;
                 background: rgba(0,0,0,0.7);
                 backdrop-filter: blur(10px);
                 padding: 25px;
                 border-radius: 20px;
                 border: 1px solid rgba(255,255,255,0.15);
             }
-
             .m-hero-title { font-family: 'Syne', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; color: white; }
             .m-hero-subtitle { font-family: 'Manrope', sans-serif; color: var(--accent-yellow); font-weight: 700; font-size: 1rem; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -367,10 +379,13 @@
         </section>
     </div>
 
-    <div class="mobile-only">
+   <div class="mobile-only">
         
         <div class="mobile-hero-wrapper">
-            <div class="mobile-hero-bg"></div>
+            <div class="mobile-hero-bg">
+                <img src="assets/images/pfpportfolio.jpeg" alt="Background" class="mobile-bg-img">
+            </div>
+
             <div class="mobile-hero-content">
                 <h1 class="m-hero-title">Waleed <br>Iqbal</h1>
                 <div class="m-hero-subtitle">Creative Technologist</div>
