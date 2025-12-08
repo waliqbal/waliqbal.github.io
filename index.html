@@ -15,9 +15,9 @@
         body { 
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* This forces the marquee to clip properly */
+            overflow-x: hidden;
             width: 100%;
-            background-color: #050505; /* Deep dark bg */
+            background-color: #050505;
             color: white;
         }
 
@@ -32,7 +32,6 @@
             z-index: 100;
             padding: 10px 30px;
             box-sizing: border-box; 
-
             border-radius: 50px;
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(12px);
@@ -42,157 +41,134 @@
             border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
 
-        .header-inner {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 40px;
-            width: auto;
-        }
-
-        /* --- NAVIGATION MENU --- */
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
+        .header-inner { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 40px; width: auto; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
         .nav-link {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--color-text-light, #fff);
-            text-decoration: none;
-            transition: color 0.3s;
+            font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--color-text-light, #fff); text-decoration: none; transition: color 0.3s;
         }
-
         .nav-link:hover { color: var(--accent-yellow, #e0ff00); }
 
-        /* --- LINKEDIN BUTTON STYLES --- */
+        /* --- CTA BUTTON --- */
         .header .contact-pill {
             border: 1px solid var(--accent-yellow, #e0ff00) !important;
             color: var(--accent-yellow, #e0ff00) !important;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px; 
-            padding: 10px 24px;
-            border-radius: 100px;
+            transition: all 0.3s ease; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;
+            display: flex; align-items: center; justify-content: center; gap: 8px; 
+            padding: 10px 24px; border-radius: 100px;
         }
-        
         .header .contact-pill:hover {
-            background-color: #0077b5 !important; /* LinkedIn Blue */
-            border-color: #0077b5 !important;
-            color: #ffffff !important;
-            box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
-            transform: translateY(-2px);
+            background-color: #0077b5 !important; border-color: #0077b5 !important;
+            color: #ffffff !important; box-shadow: 0 0 15px rgba(0, 119, 181, 0.4); transform: translateY(-2px);
         }
-        
-        .li-icon {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-            display: block;
-        }
+        .li-icon { width: 16px; height: 16px; fill: currentColor; display: block; }
 
-        /* --- STATS SECTION STYLES (NEW) --- */
+        /* --- MODERN STATS SECTION STYLES --- */
         .stats-section {
-            padding: 120px 20px;
+            padding: 100px 20px;
             background: #050505;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            /* Subtle background glow mesh */
+            background-image: radial-gradient(circle at 50% 50%, rgba(224, 255, 0, 0.03) 0%, transparent 60%);
         }
 
-        .stats-container {
+        .stats-grid {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
 
-        .stat-item {
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 60px 40px;
             text-align: center;
-            opacity: 0; /* Hidden initally for animation */
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* Hidden initially for scroll reveal */
+            opacity: 0;
+            transform: translateY(40px);
         }
 
-        .stat-item.is-visible {
+        /* Hover Effect: Lift & Glow */
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--accent-yellow, #e0ff00);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Reveal Animation Class */
+        .stat-card.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
         .stat-number {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3.5rem, 8vw, 6rem); /* Responsive huge text */
+            font-size: clamp(3rem, 6vw, 5.5rem); /* Responsive giant text */
             font-weight: 800;
-            color: var(--accent-yellow, #e0ff00);
             margin: 0;
             line-height: 1;
-            display: block;
-            margin-bottom: 10px;
-            /* Optional Glow */
-            text-shadow: 0 0 30px rgba(224, 255, 0, 0.15);
+            margin-bottom: 15px;
+            
+            /* Gradient Text Effect */
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-yellow, #e0ff00) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
 
         .stat-label {
             font-family: 'Manrope', sans-serif;
             font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: white;
-            opacity: 0.6;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
             margin: 0;
         }
 
-        /* --- MOBILE HEADER OVERRIDES --- */
+        /* Decorative "Plus" icon in background */
+        .stat-decor {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.2;
+            color: var(--accent-yellow, #e0ff00);
+        }
+
+        /* --- MOBILE OVERRIDES --- */
         @media (max-width: 768px) {
-            .header {
-                width: 90%; 
-                max-width: 500px;
-                padding: 10px 15px; 
-            }
-            
+            .header { width: 90%; max-width: 500px; padding: 10px 15px; }
             .logo-container .logo { height: 32px; }
-            
             .nav-menu { gap: 15px; }
-            
             .nav-link { font-size: 13px; padding: 0; }
             
             /* Mobile Button: Icon Only */
-            .contact-pill {
-                padding: 8px !important; 
-                border-radius: 8px !important; 
-                min-width: 36px;
-                color: var(--accent-yellow, #e0ff00) !important; 
-                background-color: transparent !important; 
-            }
+            .contact-pill { padding: 8px !important; border-radius: 8px !important; min-width: 36px; color: var(--accent-yellow, #e0ff00) !important; background-color: transparent !important; }
             .contact-pill:hover { transform: none; }
-            
             .btn-text { display: none; } 
-            
             .li-icon { width: 20px; height: 20px; }
 
             .hero-section { padding-top: 140px; } 
             .hero-title { font-size: 3rem; }
 
             /* Stats Mobile Stack */
-            .stats-container {
-                flex-direction: column;
-                gap: 80px;
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .stat-card {
+                padding: 40px 20px;
             }
         }
     </style>
@@ -225,8 +201,8 @@
         <div class="hero-container">
             <div class="hero-text-wrapper">
                 <h1 class="hero-title">
-                    <span class="line reveal-text">Visuals</span>
-                    <span class="line reveal-text">That <span class="accent-text">Convert</span></span>
+                    <span class="line reveal-text">Creativity</span>
+                    <span class="line reveal-text">That <span class="accent-text">Converts</span></span>
                 </h1>
                 <p class="hero-subtitle reveal-text-delay">
                     Helping brands stand out through high-impact design and storytelling strategies.
@@ -253,15 +229,30 @@
     </div>
 
     <section class="stats-section">
-        <div class="stats-container">
-            <div class="stat-item">
+        <div class="stats-grid">
+            
+            <div class="stat-card">
+                <div class="stat-decor">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </div>
                 <span class="stat-number" data-target="100000" data-prefix="$" data-suffix="+">0</span>
                 <p class="stat-label">Revenue Generated</p>
             </div>
-            <div class="stat-item">
+
+            <div class="stat-card" style="transition-delay: 0.1s;">
+                <div class="stat-decor">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
                 <span class="stat-number" data-target="50000" data-prefix="" data-suffix="+">0</span>
                 <p class="stat-label">Visitors Reached</p>
             </div>
+
         </div>
     </section>
 
@@ -347,10 +338,10 @@
                 });
             }
 
-            // 2. Stats Counter Animation
+            // 2. Stats Counter Animation & Reveal
             const statsSection = document.querySelector('.stats-section');
             const statNumbers = document.querySelectorAll('.stat-number');
-            const statItems = document.querySelectorAll('.stat-item');
+            const statCards = document.querySelectorAll('.stat-card'); // Target cards for fade in
             let started = false;
 
             const startCount = (el) => {
@@ -359,8 +350,8 @@
                 const suffix = el.getAttribute('data-suffix') || "";
                 
                 // Animation Configuration
-                const duration = 2000; // 2 seconds total animation time
-                const steps = 60; // Updates per second approx
+                const duration = 2500; // 2.5 seconds total
+                const steps = 60; 
                 const intervalTime = duration / steps;
                 const increment = target / steps;
                 
@@ -377,15 +368,17 @@
                 }, intervalTime);
             };
 
-            const observerOptions = { threshold: 0.5 };
+            const observerOptions = { threshold: 0.3 }; // Trigger when 30% visible
             
             const statsObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !started) {
-                        // Animate Numbers
+                        // Fade in the cards
+                        statCards.forEach(card => card.classList.add('is-visible'));
+                        
+                        // Start numbers counting
                         statNumbers.forEach(num => startCount(num));
-                        // Fade in items
-                        statItems.forEach(item => item.classList.add('is-visible'));
+                        
                         started = true;
                         observer.unobserve(entry.target);
                     }
