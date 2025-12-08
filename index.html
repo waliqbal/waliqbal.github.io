@@ -13,34 +13,34 @@
 
     <style>
         body { 
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden; /* This forces the marquee to clip properly */
-        width: 100%;
-    }
-        /* --- GLOBAL HEADER STYLES (Floating & Translucent) --- */
-        .header {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 1200px;
-        z-index: 100;
-        padding: 10px 30px;
-        
-        /* --- ADD THIS LINE --- */
-        box-sizing: border-box; 
-        /* --------------------- */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* This forces the marquee to clip properly */
+            width: 100%;
+            background-color: #050505; /* Deep dark bg */
+            color: white;
+        }
 
-        border-radius: 50px;
-        background: rgba(10, 10, 10, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-        border-bottom: 1px solid rgba(255,255,255,0.1); 
-    }
+        /* --- GLOBAL HEADER STYLES --- */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 100;
+            padding: 10px 30px;
+            box-sizing: border-box; 
+
+            border-radius: 50px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
 
         .header-inner {
             width: 100%;
@@ -67,18 +67,17 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--color-text-light);
+            color: var(--color-text-light, #fff);
             text-decoration: none;
             transition: color 0.3s;
         }
 
-        .nav-link:hover { color: var(--accent-yellow); }
+        .nav-link:hover { color: var(--accent-yellow, #e0ff00); }
 
         /* --- LINKEDIN BUTTON STYLES --- */
         .header .contact-pill {
-            /* Default State: Your CTA Color */
-            border: 1px solid var(--accent-yellow) !important;
-            color: var(--accent-yellow) !important;
+            border: 1px solid var(--accent-yellow, #e0ff00) !important;
+            color: var(--accent-yellow, #e0ff00) !important;
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-weight: 700;
@@ -86,7 +85,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px; /* Space between text and icon */
+            gap: 8px; 
             padding: 10px 24px;
             border-radius: 100px;
         }
@@ -99,15 +98,67 @@
             transform: translateY(-2px);
         }
         
-        /* Icon styling - visible on desktop now */
         .li-icon {
             width: 16px;
             height: 16px;
             fill: currentColor;
-            display: block; /* Ensure visible */
+            display: block;
         }
 
-        /* --- MOBILE HEADER OVERRIDES (Max Width 768px) --- */
+        /* --- STATS SECTION STYLES (NEW) --- */
+        .stats-section {
+            padding: 120px 20px;
+            background: #050505;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0; /* Hidden initally for animation */
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .stat-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 6rem); /* Responsive huge text */
+            font-weight: 800;
+            color: var(--accent-yellow, #e0ff00);
+            margin: 0;
+            line-height: 1;
+            display: block;
+            margin-bottom: 10px;
+            /* Optional Glow */
+            text-shadow: 0 0 30px rgba(224, 255, 0, 0.15);
+        }
+
+        .stat-label {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            opacity: 0.6;
+            margin: 0;
+        }
+
+        /* --- MOBILE HEADER OVERRIDES --- */
         @media (max-width: 768px) {
             .header {
                 width: 90%; 
@@ -126,17 +177,23 @@
                 padding: 8px !important; 
                 border-radius: 8px !important; 
                 min-width: 36px;
-                color: var(--accent-yellow) !important; 
+                color: var(--accent-yellow, #e0ff00) !important; 
                 background-color: transparent !important; 
             }
             .contact-pill:hover { transform: none; }
             
-            .btn-text { display: none; } /* Hide text on mobile */
+            .btn-text { display: none; } 
             
             .li-icon { width: 20px; height: 20px; }
 
-            .hero-section { padding-top: 140px; } /* Increase padding to clear floating header */
+            .hero-section { padding-top: 140px; } 
             .hero-title { font-size: 3rem; }
+
+            /* Stats Mobile Stack */
+            .stats-container {
+                flex-direction: column;
+                gap: 80px;
+            }
         }
     </style>
 </head>
@@ -168,8 +225,8 @@
         <div class="hero-container">
             <div class="hero-text-wrapper">
                 <h1 class="hero-title">
-                    <span class="line reveal-text">Creativity</span>
-                    <span class="line reveal-text">That <span class="accent-text">Converts</span></span>
+                    <span class="line reveal-text">Visuals</span>
+                    <span class="line reveal-text">That <span class="accent-text">Convert</span></span>
                 </h1>
                 <p class="hero-subtitle reveal-text-delay">
                     Helping brands stand out through high-impact design and storytelling strategies.
@@ -194,6 +251,19 @@
             </div>
         </div>
     </div>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number" data-target="100000" data-prefix="$" data-suffix="+">0</span>
+                <p class="stat-label">Revenue Generated</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="50000" data-prefix="" data-suffix="+">0</span>
+                <p class="stat-label">Visitors Reached</p>
+            </div>
+        </div>
+    </section>
 
     <section id="work" class="works-section">
         <div class="section-header">
@@ -263,6 +333,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Mobile Link Swapping
             const projectLinks = document.querySelectorAll('.project-link');
             const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
@@ -274,11 +346,57 @@
                     }
                 });
             }
+
+            // 2. Stats Counter Animation
+            const statsSection = document.querySelector('.stats-section');
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statItems = document.querySelectorAll('.stat-item');
+            let started = false;
+
+            const startCount = (el) => {
+                const target = parseInt(el.getAttribute('data-target'));
+                const prefix = el.getAttribute('data-prefix') || "";
+                const suffix = el.getAttribute('data-suffix') || "";
+                
+                // Animation Configuration
+                const duration = 2000; // 2 seconds total animation time
+                const steps = 60; // Updates per second approx
+                const intervalTime = duration / steps;
+                const increment = target / steps;
+                
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.innerText = prefix + target.toLocaleString() + suffix;
+                        clearInterval(timer);
+                    } else {
+                        el.innerText = prefix + Math.floor(current).toLocaleString() + suffix;
+                    }
+                }, intervalTime);
+            };
+
+            const observerOptions = { threshold: 0.5 };
+            
+            const statsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !started) {
+                        // Animate Numbers
+                        statNumbers.forEach(num => startCount(num));
+                        // Fade in items
+                        statItems.forEach(item => item.classList.add('is-visible'));
+                        started = true;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
         });
     </script>
 
 </body>
 </html>
-
-
-
