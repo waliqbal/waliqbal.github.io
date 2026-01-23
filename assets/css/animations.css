@@ -1,0 +1,157 @@
+:root{
+  --anim-ease: cubic-bezier(.16,.84,.33,1);
+  --accent: #ffc933;
+  --reveal-duration: 700ms;
+  --reveal-stagger: 90ms;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  [data-parallax],
+  .hover-scale,
+  .hover-tilt,
+  .btn-primary::after {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Basic reveal utilities */
+.reveal,
+.reveal-text,
+.reveal-img {
+  opacity: 0;
+  transform: translateY(18px) scale(0.995);
+  transition: opacity var(--reveal-duration) var(--anim-ease),
+              transform var(--reveal-duration) var(--anim-ease);
+  will-change: opacity, transform;
+}
+
+/* Variant directions */
+.reveal.up { transform: translateY(20px); }
+.reveal.left { transform: translateX(-18px); }
+.reveal.right { transform: translateX(18px); }
+.reveal.scale { transform: translateY(6px) scale(.985); }
+
+/* When element enters view, JS adds .in-view */
+.reveal.in-view,
+.reveal-text.in-view,
+.reveal-img.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger helpers via inline style or data-delay (JS sets --delay) */
+.reveal[data-delay] {
+  transition-delay: var(--delay, 0ms);
+}
+
+/* Text-specific micro-anim */
+.reveal-text {
+  display: inline-block;
+  backface-visibility: hidden;
+  transform-origin: 50% 50%;
+}
+
+/* Image float & subtle parallax */
+.image-wrapper,
+.profile-img-container,
+.hero-img {
+  transition: transform 600ms var(--anim-ease), filter 400ms linear;
+  will-change: transform;
+}
+
+.image-wrapper:hover .hero-img,
+.profile-img-container:hover img {
+  transform: translateY(-6px) scale(1.02);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+/* Hover interactions */
+.hover-scale {
+  transition: transform 260ms var(--anim-ease), box-shadow 260ms var(--anim-ease);
+  will-change: transform;
+}
+.hover-scale:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.36);
+}
+
+/* Card tilt micro-interaction for project cards */
+.hover-tilt {
+  transform: perspective(900px) translateZ(0);
+  transition: transform 350ms var(--anim-ease);
+  will-change: transform;
+}
+
+/* Button - modern "shine" + subtle lift */
+.btn-primary {
+  position: relative;
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:10px;
+  background:transparent;
+  color:var(--accent);
+  border:1px solid rgba(255,201,51,0.12);
+  transition: transform 220ms var(--anim-ease), box-shadow 220ms var(--anim-ease);
+  will-change: transform;
+  overflow:hidden;
+}
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.32);
+}
+.btn-primary::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0) 100%);
+  transform: translateX(-120%);
+  transition: transform 650ms var(--anim-ease);
+}
+.btn-primary:hover::after{ transform: translateX(120%); }
+
+/* Underline hover for nav links */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 280ms var(--anim-ease);
+}
+.link-underline:hover::after { transform: scaleX(1); }
+
+/* Marquee & track smoothing */
+.marquee-track { will-change: transform; backface-visibility: hidden; }
+
+/* Subtle shimmer text for hero accent */
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3.2s linear infinite;
+  background-size: 200% 100%;
+}
+@keyframes shimmer { from { background-position: 0% 0 } to { background-position: 200% 0 } }
+
+/* Accessibility: focus-visible */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid rgba(255,201,51,0.14);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Utility to toggle parallax transform by JS */
+[data-parallax] { transition: transform 240ms linear; will-change: transform; }
